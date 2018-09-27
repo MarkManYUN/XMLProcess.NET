@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLProcess.NET", "XMLProcess.NET\XMLProcess.NET.csproj", "{8E668294-C91C-48DA-B279-74C05B46DDA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlProcess.NET2.0", "XmlProcess.NET2.0\XmlProcess.NET2.0.csproj", "{81D58F19-B490-4543-8E03-2DDDCC56BB90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlProcess.Net3.2", "XmlProcess.Net3.2\XmlProcess.Net3.2.csproj", "{F2F265AD-0840-42D3-AD9B-52C5B109C350}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlProcess.NET4.0", "XmlProcess.NET4.0\XmlProcess.NET4.0.csproj", "{96BAC543-BC54-457B-A4F9-B2FF68503C26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlProcess5.0", "XmlProcess5.0\XmlProcess5.0.csproj", "{E4D46374-1EF4-40C2-9404-1A785AE6F5B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlProcess5.0_Potocol", "XmlProcess5.0_Potocol\XmlProcess5.0_Potocol.csproj", "{5BB836D7-75D4-42CB-AF03-9C295C1C465D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E668294-C91C-48DA-B279-74C05B46DDA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E668294-C91C-48DA-B279-74C05B46DDA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E668294-C91C-48DA-B279-74C05B46DDA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E668294-C91C-48DA-B279-74C05B46DDA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81D58F19-B490-4543-8E03-2DDDCC56BB90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81D58F19-B490-4543-8E03-2DDDCC56BB90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81D58F19-B490-4543-8E03-2DDDCC56BB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81D58F19-B490-4543-8E03-2DDDCC56BB90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2F265AD-0840-42D3-AD9B-52C5B109C350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2F265AD-0840-42D3-AD9B-52C5B109C350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2F265AD-0840-42D3-AD9B-52C5B109C350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2F265AD-0840-42D3-AD9B-52C5B109C350}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96BAC543-BC54-457B-A4F9-B2FF68503C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96BAC543-BC54-457B-A4F9-B2FF68503C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96BAC543-BC54-457B-A4F9-B2FF68503C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96BAC543-BC54-457B-A4F9-B2FF68503C26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4D46374-1EF4-40C2-9404-1A785AE6F5B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D46374-1EF4-40C2-9404-1A785AE6F5B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D46374-1EF4-40C2-9404-1A785AE6F5B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D46374-1EF4-40C2-9404-1A785AE6F5B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BB836D7-75D4-42CB-AF03-9C295C1C465D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BB836D7-75D4-42CB-AF03-9C295C1C465D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BB836D7-75D4-42CB-AF03-9C295C1C465D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BB836D7-75D4-42CB-AF03-9C295C1C465D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61D20B36-EEC6-4B56-842D-85D981B94800}
+	EndGlobalSection
+EndGlobal
