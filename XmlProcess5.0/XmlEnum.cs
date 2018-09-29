@@ -47,6 +47,10 @@ namespace XmlProcess5._0
         FirstAddr,
         StartSingle
     }
+    enum ProtocolType
+    {
+        Modbus, custom, vdr,other,Sokect
+    }
     class XmlEnum
     {
     }
