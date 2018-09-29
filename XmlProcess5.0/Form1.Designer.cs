@@ -36,6 +36,7 @@
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
@@ -56,6 +57,7 @@
             this.repositoryItemProgressBar3 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.btn_print = new DevExpress.XtraBars.BarButtonItem();
             this.lab_Path = new DevExpress.XtraBars.BarStaticItem();
+            this.btn_add = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -93,32 +95,61 @@
             this.Page1_CommunicationConfig = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.navigationPage2 = new DevExpress.XtraBars.Navigation.NavigationPage();
-            this.Page2_Communication = new DevExpress.XtraGrid.GridControl();
+            this.page2_gridview2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.navigationPage3 = new DevExpress.XtraBars.Navigation.NavigationPage();
-            this.Page3_Address = new DevExpress.XtraGrid.GridControl();
-            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.barEditItem3 = new DevExpress.XtraBars.BarEditItem();
-            this.barEditItem4 = new DevExpress.XtraBars.BarEditItem();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControl_Address = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControl_Protocal = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.btn_add = new DevExpress.XtraBars.BarButtonItem();
+            this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.page2_txt_ConfigFilePath = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.page2_txt_CommSpaceTime = new DevExpress.XtraEditors.TextEdit();
+            this.page2_txt_WriteTimeOut = new DevExpress.XtraEditors.TextEdit();
+            this.page2_txt_ReadTimeOut = new DevExpress.XtraEditors.TextEdit();
+            this.page2_txt_CommErroTime = new DevExpress.XtraEditors.TextEdit();
+            this.page2_txt_CommReConnectTime = new DevExpress.XtraEditors.TextEdit();
+            this.page2_txt_EnglishiName = new DevExpress.XtraEditors.TextEdit();
+            this.page2_txt_ChineseName = new DevExpress.XtraEditors.TextEdit();
+            this.page2_txt_ID = new DevExpress.XtraEditors.TextEdit();
             this.page2_btn_opration = new DevExpress.XtraEditors.GroupControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.page2_btn_ConfigAddress = new DevExpress.XtraEditors.SimpleButton();
             this.page2_btn_update = new DevExpress.XtraEditors.SimpleButton();
             this.page2_btn_add = new DevExpress.XtraEditors.SimpleButton();
             this.page2_btn_clearContent = new DevExpress.XtraEditors.SimpleButton();
             this.page2_btn_deleteCheck = new DevExpress.XtraEditors.SimpleButton();
             this.page2_btn_clear = new DevExpress.XtraEditors.SimpleButton();
+            this.navigationPage3 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.layoutControl_Address = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.Page3_Address = new DevExpress.XtraGrid.GridControl();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.navigationPage4 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.page4_cmb_CheckProtocol = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.page4_btn_clearContent = new DevExpress.XtraEditors.SimpleButton();
+            this.page4_btn_update = new DevExpress.XtraEditors.SimpleButton();
+            this.page4_btn_add = new DevExpress.XtraEditors.SimpleButton();
+            this.page4_btn_delete = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.barEditItem3 = new DevExpress.XtraBars.BarEditItem();
+            this.barEditItem4 = new DevExpress.XtraBars.BarEditItem();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar3)).BeginInit();
@@ -150,19 +181,36 @@
             ((System.ComponentModel.ISupportInitialize)(this.Page1_CommunicationConfig)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.navigationPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Page2_Communication)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_gridview2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            this.navigationPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Page3_Address)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl_Address)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl_Protocal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_ConfigFilePath.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_CommSpaceTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_WriteTimeOut.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_ReadTimeOut.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_CommErroTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_CommReConnectTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_EnglishiName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_ChineseName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_ID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.page2_btn_opration)).BeginInit();
             this.page2_btn_opration.SuspendLayout();
+            this.navigationPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl_Address)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Page3_Address)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            this.navigationPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.page4_cmb_CheckProtocol.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -193,9 +241,10 @@
             this.barButtonItem11,
             this.btn_print,
             this.lab_Path,
-            this.btn_add});
+            this.btn_add,
+            this.barButtonItem12});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 28;
+            this.ribbonControl1.MaxItemId = 29;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -219,7 +268,8 @@
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem11)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem11),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem12)});
             this.barSubItem1.Name = "barSubItem1";
             // 
             // barButtonItem9
@@ -242,6 +292,13 @@
             this.barButtonItem11.Id = 22;
             this.barButtonItem11.Name = "barButtonItem11";
             this.barButtonItem11.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem11_ItemClick);
+            // 
+            // barButtonItem12
+            // 
+            this.barButtonItem12.Caption = "协议字段配置";
+            this.barButtonItem12.Id = 28;
+            this.barButtonItem12.Name = "barButtonItem12";
+            this.barButtonItem12.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem12_ItemClick);
             // 
             // barButtonItem1
             // 
@@ -376,6 +433,13 @@
             this.lab_Path.Id = 24;
             this.lab_Path.Name = "lab_Path";
             // 
+            // btn_add
+            // 
+            this.btn_add.Caption = "加载";
+            this.btn_add.Id = 27;
+            this.btn_add.Name = "btn_add";
+            this.btn_add.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_add_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -434,14 +498,16 @@
             this.navigationFrame1.Controls.Add(this.navigationPage1);
             this.navigationFrame1.Controls.Add(this.navigationPage2);
             this.navigationFrame1.Controls.Add(this.navigationPage3);
-            this.navigationFrame1.Location = new System.Drawing.Point(10, 165);
+            this.navigationFrame1.Controls.Add(this.navigationPage4);
+            this.navigationFrame1.Location = new System.Drawing.Point(0, 146);
             this.navigationFrame1.Name = "navigationFrame1";
             this.navigationFrame1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.navigationPage1,
             this.navigationPage2,
-            this.navigationPage3});
+            this.navigationPage3,
+            this.navigationPage4});
             this.navigationFrame1.SelectedPage = this.navigationPage1;
-            this.navigationFrame1.Size = new System.Drawing.Size(857, 281);
+            this.navigationFrame1.Size = new System.Drawing.Size(879, 300);
             this.navigationFrame1.TabIndex = 4;
             this.navigationFrame1.Text = "navigationFrame1";
             // 
@@ -451,7 +517,7 @@
             this.navigationPage1.Controls.Add(this.layoutControl1);
             this.navigationPage1.Controls.Add(this.Page1_CommunicationConfig);
             this.navigationPage1.Name = "navigationPage1";
-            this.navigationPage1.Size = new System.Drawing.Size(857, 293);
+            this.navigationPage1.Size = new System.Drawing.Size(879, 300);
             // 
             // layoutControl1
             // 
@@ -732,134 +798,235 @@
             // navigationPage2
             // 
             this.navigationPage2.Caption = "协议配置";
-            this.navigationPage2.Controls.Add(this.page2_btn_opration);
+            this.navigationPage2.Controls.Add(this.page2_gridview2);
             this.navigationPage2.Controls.Add(this.layoutControl3);
-            this.navigationPage2.Controls.Add(this.Page2_Communication);
+            this.navigationPage2.Controls.Add(this.groupControl3);
+            this.navigationPage2.Controls.Add(this.page2_btn_opration);
             this.navigationPage2.Name = "navigationPage2";
-            this.navigationPage2.Size = new System.Drawing.Size(857, 293);
+            this.navigationPage2.Size = new System.Drawing.Size(879, 300);
             // 
-            // Page2_Communication
+            // page2_gridview2
             // 
-            this.Page2_Communication.Location = new System.Drawing.Point(210, 3);
-            this.Page2_Communication.MainView = this.gridView2;
-            this.Page2_Communication.MenuManager = this.ribbonControl1;
-            this.Page2_Communication.Name = "Page2_Communication";
-            this.Page2_Communication.Size = new System.Drawing.Size(644, 281);
-            this.Page2_Communication.TabIndex = 0;
-            this.Page2_Communication.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.page2_gridview2.Location = new System.Drawing.Point(235, 115);
+            this.page2_gridview2.MainView = this.gridView2;
+            this.page2_gridview2.MenuManager = this.ribbonControl1;
+            this.page2_gridview2.Name = "page2_gridview2";
+            this.page2_gridview2.Size = new System.Drawing.Size(641, 182);
+            this.page2_gridview2.TabIndex = 9;
+            this.page2_gridview2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
+            this.page2_gridview2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.page2_gridview2_MouseClick);
             // 
             // gridView2
             // 
-            this.gridView2.GridControl = this.Page2_Communication;
+            this.gridView2.GridControl = this.page2_gridview2;
             this.gridView2.Name = "gridView2";
-            // 
-            // navigationPage3
-            // 
-            this.navigationPage3.Caption = "通道配置";
-            this.navigationPage3.Controls.Add(this.groupControl1);
-            this.navigationPage3.Controls.Add(this.layoutControl2);
-            this.navigationPage3.Controls.Add(this.Page3_Address);
-            this.navigationPage3.Name = "navigationPage3";
-            this.navigationPage3.Size = new System.Drawing.Size(857, 293);
-            // 
-            // Page3_Address
-            // 
-            this.Page3_Address.Location = new System.Drawing.Point(206, 3);
-            this.Page3_Address.MainView = this.gridView3;
-            this.Page3_Address.MenuManager = this.ribbonControl1;
-            this.Page3_Address.Name = "Page3_Address";
-            this.Page3_Address.Size = new System.Drawing.Size(648, 281);
-            this.Page3_Address.TabIndex = 0;
-            this.Page3_Address.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView3});
-            // 
-            // gridView3
-            // 
-            this.gridView3.GridControl = this.Page3_Address;
-            this.gridView3.Name = "gridView3";
-            // 
-            // barEditItem3
-            // 
-            this.barEditItem3.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.barEditItem3.Caption = "完成进度";
-            this.barEditItem3.Edit = this.repositoryItemProgressBar2;
-            this.barEditItem3.Id = 18;
-            this.barEditItem3.Name = "barEditItem3";
-            // 
-            // barEditItem4
-            // 
-            this.barEditItem4.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.barEditItem4.Caption = "完成进度";
-            this.barEditItem4.Edit = this.repositoryItemProgressBar2;
-            this.barEditItem4.Id = 18;
-            this.barEditItem4.Name = "barEditItem4";
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // layoutControl2
-            // 
-            this.layoutControl2.Location = new System.Drawing.Point(3, 4);
-            this.layoutControl2.Name = "layoutControl2";
-            this.layoutControl2.Root = this.layoutControl_Address;
-            this.layoutControl2.Size = new System.Drawing.Size(197, 174);
-            this.layoutControl2.TabIndex = 1;
-            this.layoutControl2.Text = "layoutControl2";
-            // 
-            // layoutControl_Address
-            // 
-            this.layoutControl_Address.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControl_Address.GroupBordersVisible = false;
-            this.layoutControl_Address.Name = "layoutControl_Address";
-            this.layoutControl_Address.Size = new System.Drawing.Size(197, 174);
-            this.layoutControl_Address.TextVisible = false;
             // 
             // layoutControl3
             // 
-            this.layoutControl3.Location = new System.Drawing.Point(7, 7);
+            this.layoutControl3.Location = new System.Drawing.Point(3, 115);
             this.layoutControl3.Name = "layoutControl3";
-            this.layoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(659, 145, 650, 400);
-            this.layoutControl3.Root = this.layoutControl_Protocal;
-            this.layoutControl3.Size = new System.Drawing.Size(199, 146);
-            this.layoutControl3.TabIndex = 1;
+            this.layoutControl3.Root = this.layoutControlGroup3;
+            this.layoutControl3.Size = new System.Drawing.Size(232, 182);
+            this.layoutControl3.TabIndex = 8;
             this.layoutControl3.Text = "layoutControl3";
             // 
-            // layoutControl_Protocal
+            // layoutControlGroup3
             // 
-            this.layoutControl_Protocal.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControl_Protocal.GroupBordersVisible = false;
-            this.layoutControl_Protocal.Name = "Root";
-            this.layoutControl_Protocal.Size = new System.Drawing.Size(199, 146);
-            this.layoutControl_Protocal.TextVisible = false;
+            this.layoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup3.GroupBordersVisible = false;
+            this.layoutControlGroup3.Name = "layoutControlGroup3";
+            this.layoutControlGroup3.Size = new System.Drawing.Size(232, 182);
+            this.layoutControlGroup3.TextVisible = false;
             // 
-            // btn_add
+            // groupControl3
             // 
-            this.btn_add.Caption = "加载";
-            this.btn_add.Id = 27;
-            this.btn_add.Name = "btn_add";
-            this.btn_add.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_add_ItemClick);
+            this.groupControl3.Controls.Add(this.labelControl10);
+            this.groupControl3.Controls.Add(this.labelControl9);
+            this.groupControl3.Controls.Add(this.labelControl7);
+            this.groupControl3.Controls.Add(this.labelControl8);
+            this.groupControl3.Controls.Add(this.labelControl6);
+            this.groupControl3.Controls.Add(this.labelControl5);
+            this.groupControl3.Controls.Add(this.labelControl4);
+            this.groupControl3.Controls.Add(this.labelControl3);
+            this.groupControl3.Controls.Add(this.page2_txt_ConfigFilePath);
+            this.groupControl3.Controls.Add(this.labelControl2);
+            this.groupControl3.Controls.Add(this.page2_txt_CommSpaceTime);
+            this.groupControl3.Controls.Add(this.page2_txt_WriteTimeOut);
+            this.groupControl3.Controls.Add(this.page2_txt_ReadTimeOut);
+            this.groupControl3.Controls.Add(this.page2_txt_CommErroTime);
+            this.groupControl3.Controls.Add(this.page2_txt_CommReConnectTime);
+            this.groupControl3.Controls.Add(this.page2_txt_EnglishiName);
+            this.groupControl3.Controls.Add(this.page2_txt_ChineseName);
+            this.groupControl3.Controls.Add(this.page2_txt_ID);
+            this.groupControl3.Location = new System.Drawing.Point(3, 3);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(447, 106);
+            this.groupControl3.TabIndex = 7;
+            this.groupControl3.Text = "通讯配置";
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Location = new System.Drawing.Point(232, 82);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(52, 14);
+            this.labelControl10.TabIndex = 1;
+            this.labelControl10.Text = "通道路径:";
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(129, 82);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(28, 14);
+            this.labelControl9.TabIndex = 1;
+            this.labelControl9.Text = "间隔:";
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(280, 56);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(52, 14);
+            this.labelControl7.TabIndex = 1;
+            this.labelControl7.Text = "超写时间:";
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(5, 82);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(52, 14);
+            this.labelControl8.TabIndex = 1;
+            this.labelControl8.Text = "超读时间:";
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(129, 56);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(52, 14);
+            this.labelControl6.TabIndex = 1;
+            this.labelControl6.Text = "错误时间:";
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(5, 56);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(60, 14);
+            this.labelControl5.TabIndex = 1;
+            this.labelControl5.Text = "重连时间：";
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(280, 27);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(48, 14);
+            this.labelControl4.TabIndex = 1;
+            this.labelControl4.Text = "英文名：";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(100, 27);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(48, 14);
+            this.labelControl3.TabIndex = 1;
+            this.labelControl3.Text = "中文名：";
+            // 
+            // page2_txt_ConfigFilePath
+            // 
+            this.page2_txt_ConfigFilePath.Location = new System.Drawing.Point(290, 79);
+            this.page2_txt_ConfigFilePath.Name = "page2_txt_ConfigFilePath";
+            this.page2_txt_ConfigFilePath.Size = new System.Drawing.Size(148, 20);
+            this.page2_txt_ConfigFilePath.TabIndex = 0;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(5, 27);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(16, 14);
+            this.labelControl2.TabIndex = 1;
+            this.labelControl2.Text = "ID:";
+            // 
+            // page2_txt_CommSpaceTime
+            // 
+            this.page2_txt_CommSpaceTime.Location = new System.Drawing.Point(163, 79);
+            this.page2_txt_CommSpaceTime.Name = "page2_txt_CommSpaceTime";
+            this.page2_txt_CommSpaceTime.Size = new System.Drawing.Size(66, 20);
+            this.page2_txt_CommSpaceTime.TabIndex = 0;
+            // 
+            // page2_txt_WriteTimeOut
+            // 
+            this.page2_txt_WriteTimeOut.Location = new System.Drawing.Point(338, 53);
+            this.page2_txt_WriteTimeOut.Name = "page2_txt_WriteTimeOut";
+            this.page2_txt_WriteTimeOut.Size = new System.Drawing.Size(100, 20);
+            this.page2_txt_WriteTimeOut.TabIndex = 0;
+            // 
+            // page2_txt_ReadTimeOut
+            // 
+            this.page2_txt_ReadTimeOut.Location = new System.Drawing.Point(66, 79);
+            this.page2_txt_ReadTimeOut.Name = "page2_txt_ReadTimeOut";
+            this.page2_txt_ReadTimeOut.Size = new System.Drawing.Size(57, 20);
+            this.page2_txt_ReadTimeOut.TabIndex = 0;
+            // 
+            // page2_txt_CommErroTime
+            // 
+            this.page2_txt_CommErroTime.Location = new System.Drawing.Point(188, 53);
+            this.page2_txt_CommErroTime.Name = "page2_txt_CommErroTime";
+            this.page2_txt_CommErroTime.Size = new System.Drawing.Size(66, 20);
+            this.page2_txt_CommErroTime.TabIndex = 0;
+            // 
+            // page2_txt_CommReConnectTime
+            // 
+            this.page2_txt_CommReConnectTime.Location = new System.Drawing.Point(66, 53);
+            this.page2_txt_CommReConnectTime.Name = "page2_txt_CommReConnectTime";
+            this.page2_txt_CommReConnectTime.Size = new System.Drawing.Size(57, 20);
+            this.page2_txt_CommReConnectTime.TabIndex = 0;
+            // 
+            // page2_txt_EnglishiName
+            // 
+            this.page2_txt_EnglishiName.Location = new System.Drawing.Point(338, 21);
+            this.page2_txt_EnglishiName.Name = "page2_txt_EnglishiName";
+            this.page2_txt_EnglishiName.Size = new System.Drawing.Size(100, 20);
+            this.page2_txt_EnglishiName.TabIndex = 0;
+            // 
+            // page2_txt_ChineseName
+            // 
+            this.page2_txt_ChineseName.Location = new System.Drawing.Point(154, 24);
+            this.page2_txt_ChineseName.Name = "page2_txt_ChineseName";
+            this.page2_txt_ChineseName.Size = new System.Drawing.Size(100, 20);
+            this.page2_txt_ChineseName.TabIndex = 0;
+            // 
+            // page2_txt_ID
+            // 
+            this.page2_txt_ID.Location = new System.Drawing.Point(23, 24);
+            this.page2_txt_ID.MenuManager = this.ribbonControl1;
+            this.page2_txt_ID.Name = "page2_txt_ID";
+            this.page2_txt_ID.Size = new System.Drawing.Size(54, 20);
+            this.page2_txt_ID.TabIndex = 0;
             // 
             // page2_btn_opration
             // 
+            this.page2_btn_opration.Controls.Add(this.simpleButton1);
             this.page2_btn_opration.Controls.Add(this.page2_btn_ConfigAddress);
             this.page2_btn_opration.Controls.Add(this.page2_btn_update);
             this.page2_btn_opration.Controls.Add(this.page2_btn_add);
             this.page2_btn_opration.Controls.Add(this.page2_btn_clearContent);
             this.page2_btn_opration.Controls.Add(this.page2_btn_deleteCheck);
             this.page2_btn_opration.Controls.Add(this.page2_btn_clear);
-            this.page2_btn_opration.Location = new System.Drawing.Point(7, 155);
+            this.page2_btn_opration.Location = new System.Drawing.Point(456, 6);
             this.page2_btn_opration.Name = "page2_btn_opration";
-            this.page2_btn_opration.Size = new System.Drawing.Size(197, 129);
+            this.page2_btn_opration.Size = new System.Drawing.Size(420, 103);
             this.page2_btn_opration.TabIndex = 6;
             this.page2_btn_opration.Text = "操作区";
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(359, 25);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(57, 49);
+            this.simpleButton1.TabIndex = 22;
+            this.simpleButton1.Text = "配置通道";
+            // 
             // page2_btn_ConfigAddress
             // 
-            this.page2_btn_ConfigAddress.Location = new System.Drawing.Point(15, 102);
+            this.page2_btn_ConfigAddress.Location = new System.Drawing.Point(5, 52);
             this.page2_btn_ConfigAddress.Name = "page2_btn_ConfigAddress";
             this.page2_btn_ConfigAddress.Size = new System.Drawing.Size(170, 22);
             this.page2_btn_ConfigAddress.StyleController = this.layoutControl1;
@@ -869,7 +1036,7 @@
             // 
             // page2_btn_update
             // 
-            this.page2_btn_update.Location = new System.Drawing.Point(102, 52);
+            this.page2_btn_update.Location = new System.Drawing.Point(181, 25);
             this.page2_btn_update.Name = "page2_btn_update";
             this.page2_btn_update.Size = new System.Drawing.Size(83, 22);
             this.page2_btn_update.StyleController = this.layoutControl1;
@@ -878,16 +1045,16 @@
             // 
             // page2_btn_add
             // 
-            this.page2_btn_add.Location = new System.Drawing.Point(15, 76);
+            this.page2_btn_add.Location = new System.Drawing.Point(181, 53);
             this.page2_btn_add.Name = "page2_btn_add";
-            this.page2_btn_add.Size = new System.Drawing.Size(76, 22);
+            this.page2_btn_add.Size = new System.Drawing.Size(83, 22);
             this.page2_btn_add.StyleController = this.layoutControl1;
             this.page2_btn_add.TabIndex = 19;
             this.page2_btn_add.Text = "添加";
             // 
             // page2_btn_clearContent
             // 
-            this.page2_btn_clearContent.Location = new System.Drawing.Point(15, 24);
+            this.page2_btn_clearContent.Location = new System.Drawing.Point(5, 24);
             this.page2_btn_clearContent.Name = "page2_btn_clearContent";
             this.page2_btn_clearContent.Size = new System.Drawing.Size(170, 22);
             this.page2_btn_clearContent.StyleController = this.layoutControl1;
@@ -897,21 +1064,30 @@
             // 
             // page2_btn_deleteCheck
             // 
-            this.page2_btn_deleteCheck.Location = new System.Drawing.Point(15, 50);
+            this.page2_btn_deleteCheck.Location = new System.Drawing.Point(270, 25);
             this.page2_btn_deleteCheck.Name = "page2_btn_deleteCheck";
-            this.page2_btn_deleteCheck.Size = new System.Drawing.Size(76, 22);
+            this.page2_btn_deleteCheck.Size = new System.Drawing.Size(83, 22);
             this.page2_btn_deleteCheck.StyleController = this.layoutControl1;
             this.page2_btn_deleteCheck.TabIndex = 17;
             this.page2_btn_deleteCheck.Text = "删除选中";
             // 
             // page2_btn_clear
             // 
-            this.page2_btn_clear.Location = new System.Drawing.Point(102, 76);
+            this.page2_btn_clear.Location = new System.Drawing.Point(270, 52);
             this.page2_btn_clear.Name = "page2_btn_clear";
             this.page2_btn_clear.Size = new System.Drawing.Size(83, 22);
             this.page2_btn_clear.StyleController = this.layoutControl1;
             this.page2_btn_clear.TabIndex = 16;
             this.page2_btn_clear.Text = "清空配置";
+            // 
+            // navigationPage3
+            // 
+            this.navigationPage3.Caption = "通道配置";
+            this.navigationPage3.Controls.Add(this.groupControl1);
+            this.navigationPage3.Controls.Add(this.layoutControl2);
+            this.navigationPage3.Controls.Add(this.Page3_Address);
+            this.navigationPage3.Name = "navigationPage3";
+            this.navigationPage3.Size = new System.Drawing.Size(879, 300);
             // 
             // groupControl1
             // 
@@ -971,6 +1147,151 @@
             this.simpleButton6.TabIndex = 16;
             this.simpleButton6.Text = "清空配置";
             // 
+            // layoutControl2
+            // 
+            this.layoutControl2.Location = new System.Drawing.Point(3, 4);
+            this.layoutControl2.Name = "layoutControl2";
+            this.layoutControl2.Root = this.layoutControl_Address;
+            this.layoutControl2.Size = new System.Drawing.Size(197, 174);
+            this.layoutControl2.TabIndex = 1;
+            this.layoutControl2.Text = "layoutControl2";
+            // 
+            // layoutControl_Address
+            // 
+            this.layoutControl_Address.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControl_Address.GroupBordersVisible = false;
+            this.layoutControl_Address.Name = "layoutControl_Address";
+            this.layoutControl_Address.Size = new System.Drawing.Size(197, 174);
+            this.layoutControl_Address.TextVisible = false;
+            // 
+            // Page3_Address
+            // 
+            this.Page3_Address.Location = new System.Drawing.Point(206, 3);
+            this.Page3_Address.MainView = this.gridView3;
+            this.Page3_Address.MenuManager = this.ribbonControl1;
+            this.Page3_Address.Name = "Page3_Address";
+            this.Page3_Address.Size = new System.Drawing.Size(648, 281);
+            this.Page3_Address.TabIndex = 0;
+            this.Page3_Address.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView3});
+            // 
+            // gridView3
+            // 
+            this.gridView3.GridControl = this.Page3_Address;
+            this.gridView3.Name = "gridView3";
+            // 
+            // navigationPage4
+            // 
+            this.navigationPage4.Caption = "协议字段配置";
+            this.navigationPage4.Controls.Add(this.groupControl2);
+            this.navigationPage4.Controls.Add(this.layoutControl4);
+            this.navigationPage4.Name = "navigationPage4";
+            this.navigationPage4.Size = new System.Drawing.Size(879, 300);
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.labelControl1);
+            this.groupControl2.Controls.Add(this.page4_cmb_CheckProtocol);
+            this.groupControl2.Controls.Add(this.page4_btn_clearContent);
+            this.groupControl2.Controls.Add(this.page4_btn_update);
+            this.groupControl2.Controls.Add(this.page4_btn_add);
+            this.groupControl2.Controls.Add(this.page4_btn_delete);
+            this.groupControl2.Location = new System.Drawing.Point(457, 11);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(397, 259);
+            this.groupControl2.TabIndex = 2;
+            this.groupControl2.Text = "操作区";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(10, 27);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(60, 14);
+            this.labelControl1.TabIndex = 5;
+            this.labelControl1.Text = "选择协议：";
+            // 
+            // page4_cmb_CheckProtocol
+            // 
+            this.page4_cmb_CheckProtocol.Location = new System.Drawing.Point(86, 24);
+            this.page4_cmb_CheckProtocol.MenuManager = this.ribbonControl1;
+            this.page4_cmb_CheckProtocol.Name = "page4_cmb_CheckProtocol";
+            this.page4_cmb_CheckProtocol.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.page4_cmb_CheckProtocol.Size = new System.Drawing.Size(151, 20);
+            this.page4_cmb_CheckProtocol.TabIndex = 4;
+            this.page4_cmb_CheckProtocol.SelectedIndexChanged += new System.EventHandler(this.page4_cmb_CheckProtocol_SelectedIndexChanged);
+            // 
+            // page4_btn_clearContent
+            // 
+            this.page4_btn_clearContent.Location = new System.Drawing.Point(248, 110);
+            this.page4_btn_clearContent.Name = "page4_btn_clearContent";
+            this.page4_btn_clearContent.Size = new System.Drawing.Size(75, 23);
+            this.page4_btn_clearContent.TabIndex = 3;
+            this.page4_btn_clearContent.Text = "清空内容";
+            // 
+            // page4_btn_update
+            // 
+            this.page4_btn_update.Location = new System.Drawing.Point(167, 110);
+            this.page4_btn_update.Name = "page4_btn_update";
+            this.page4_btn_update.Size = new System.Drawing.Size(75, 23);
+            this.page4_btn_update.TabIndex = 2;
+            this.page4_btn_update.Text = "修改";
+            // 
+            // page4_btn_add
+            // 
+            this.page4_btn_add.Location = new System.Drawing.Point(86, 110);
+            this.page4_btn_add.Name = "page4_btn_add";
+            this.page4_btn_add.Size = new System.Drawing.Size(75, 23);
+            this.page4_btn_add.TabIndex = 1;
+            this.page4_btn_add.Text = "添加";
+            // 
+            // page4_btn_delete
+            // 
+            this.page4_btn_delete.Location = new System.Drawing.Point(5, 110);
+            this.page4_btn_delete.Name = "page4_btn_delete";
+            this.page4_btn_delete.Size = new System.Drawing.Size(75, 23);
+            this.page4_btn_delete.TabIndex = 0;
+            this.page4_btn_delete.Text = "删除";
+            // 
+            // layoutControl4
+            // 
+            this.layoutControl4.Location = new System.Drawing.Point(8, 130);
+            this.layoutControl4.Name = "layoutControl4";
+            this.layoutControl4.Root = this.layoutControlGroup2;
+            this.layoutControl4.Size = new System.Drawing.Size(445, 140);
+            this.layoutControl4.TabIndex = 0;
+            this.layoutControl4.Text = "layoutControl4";
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup2.GroupBordersVisible = false;
+            this.layoutControlGroup2.Name = "Root";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(445, 140);
+            this.layoutControlGroup2.TextVisible = false;
+            // 
+            // barEditItem3
+            // 
+            this.barEditItem3.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barEditItem3.Caption = "完成进度";
+            this.barEditItem3.Edit = this.repositoryItemProgressBar2;
+            this.barEditItem3.Id = 18;
+            this.barEditItem3.Name = "barEditItem3";
+            // 
+            // barEditItem4
+            // 
+            this.barEditItem4.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.barEditItem4.Caption = "完成进度";
+            this.barEditItem4.Edit = this.repositoryItemProgressBar2;
+            this.barEditItem4.Id = 18;
+            this.barEditItem4.Name = "barEditItem4";
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
             // FormXmlPress5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -1016,19 +1337,38 @@
             ((System.ComponentModel.ISupportInitialize)(this.Page1_CommunicationConfig)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.navigationPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Page2_Communication)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_gridview2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            this.navigationPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Page3_Address)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl_Address)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl_Protocal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+            this.groupControl3.ResumeLayout(false);
+            this.groupControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_ConfigFilePath.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_CommSpaceTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_WriteTimeOut.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_ReadTimeOut.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_CommErroTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_CommReConnectTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_EnglishiName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_ChineseName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page2_txt_ID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.page2_btn_opration)).EndInit();
             this.page2_btn_opration.ResumeLayout(false);
+            this.navigationPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl_Address)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Page3_Address)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            this.navigationPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.page4_cmb_CheckProtocol.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1065,8 +1405,6 @@
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage2;
         private DevExpress.XtraGrid.GridControl Page1_CommunicationConfig;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.GridControl Page2_Communication;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage3;
         private DevExpress.XtraGrid.GridControl Page3_Address;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
@@ -1107,8 +1445,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraEditors.SimpleButton btn_configProtocol;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraLayout.LayoutControl layoutControl3;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControl_Protocal;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControl_Address;
         private DevExpress.XtraBars.BarButtonItem btn_add;
@@ -1125,6 +1461,41 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
         private DevExpress.XtraEditors.SimpleButton simpleButton5;
         private DevExpress.XtraEditors.SimpleButton simpleButton6;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage4;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.SimpleButton page4_btn_clearContent;
+        private DevExpress.XtraEditors.SimpleButton page4_btn_update;
+        private DevExpress.XtraEditors.SimpleButton page4_btn_add;
+        private DevExpress.XtraEditors.SimpleButton page4_btn_delete;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem12;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.ComboBoxEdit page4_cmb_CheckProtocol;
+        private DevExpress.XtraLayout.LayoutControl layoutControl3;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
+        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.TextEdit page2_txt_ConfigFilePath;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.TextEdit page2_txt_CommSpaceTime;
+        private DevExpress.XtraEditors.TextEdit page2_txt_WriteTimeOut;
+        private DevExpress.XtraEditors.TextEdit page2_txt_ReadTimeOut;
+        private DevExpress.XtraEditors.TextEdit page2_txt_CommErroTime;
+        private DevExpress.XtraEditors.TextEdit page2_txt_CommReConnectTime;
+        private DevExpress.XtraEditors.TextEdit page2_txt_EnglishiName;
+        private DevExpress.XtraEditors.TextEdit page2_txt_ChineseName;
+        private DevExpress.XtraEditors.TextEdit page2_txt_ID;
+        private DevExpress.XtraLayout.LayoutControl layoutControl4;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
+        private DevExpress.XtraGrid.GridControl page2_gridview2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
 
