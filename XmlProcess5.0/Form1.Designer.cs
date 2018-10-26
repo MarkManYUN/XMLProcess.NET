@@ -58,6 +58,7 @@
             this.btn_print = new DevExpress.XtraBars.BarButtonItem();
             this.lab_Path = new DevExpress.XtraBars.BarStaticItem();
             this.btn_add = new DevExpress.XtraBars.BarButtonItem();
+            this.skinDropDownButtonItem2 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -80,7 +81,6 @@
             this.page1_txt_ComType = new DevExpress.XtraEditors.TextEdit();
             this.page1_txt_ID = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -119,7 +119,6 @@
             this.page2_txt_ChineseName = new DevExpress.XtraEditors.TextEdit();
             this.page2_txt_ID = new DevExpress.XtraEditors.TextEdit();
             this.page2_btn_opration = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.page2_btn_ConfigAddress = new DevExpress.XtraEditors.SimpleButton();
             this.page2_btn_update = new DevExpress.XtraEditors.SimpleButton();
             this.page2_btn_add = new DevExpress.XtraEditors.SimpleButton();
@@ -128,13 +127,35 @@
             this.page2_btn_clear = new DevExpress.XtraEditors.SimpleButton();
             this.navigationPage3 = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
+            this.page3_btn_allDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.pppppp = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_IndexEnd = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_IndexBegin = new DevExpress.XtraEditors.TextEdit();
+            this.page3_btn_SaveEdit = new DevExpress.XtraEditors.SimpleButton();
+            this.page3_btn_add = new DevExpress.XtraEditors.SimpleButton();
+            this.page3_btn_delCheck = new DevExpress.XtraEditors.SimpleButton();
+            this.page3_btn_clear = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.page3_txt_Text = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_DataBit = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_BitIndex = new DevExpress.XtraEditors.TextEdit();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.page3_txt_Factor = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_ProtocolAddress = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_LocalAddress = new DevExpress.XtraEditors.TextEdit();
             this.layoutControl_Address = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.LocalAddress = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Page3_Address = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.navigationPage4 = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -145,11 +166,37 @@
             this.page4_btn_update = new DevExpress.XtraEditors.SimpleButton();
             this.page4_btn_add = new DevExpress.XtraEditors.SimpleButton();
             this.page4_btn_delete = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.barEditItem3 = new DevExpress.XtraBars.BarEditItem();
             this.barEditItem4 = new DevExpress.XtraBars.BarEditItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.page3_btn_AllAdd = new DevExpress.XtraEditors.SimpleButton();
+            this.page3_lab_DataNumber = new DevExpress.XtraEditors.LabelControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.page3_panel_dataControl = new DevExpress.XtraLayout.LayoutControl();
+            this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.page3_btn_NumberToControl = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.page3_txt_AllFunction = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_BeginAddress = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_AllSlaveId = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
+            this.page3_txt_Bit16 = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_DataNumber = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.page3_txt_SalveId = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.page3_txt_FunctionCode = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.page3_txt_opSlaveId = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_opFunction = new DevExpress.XtraEditors.TextEdit();
+            this.page3_txt_Bit1 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.page4_cmb_CheckField = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar3)).BeginInit();
@@ -166,7 +213,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.page1_txt_ComType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.page1_txt_ID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
@@ -201,16 +247,51 @@
             this.navigationPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pppppp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_IndexEnd.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_IndexBegin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
+            this.layoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Text.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_DataBit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_BitIndex.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Factor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_ProtocolAddress.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_LocalAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl_Address)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalAddress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Page3_Address)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             this.navigationPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.page4_cmb_CheckProtocol.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_panel_dataControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_AllFunction.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_BeginAddress.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_AllSlaveId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Bit16.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_DataNumber.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_SalveId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_FunctionCode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_opSlaveId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_opFunction.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Bit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page4_cmb_CheckField.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -242,12 +323,14 @@
             this.btn_print,
             this.lab_Path,
             this.btn_add,
-            this.barButtonItem12});
+            this.barButtonItem12,
+            this.skinDropDownButtonItem2});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 29;
+            this.ribbonControl1.MaxItemId = 30;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
+            this.ribbonControl1.QuickToolbarItemLinks.Add(this.skinDropDownButtonItem2);
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemProgressBar1,
             this.repositoryItemProgressBar2,
@@ -440,6 +523,11 @@
             this.btn_add.Name = "btn_add";
             this.btn_add.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_add_ItemClick);
             // 
+            // skinDropDownButtonItem2
+            // 
+            this.skinDropDownButtonItem2.Id = 29;
+            this.skinDropDownButtonItem2.Name = "skinDropDownButtonItem2";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -460,7 +548,6 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.btn_newFile);
             this.ribbonPageGroup2.ItemLinks.Add(this.CheckFomart);
             this.ribbonPageGroup2.ItemLinks.Add(this.btn_print);
-            this.ribbonPageGroup2.ItemLinks.Add(this.btn_add);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "文档区域";
             // 
@@ -499,7 +586,7 @@
             this.navigationFrame1.Controls.Add(this.navigationPage2);
             this.navigationFrame1.Controls.Add(this.navigationPage3);
             this.navigationFrame1.Controls.Add(this.navigationPage4);
-            this.navigationFrame1.Location = new System.Drawing.Point(0, 146);
+            this.navigationFrame1.Location = new System.Drawing.Point(0, 153);
             this.navigationFrame1.Name = "navigationFrame1";
             this.navigationFrame1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.navigationPage1,
@@ -507,7 +594,7 @@
             this.navigationPage3,
             this.navigationPage4});
             this.navigationFrame1.SelectedPage = this.navigationPage1;
-            this.navigationFrame1.Size = new System.Drawing.Size(879, 300);
+            this.navigationFrame1.Size = new System.Drawing.Size(879, 293);
             this.navigationFrame1.TabIndex = 4;
             this.navigationFrame1.Text = "navigationFrame1";
             // 
@@ -517,7 +604,7 @@
             this.navigationPage1.Controls.Add(this.layoutControl1);
             this.navigationPage1.Controls.Add(this.Page1_CommunicationConfig);
             this.navigationPage1.Name = "navigationPage1";
-            this.navigationPage1.Size = new System.Drawing.Size(879, 300);
+            this.navigationPage1.Size = new System.Drawing.Size(879, 293);
             // 
             // layoutControl1
             // 
@@ -556,7 +643,7 @@
             this.btn_update.Size = new System.Drawing.Size(130, 22);
             this.btn_update.StyleController = this.layoutControl1;
             this.btn_update.TabIndex = 14;
-            this.btn_update.Text = "修改";
+            this.btn_update.Text = "保存修改";
             this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
             // page1_btn_addData
@@ -667,16 +754,6 @@
             this.layoutControlGroup1.Size = new System.Drawing.Size(291, 285);
             this.layoutControlGroup1.TextVisible = false;
             // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.page1_txt_ID;
-            this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(271, 24);
-            this.layoutControlItem1.Text = "协议配置编号";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(72, 14);
-            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
@@ -777,11 +854,11 @@
             // 
             // Page1_CommunicationConfig
             // 
-            this.Page1_CommunicationConfig.Location = new System.Drawing.Point(299, 3);
+            this.Page1_CommunicationConfig.Location = new System.Drawing.Point(288, 3);
             this.Page1_CommunicationConfig.MainView = this.gridView1;
             this.Page1_CommunicationConfig.MenuManager = this.ribbonControl1;
             this.Page1_CommunicationConfig.Name = "Page1_CommunicationConfig";
-            this.Page1_CommunicationConfig.Size = new System.Drawing.Size(568, 281);
+            this.Page1_CommunicationConfig.Size = new System.Drawing.Size(579, 281);
             this.Page1_CommunicationConfig.TabIndex = 3;
             this.Page1_CommunicationConfig.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -803,7 +880,7 @@
             this.navigationPage2.Controls.Add(this.groupControl3);
             this.navigationPage2.Controls.Add(this.page2_btn_opration);
             this.navigationPage2.Name = "navigationPage2";
-            this.navigationPage2.Size = new System.Drawing.Size(879, 300);
+            this.navigationPage2.Size = new System.Drawing.Size(879, 293);
             // 
             // page2_gridview2
             // 
@@ -1003,7 +1080,6 @@
             // 
             // page2_btn_opration
             // 
-            this.page2_btn_opration.Controls.Add(this.simpleButton1);
             this.page2_btn_opration.Controls.Add(this.page2_btn_ConfigAddress);
             this.page2_btn_opration.Controls.Add(this.page2_btn_update);
             this.page2_btn_opration.Controls.Add(this.page2_btn_add);
@@ -1015,14 +1091,6 @@
             this.page2_btn_opration.Size = new System.Drawing.Size(420, 103);
             this.page2_btn_opration.TabIndex = 6;
             this.page2_btn_opration.Text = "操作区";
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Location = new System.Drawing.Point(359, 25);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(57, 49);
-            this.simpleButton1.TabIndex = 22;
-            this.simpleButton1.Text = "配置通道";
             // 
             // page2_btn_ConfigAddress
             // 
@@ -1041,7 +1109,8 @@
             this.page2_btn_update.Size = new System.Drawing.Size(83, 22);
             this.page2_btn_update.StyleController = this.layoutControl1;
             this.page2_btn_update.TabIndex = 20;
-            this.page2_btn_update.Text = "修改";
+            this.page2_btn_update.Text = "保存修改";
+            this.page2_btn_update.Click += new System.EventHandler(this.page2_btn_update_Click);
             // 
             // page2_btn_add
             // 
@@ -1051,6 +1120,7 @@
             this.page2_btn_add.StyleController = this.layoutControl1;
             this.page2_btn_add.TabIndex = 19;
             this.page2_btn_add.Text = "添加";
+            this.page2_btn_add.Click += new System.EventHandler(this.page2_btn_add_Click);
             // 
             // page2_btn_clearContent
             // 
@@ -1070,6 +1140,7 @@
             this.page2_btn_deleteCheck.StyleController = this.layoutControl1;
             this.page2_btn_deleteCheck.TabIndex = 17;
             this.page2_btn_deleteCheck.Text = "删除选中";
+            this.page2_btn_deleteCheck.Click += new System.EventHandler(this.page2_btn_deleteCheck_Click);
             // 
             // page2_btn_clear
             // 
@@ -1087,93 +1158,320 @@
             this.navigationPage3.Controls.Add(this.layoutControl2);
             this.navigationPage3.Controls.Add(this.Page3_Address);
             this.navigationPage3.Name = "navigationPage3";
-            this.navigationPage3.Size = new System.Drawing.Size(879, 300);
+            this.navigationPage3.Size = new System.Drawing.Size(879, 293);
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.simpleButton2);
-            this.groupControl1.Controls.Add(this.simpleButton3);
-            this.groupControl1.Controls.Add(this.simpleButton4);
-            this.groupControl1.Controls.Add(this.simpleButton5);
-            this.groupControl1.Controls.Add(this.simpleButton6);
-            this.groupControl1.Location = new System.Drawing.Point(3, 181);
+            this.groupControl1.Controls.Add(this.page3_txt_opFunction);
+            this.groupControl1.Controls.Add(this.page3_txt_opSlaveId);
+            this.groupControl1.Controls.Add(this.page3_btn_allDelete);
+            this.groupControl1.Controls.Add(this.labelControl12);
+            this.groupControl1.Controls.Add(this.labelControl14);
+            this.groupControl1.Controls.Add(this.labelControl13);
+            this.groupControl1.Controls.Add(this.labelControl11);
+            this.groupControl1.Controls.Add(this.pppppp);
+            this.groupControl1.Controls.Add(this.page3_txt_IndexEnd);
+            this.groupControl1.Controls.Add(this.page3_txt_IndexBegin);
+            this.groupControl1.Controls.Add(this.page3_btn_SaveEdit);
+            this.groupControl1.Controls.Add(this.page3_btn_add);
+            this.groupControl1.Controls.Add(this.page3_btn_delCheck);
+            this.groupControl1.Controls.Add(this.page3_btn_clear);
+            this.groupControl1.Location = new System.Drawing.Point(15, 153);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(197, 103);
+            this.groupControl1.Size = new System.Drawing.Size(285, 137);
             this.groupControl1.TabIndex = 7;
             this.groupControl1.Text = "操作区";
             // 
-            // simpleButton2
+            // page3_btn_allDelete
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(105, 50);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(80, 22);
-            this.simpleButton2.StyleController = this.layoutControl1;
-            this.simpleButton2.TabIndex = 20;
-            this.simpleButton2.Text = "修改";
+            this.page3_btn_allDelete.Location = new System.Drawing.Point(5, 79);
+            this.page3_btn_allDelete.Name = "page3_btn_allDelete";
+            this.page3_btn_allDelete.Size = new System.Drawing.Size(68, 23);
+            this.page3_btn_allDelete.TabIndex = 24;
+            this.page3_btn_allDelete.Text = "批量删除";
+            this.page3_btn_allDelete.Click += new System.EventHandler(this.page3_btn_allDelete_Click);
             // 
-            // simpleButton3
+            // labelControl12
             // 
-            this.simpleButton3.Location = new System.Drawing.Point(15, 76);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(84, 22);
-            this.simpleButton3.StyleController = this.layoutControl1;
-            this.simpleButton3.TabIndex = 19;
-            this.simpleButton3.Text = "添加";
+            this.labelControl12.Location = new System.Drawing.Point(57, 56);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(9, 14);
+            this.labelControl12.TabIndex = 23;
+            this.labelControl12.Text = "~";
             // 
-            // simpleButton4
+            // labelControl14
             // 
-            this.simpleButton4.Location = new System.Drawing.Point(15, 24);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(170, 22);
-            this.simpleButton4.StyleController = this.layoutControl1;
-            this.simpleButton4.TabIndex = 18;
-            this.simpleButton4.Text = "清除内容";
+            this.labelControl14.Location = new System.Drawing.Point(195, 56);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(36, 14);
+            this.labelControl14.TabIndex = 23;
+            this.labelControl14.Text = "功能码";
             // 
-            // simpleButton5
+            // labelControl13
             // 
-            this.simpleButton5.Location = new System.Drawing.Point(15, 50);
-            this.simpleButton5.Name = "simpleButton5";
-            this.simpleButton5.Size = new System.Drawing.Size(84, 22);
-            this.simpleButton5.StyleController = this.layoutControl1;
-            this.simpleButton5.TabIndex = 17;
-            this.simpleButton5.Text = "删除选中";
+            this.labelControl13.Location = new System.Drawing.Point(107, 56);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(36, 14);
+            this.labelControl13.TabIndex = 23;
+            this.labelControl13.Text = "从机号";
             // 
-            // simpleButton6
+            // labelControl11
             // 
-            this.simpleButton6.Location = new System.Drawing.Point(105, 75);
-            this.simpleButton6.Name = "simpleButton6";
-            this.simpleButton6.Size = new System.Drawing.Size(80, 22);
-            this.simpleButton6.StyleController = this.layoutControl1;
-            this.simpleButton6.TabIndex = 16;
-            this.simpleButton6.Text = "清空配置";
+            this.labelControl11.Location = new System.Drawing.Point(5, 56);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(12, 14);
+            this.labelControl11.TabIndex = 23;
+            this.labelControl11.Text = "至";
+            // 
+            // pppppp
+            // 
+            this.pppppp.EditValue = "0";
+            this.pppppp.Location = new System.Drawing.Point(714, 53);
+            this.pppppp.Name = "pppppp";
+            this.pppppp.Size = new System.Drawing.Size(68, 20);
+            this.pppppp.TabIndex = 22;
+            // 
+            // page3_txt_IndexEnd
+            // 
+            this.page3_txt_IndexEnd.EditValue = "0";
+            this.page3_txt_IndexEnd.Location = new System.Drawing.Point(69, 53);
+            this.page3_txt_IndexEnd.MenuManager = this.ribbonControl1;
+            this.page3_txt_IndexEnd.Name = "page3_txt_IndexEnd";
+            this.page3_txt_IndexEnd.Size = new System.Drawing.Size(35, 20);
+            this.page3_txt_IndexEnd.TabIndex = 22;
+            // 
+            // page3_txt_IndexBegin
+            // 
+            this.page3_txt_IndexBegin.EditValue = "0";
+            this.page3_txt_IndexBegin.Location = new System.Drawing.Point(19, 53);
+            this.page3_txt_IndexBegin.MenuManager = this.ribbonControl1;
+            this.page3_txt_IndexBegin.Name = "page3_txt_IndexBegin";
+            this.page3_txt_IndexBegin.Size = new System.Drawing.Size(35, 20);
+            this.page3_txt_IndexBegin.TabIndex = 21;
+            // 
+            // page3_btn_SaveEdit
+            // 
+            this.page3_btn_SaveEdit.Location = new System.Drawing.Point(79, 25);
+            this.page3_btn_SaveEdit.Name = "page3_btn_SaveEdit";
+            this.page3_btn_SaveEdit.Size = new System.Drawing.Size(61, 22);
+            this.page3_btn_SaveEdit.StyleController = this.layoutControl1;
+            this.page3_btn_SaveEdit.TabIndex = 20;
+            this.page3_btn_SaveEdit.Text = "保存修改";
+            this.page3_btn_SaveEdit.Click += new System.EventHandler(this.page3_btn_SaveEdit_Click);
+            // 
+            // page3_btn_add
+            // 
+            this.page3_btn_add.Location = new System.Drawing.Point(146, 26);
+            this.page3_btn_add.Name = "page3_btn_add";
+            this.page3_btn_add.Size = new System.Drawing.Size(61, 22);
+            this.page3_btn_add.StyleController = this.layoutControl1;
+            this.page3_btn_add.TabIndex = 19;
+            this.page3_btn_add.Text = "添加一条";
+            this.page3_btn_add.Click += new System.EventHandler(this.page3_btn_add_Click);
+            // 
+            // page3_btn_delCheck
+            // 
+            this.page3_btn_delCheck.Location = new System.Drawing.Point(5, 25);
+            this.page3_btn_delCheck.Name = "page3_btn_delCheck";
+            this.page3_btn_delCheck.Size = new System.Drawing.Size(68, 22);
+            this.page3_btn_delCheck.StyleController = this.layoutControl1;
+            this.page3_btn_delCheck.TabIndex = 17;
+            this.page3_btn_delCheck.Text = "删除选中";
+            this.page3_btn_delCheck.Click += new System.EventHandler(this.page3_btn_delCheck_Click);
+            // 
+            // page3_btn_clear
+            // 
+            this.page3_btn_clear.Location = new System.Drawing.Point(218, 25);
+            this.page3_btn_clear.Name = "page3_btn_clear";
+            this.page3_btn_clear.Size = new System.Drawing.Size(62, 22);
+            this.page3_btn_clear.StyleController = this.layoutControl1;
+            this.page3_btn_clear.TabIndex = 16;
+            this.page3_btn_clear.Text = "清空配置";
+            this.page3_btn_clear.Click += new System.EventHandler(this.page3_btn_clear_Click);
             // 
             // layoutControl2
             // 
+            this.layoutControl2.Controls.Add(this.page3_txt_FunctionCode);
+            this.layoutControl2.Controls.Add(this.page3_txt_SalveId);
+            this.layoutControl2.Controls.Add(this.page3_txt_Text);
+            this.layoutControl2.Controls.Add(this.page3_txt_DataBit);
+            this.layoutControl2.Controls.Add(this.page3_txt_BitIndex);
+            this.layoutControl2.Controls.Add(this.simpleButton4);
+            this.layoutControl2.Controls.Add(this.page3_txt_Factor);
+            this.layoutControl2.Controls.Add(this.page3_txt_ProtocolAddress);
+            this.layoutControl2.Controls.Add(this.page3_txt_LocalAddress);
             this.layoutControl2.Location = new System.Drawing.Point(3, 4);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControl_Address;
-            this.layoutControl2.Size = new System.Drawing.Size(197, 174);
+            this.layoutControl2.Size = new System.Drawing.Size(309, 158);
             this.layoutControl2.TabIndex = 1;
             this.layoutControl2.Text = "layoutControl2";
+            // 
+            // page3_txt_Text
+            // 
+            this.page3_txt_Text.Location = new System.Drawing.Point(207, 60);
+            this.page3_txt_Text.MenuManager = this.ribbonControl1;
+            this.page3_txt_Text.Name = "page3_txt_Text";
+            this.page3_txt_Text.Size = new System.Drawing.Size(90, 20);
+            this.page3_txt_Text.StyleController = this.layoutControl2;
+            this.page3_txt_Text.TabIndex = 11;
+            // 
+            // page3_txt_DataBit
+            // 
+            this.page3_txt_DataBit.Location = new System.Drawing.Point(63, 60);
+            this.page3_txt_DataBit.MenuManager = this.ribbonControl1;
+            this.page3_txt_DataBit.Name = "page3_txt_DataBit";
+            this.page3_txt_DataBit.Size = new System.Drawing.Size(89, 20);
+            this.page3_txt_DataBit.StyleController = this.layoutControl2;
+            this.page3_txt_DataBit.TabIndex = 10;
+            // 
+            // page3_txt_BitIndex
+            // 
+            this.page3_txt_BitIndex.Location = new System.Drawing.Point(207, 36);
+            this.page3_txt_BitIndex.MenuManager = this.ribbonControl1;
+            this.page3_txt_BitIndex.Name = "page3_txt_BitIndex";
+            this.page3_txt_BitIndex.Size = new System.Drawing.Size(90, 20);
+            this.page3_txt_BitIndex.StyleController = this.layoutControl2;
+            this.page3_txt_BitIndex.TabIndex = 9;
+            // 
+            // simpleButton4
+            // 
+            this.simpleButton4.Location = new System.Drawing.Point(12, 108);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(285, 22);
+            this.simpleButton4.StyleController = this.layoutControl2;
+            this.simpleButton4.TabIndex = 18;
+            this.simpleButton4.Text = "重新输入";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
+            // 
+            // page3_txt_Factor
+            // 
+            this.page3_txt_Factor.Location = new System.Drawing.Point(63, 36);
+            this.page3_txt_Factor.MenuManager = this.ribbonControl1;
+            this.page3_txt_Factor.Name = "page3_txt_Factor";
+            this.page3_txt_Factor.Size = new System.Drawing.Size(89, 20);
+            this.page3_txt_Factor.StyleController = this.layoutControl2;
+            this.page3_txt_Factor.TabIndex = 8;
+            // 
+            // page3_txt_ProtocolAddress
+            // 
+            this.page3_txt_ProtocolAddress.Location = new System.Drawing.Point(207, 12);
+            this.page3_txt_ProtocolAddress.MenuManager = this.ribbonControl1;
+            this.page3_txt_ProtocolAddress.Name = "page3_txt_ProtocolAddress";
+            this.page3_txt_ProtocolAddress.Size = new System.Drawing.Size(90, 20);
+            this.page3_txt_ProtocolAddress.StyleController = this.layoutControl2;
+            this.page3_txt_ProtocolAddress.TabIndex = 7;
+            // 
+            // page3_txt_LocalAddress
+            // 
+            this.page3_txt_LocalAddress.Location = new System.Drawing.Point(63, 12);
+            this.page3_txt_LocalAddress.MenuManager = this.ribbonControl1;
+            this.page3_txt_LocalAddress.Name = "page3_txt_LocalAddress";
+            this.page3_txt_LocalAddress.Size = new System.Drawing.Size(89, 20);
+            this.page3_txt_LocalAddress.StyleController = this.layoutControl2;
+            this.page3_txt_LocalAddress.TabIndex = 6;
             // 
             // layoutControl_Address
             // 
             this.layoutControl_Address.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControl_Address.GroupBordersVisible = false;
+            this.layoutControl_Address.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.emptySpaceItem2,
+            this.LocalAddress,
+            this.layoutControlItem13,
+            this.layoutControlItem14,
+            this.layoutControlItem15,
+            this.layoutControlItem16,
+            this.layoutControlItem17,
+            this.layoutControlItem18,
+            this.layoutControlItem12,
+            this.layoutControlItem19});
             this.layoutControl_Address.Name = "layoutControl_Address";
-            this.layoutControl_Address.Size = new System.Drawing.Size(197, 174);
+            this.layoutControl_Address.Size = new System.Drawing.Size(309, 158);
             this.layoutControl_Address.TextVisible = false;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 122);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(289, 16);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // LocalAddress
+            // 
+            this.LocalAddress.Control = this.page3_txt_LocalAddress;
+            this.LocalAddress.Location = new System.Drawing.Point(0, 0);
+            this.LocalAddress.Name = "LocalAddress";
+            this.LocalAddress.Size = new System.Drawing.Size(144, 24);
+            this.LocalAddress.Text = "本地地址";
+            this.LocalAddress.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.page3_txt_ProtocolAddress;
+            this.layoutControlItem13.Location = new System.Drawing.Point(144, 0);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(145, 24);
+            this.layoutControlItem13.Text = "协议地址";
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.page3_txt_Factor;
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(144, 24);
+            this.layoutControlItem14.Text = "精度系数";
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.page3_txt_BitIndex;
+            this.layoutControlItem15.Location = new System.Drawing.Point(144, 24);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(145, 24);
+            this.layoutControlItem15.Text = "位位置";
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.page3_txt_DataBit;
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 48);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(144, 24);
+            this.layoutControlItem16.Text = "数据位";
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.page3_txt_Text;
+            this.layoutControlItem17.Location = new System.Drawing.Point(144, 48);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(145, 24);
+            this.layoutControlItem17.Text = "名称";
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.simpleButton4;
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 96);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Size = new System.Drawing.Size(289, 26);
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem18.TextVisible = false;
             // 
             // Page3_Address
             // 
-            this.Page3_Address.Location = new System.Drawing.Point(206, 3);
+            this.Page3_Address.Location = new System.Drawing.Point(318, 4);
             this.Page3_Address.MainView = this.gridView3;
             this.Page3_Address.MenuManager = this.ribbonControl1;
             this.Page3_Address.Name = "Page3_Address";
-            this.Page3_Address.Size = new System.Drawing.Size(648, 281);
+            this.Page3_Address.Size = new System.Drawing.Size(558, 296);
             this.Page3_Address.TabIndex = 0;
             this.Page3_Address.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
+            this.Page3_Address.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Page3_Address_MouseClick);
             // 
             // gridView3
             // 
@@ -1184,13 +1482,16 @@
             // 
             this.navigationPage4.Caption = "协议字段配置";
             this.navigationPage4.Controls.Add(this.groupControl2);
-            this.navigationPage4.Controls.Add(this.layoutControl4);
             this.navigationPage4.Name = "navigationPage4";
-            this.navigationPage4.Size = new System.Drawing.Size(879, 300);
+            this.navigationPage4.Size = new System.Drawing.Size(879, 293);
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.labelControl19);
+            this.groupControl2.Controls.Add(this.textEdit1);
+            this.groupControl2.Controls.Add(this.labelControl21);
             this.groupControl2.Controls.Add(this.labelControl1);
+            this.groupControl2.Controls.Add(this.page4_cmb_CheckField);
             this.groupControl2.Controls.Add(this.page4_cmb_CheckProtocol);
             this.groupControl2.Controls.Add(this.page4_btn_clearContent);
             this.groupControl2.Controls.Add(this.page4_btn_update);
@@ -1201,6 +1502,7 @@
             this.groupControl2.Size = new System.Drawing.Size(397, 259);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "操作区";
+            this.groupControl2.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl2_Paint);
             // 
             // labelControl1
             // 
@@ -1212,12 +1514,12 @@
             // 
             // page4_cmb_CheckProtocol
             // 
-            this.page4_cmb_CheckProtocol.Location = new System.Drawing.Point(86, 24);
+            this.page4_cmb_CheckProtocol.Location = new System.Drawing.Point(76, 24);
             this.page4_cmb_CheckProtocol.MenuManager = this.ribbonControl1;
             this.page4_cmb_CheckProtocol.Name = "page4_cmb_CheckProtocol";
             this.page4_cmb_CheckProtocol.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.page4_cmb_CheckProtocol.Size = new System.Drawing.Size(151, 20);
+            this.page4_cmb_CheckProtocol.Size = new System.Drawing.Size(127, 20);
             this.page4_cmb_CheckProtocol.TabIndex = 4;
             this.page4_cmb_CheckProtocol.SelectedIndexChanged += new System.EventHandler(this.page4_cmb_CheckProtocol_SelectedIndexChanged);
             // 
@@ -1253,23 +1555,6 @@
             this.page4_btn_delete.TabIndex = 0;
             this.page4_btn_delete.Text = "删除";
             // 
-            // layoutControl4
-            // 
-            this.layoutControl4.Location = new System.Drawing.Point(8, 130);
-            this.layoutControl4.Name = "layoutControl4";
-            this.layoutControl4.Root = this.layoutControlGroup2;
-            this.layoutControl4.Size = new System.Drawing.Size(445, 140);
-            this.layoutControl4.TabIndex = 0;
-            this.layoutControl4.Text = "layoutControl4";
-            // 
-            // layoutControlGroup2
-            // 
-            this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup2.GroupBordersVisible = false;
-            this.layoutControlGroup2.Name = "Root";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(445, 140);
-            this.layoutControlGroup2.TextVisible = false;
-            // 
             // barEditItem3
             // 
             this.barEditItem3.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
@@ -1292,11 +1577,264 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // page3_btn_AllAdd
+            // 
+            this.page3_btn_AllAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("page3_btn_AllAdd.ImageOptions.Image")));
+            this.page3_btn_AllAdd.Location = new System.Drawing.Point(239, 57);
+            this.page3_btn_AllAdd.Name = "page3_btn_AllAdd";
+            this.page3_btn_AllAdd.Size = new System.Drawing.Size(112, 32);
+            this.page3_btn_AllAdd.TabIndex = 19;
+            this.page3_btn_AllAdd.Text = "批量添加";
+            this.page3_btn_AllAdd.Click += new System.EventHandler(this.page3_btn_AllAdd_Click);
+            // 
+            // page3_lab_DataNumber
+            // 
+            this.page3_lab_DataNumber.Location = new System.Drawing.Point(12, 13);
+            this.page3_lab_DataNumber.Name = "page3_lab_DataNumber";
+            this.page3_lab_DataNumber.Size = new System.Drawing.Size(60, 14);
+            this.page3_lab_DataNumber.TabIndex = 23;
+            this.page3_lab_DataNumber.Text = "数据序号：";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.page3_panel_dataControl);
+            this.panelControl1.Controls.Add(this.page3_btn_NumberToControl);
+            this.panelControl1.Controls.Add(this.labelControl16);
+            this.panelControl1.Controls.Add(this.page3_btn_AllAdd);
+            this.panelControl1.Controls.Add(this.page3_txt_AllSlaveId);
+            this.panelControl1.Controls.Add(this.labelControl15);
+            this.panelControl1.Controls.Add(this.labelControl17);
+            this.panelControl1.Controls.Add(this.page3_txt_AllFunction);
+            this.panelControl1.Controls.Add(this.labelControl18);
+            this.panelControl1.Controls.Add(this.page3_txt_Bit1);
+            this.panelControl1.Controls.Add(this.page3_txt_Bit16);
+            this.panelControl1.Controls.Add(this.page3_txt_BeginAddress);
+            this.panelControl1.Controls.Add(this.page3_txt_DataNumber);
+            this.panelControl1.Controls.Add(this.page3_lab_DataNumber);
+            this.panelControl1.Controls.Add(this.labelControl20);
+            this.panelControl1.Location = new System.Drawing.Point(309, 54);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(545, 94);
+            this.panelControl1.TabIndex = 24;
+            // 
+            // page3_panel_dataControl
+            // 
+            this.page3_panel_dataControl.Location = new System.Drawing.Point(357, 2);
+            this.page3_panel_dataControl.Name = "page3_panel_dataControl";
+            this.page3_panel_dataControl.Root = this.layoutControlGroup4;
+            this.page3_panel_dataControl.Size = new System.Drawing.Size(183, 87);
+            this.page3_panel_dataControl.TabIndex = 26;
+            this.page3_panel_dataControl.Text = "layoutControl5";
+            // 
+            // layoutControlGroup4
+            // 
+            this.layoutControlGroup4.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup4.GroupBordersVisible = false;
+            this.layoutControlGroup4.Name = "layoutControlGroup4";
+            this.layoutControlGroup4.Size = new System.Drawing.Size(183, 87);
+            this.layoutControlGroup4.TextVisible = false;
+            // 
+            // page3_btn_NumberToControl
+            // 
+            this.page3_btn_NumberToControl.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.page3_btn_NumberToControl.Appearance.Options.UseFont = true;
+            this.page3_btn_NumberToControl.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("page3_btn_NumberToControl.ImageOptions.Image")));
+            this.page3_btn_NumberToControl.Location = new System.Drawing.Point(239, 9);
+            this.page3_btn_NumberToControl.Name = "page3_btn_NumberToControl";
+            this.page3_btn_NumberToControl.Size = new System.Drawing.Size(112, 39);
+            this.page3_btn_NumberToControl.TabIndex = 25;
+            this.page3_btn_NumberToControl.Text = "设置类型";
+            this.page3_btn_NumberToControl.Click += new System.EventHandler(this.page3_btn_NumberToControl_Click);
+            // 
+            // labelControl16
+            // 
+            this.labelControl16.Location = new System.Drawing.Point(12, 69);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(48, 14);
+            this.labelControl16.TabIndex = 23;
+            this.labelControl16.Text = "功能码：";
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Location = new System.Drawing.Point(116, 39);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(60, 14);
+            this.labelControl17.TabIndex = 23;
+            this.labelControl17.Text = "开始地址：";
+            // 
+            // labelControl15
+            // 
+            this.labelControl15.Location = new System.Drawing.Point(116, 69);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(48, 14);
+            this.labelControl15.TabIndex = 23;
+            this.labelControl15.Text = "从机号：";
+            // 
+            // page3_txt_AllFunction
+            // 
+            this.page3_txt_AllFunction.EditValue = "0";
+            this.page3_txt_AllFunction.Location = new System.Drawing.Point(67, 66);
+            this.page3_txt_AllFunction.Name = "page3_txt_AllFunction";
+            this.page3_txt_AllFunction.Size = new System.Drawing.Size(43, 20);
+            this.page3_txt_AllFunction.TabIndex = 22;
+            // 
+            // page3_txt_BeginAddress
+            // 
+            this.page3_txt_BeginAddress.EditValue = "0";
+            this.page3_txt_BeginAddress.Location = new System.Drawing.Point(182, 36);
+            this.page3_txt_BeginAddress.Name = "page3_txt_BeginAddress";
+            this.page3_txt_BeginAddress.Size = new System.Drawing.Size(43, 20);
+            this.page3_txt_BeginAddress.TabIndex = 22;
+            // 
+            // page3_txt_AllSlaveId
+            // 
+            this.page3_txt_AllSlaveId.EditValue = "0";
+            this.page3_txt_AllSlaveId.Location = new System.Drawing.Point(182, 66);
+            this.page3_txt_AllSlaveId.Name = "page3_txt_AllSlaveId";
+            this.page3_txt_AllSlaveId.Size = new System.Drawing.Size(43, 20);
+            this.page3_txt_AllSlaveId.TabIndex = 22;
+            // 
+            // labelControl18
+            // 
+            this.labelControl18.Location = new System.Drawing.Point(116, 13);
+            this.labelControl18.Name = "labelControl18";
+            this.labelControl18.Size = new System.Drawing.Size(38, 14);
+            this.labelControl18.TabIndex = 23;
+            this.labelControl18.Text = "16位：";
+            // 
+            // page3_txt_Bit16
+            // 
+            this.page3_txt_Bit16.EditValue = "0";
+            this.page3_txt_Bit16.Location = new System.Drawing.Point(182, 10);
+            this.page3_txt_Bit16.Name = "page3_txt_Bit16";
+            this.page3_txt_Bit16.Size = new System.Drawing.Size(43, 20);
+            this.page3_txt_Bit16.TabIndex = 22;
+            // 
+            // page3_txt_DataNumber
+            // 
+            this.page3_txt_DataNumber.EditValue = "0";
+            this.page3_txt_DataNumber.Location = new System.Drawing.Point(67, 10);
+            this.page3_txt_DataNumber.Name = "page3_txt_DataNumber";
+            this.page3_txt_DataNumber.Size = new System.Drawing.Size(43, 20);
+            this.page3_txt_DataNumber.TabIndex = 22;
+            // 
+            // labelControl20
+            // 
+            this.labelControl20.Location = new System.Drawing.Point(12, 39);
+            this.labelControl20.Name = "labelControl20";
+            this.labelControl20.Size = new System.Drawing.Size(55, 14);
+            this.labelControl20.TabIndex = 23;
+            this.labelControl20.Text = "1位个数：";
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.page1_txt_ID;
+            this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(271, 24);
+            this.layoutControlItem1.Text = "协议配置编号";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(72, 14);
+            // 
+            // page3_txt_SalveId
+            // 
+            this.page3_txt_SalveId.Location = new System.Drawing.Point(63, 84);
+            this.page3_txt_SalveId.MenuManager = this.ribbonControl1;
+            this.page3_txt_SalveId.Name = "page3_txt_SalveId";
+            this.page3_txt_SalveId.Size = new System.Drawing.Size(89, 20);
+            this.page3_txt_SalveId.StyleController = this.layoutControl2;
+            this.page3_txt_SalveId.TabIndex = 26;
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.page3_txt_SalveId;
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 72);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(144, 24);
+            this.layoutControlItem12.Text = "从机号";
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // page3_txt_FunctionCode
+            // 
+            this.page3_txt_FunctionCode.Location = new System.Drawing.Point(207, 84);
+            this.page3_txt_FunctionCode.MenuManager = this.ribbonControl1;
+            this.page3_txt_FunctionCode.Name = "page3_txt_FunctionCode";
+            this.page3_txt_FunctionCode.Size = new System.Drawing.Size(90, 20);
+            this.page3_txt_FunctionCode.StyleController = this.layoutControl2;
+            this.page3_txt_FunctionCode.TabIndex = 27;
+            // 
+            // layoutControlItem19
+            // 
+            this.layoutControlItem19.Control = this.page3_txt_FunctionCode;
+            this.layoutControlItem19.Location = new System.Drawing.Point(144, 72);
+            this.layoutControlItem19.Name = "layoutControlItem19";
+            this.layoutControlItem19.Size = new System.Drawing.Size(145, 24);
+            this.layoutControlItem19.Text = "功能码";
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(48, 14);
+            // 
+            // page3_txt_opSlaveId
+            // 
+            this.page3_txt_opSlaveId.Location = new System.Drawing.Point(146, 53);
+            this.page3_txt_opSlaveId.MenuManager = this.ribbonControl1;
+            this.page3_txt_opSlaveId.Name = "page3_txt_opSlaveId";
+            this.page3_txt_opSlaveId.Size = new System.Drawing.Size(43, 20);
+            this.page3_txt_opSlaveId.TabIndex = 25;
+            // 
+            // page3_txt_opFunction
+            // 
+            this.page3_txt_opFunction.Location = new System.Drawing.Point(237, 53);
+            this.page3_txt_opFunction.Name = "page3_txt_opFunction";
+            this.page3_txt_opFunction.Size = new System.Drawing.Size(43, 20);
+            this.page3_txt_opFunction.TabIndex = 25;
+            // 
+            // page3_txt_Bit1
+            // 
+            this.page3_txt_Bit1.EditValue = "0";
+            this.page3_txt_Bit1.Location = new System.Drawing.Point(67, 36);
+            this.page3_txt_Bit1.Name = "page3_txt_Bit1";
+            this.page3_txt_Bit1.Size = new System.Drawing.Size(43, 20);
+            this.page3_txt_Bit1.TabIndex = 22;
+            // 
+            // labelControl19
+            // 
+            this.labelControl19.Location = new System.Drawing.Point(10, 65);
+            this.labelControl19.Name = "labelControl19";
+            this.labelControl19.Size = new System.Drawing.Size(60, 14);
+            this.labelControl19.TabIndex = 7;
+            this.labelControl19.Text = "输入字段：";
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Location = new System.Drawing.Point(76, 62);
+            this.textEdit1.MenuManager = this.ribbonControl1;
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Size = new System.Drawing.Size(127, 20);
+            this.textEdit1.TabIndex = 6;
+            // 
+            // page4_cmb_CheckField
+            // 
+            this.page4_cmb_CheckField.Location = new System.Drawing.Point(276, 24);
+            this.page4_cmb_CheckField.Name = "page4_cmb_CheckField";
+            this.page4_cmb_CheckField.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.page4_cmb_CheckField.Size = new System.Drawing.Size(109, 20);
+            this.page4_cmb_CheckField.TabIndex = 4;
+            this.page4_cmb_CheckField.SelectedIndexChanged += new System.EventHandler(this.page4_cmb_CheckProtocol_SelectedIndexChanged);
+            // 
+            // labelControl21
+            // 
+            this.labelControl21.Location = new System.Drawing.Point(210, 27);
+            this.labelControl21.Name = "labelControl21";
+            this.labelControl21.Size = new System.Drawing.Size(60, 14);
+            this.labelControl21.TabIndex = 5;
+            this.labelControl21.Text = "选择字段：";
+            // 
             // FormXmlPress5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 529);
+            this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.navigationFrame1);
             this.Controls.Add(this.officeNavigationBar1);
             this.Controls.Add(this.ribbonStatusBar1);
@@ -1322,7 +1860,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.page1_txt_ComType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.page1_txt_ID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
@@ -1358,8 +1895,27 @@
             this.navigationPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pppppp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_IndexEnd.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_IndexBegin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
+            this.layoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Text.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_DataBit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_BitIndex.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Factor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_ProtocolAddress.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_LocalAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl_Address)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalAddress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Page3_Address)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             this.navigationPage4.ResumeLayout(false);
@@ -1367,8 +1923,26 @@
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.page4_cmb_CheckProtocol.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_panel_dataControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_AllFunction.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_BeginAddress.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_AllSlaveId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Bit16.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_DataNumber.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_SalveId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_FunctionCode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_opSlaveId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_opFunction.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Bit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page4_cmb_CheckField.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1415,7 +1989,6 @@
         private DevExpress.XtraEditors.TextEdit page1_txt_ComType;
         private DevExpress.XtraEditors.TextEdit page1_txt_ID;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
@@ -1445,8 +2018,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraEditors.SimpleButton btn_configProtocol;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraLayout.LayoutControl layoutControl2;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControl_Address;
         private DevExpress.XtraBars.BarButtonItem btn_add;
         private DevExpress.XtraEditors.GroupControl page2_btn_opration;
         private DevExpress.XtraEditors.SimpleButton page2_btn_ConfigAddress;
@@ -1456,11 +2027,11 @@
         private DevExpress.XtraEditors.SimpleButton page2_btn_deleteCheck;
         private DevExpress.XtraEditors.SimpleButton page2_btn_clear;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.SimpleButton page3_btn_SaveEdit;
+        private DevExpress.XtraEditors.SimpleButton page3_btn_add;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton5;
-        private DevExpress.XtraEditors.SimpleButton simpleButton6;
+        private DevExpress.XtraEditors.SimpleButton page3_btn_delCheck;
+        private DevExpress.XtraEditors.SimpleButton page3_btn_clear;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage4;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.SimpleButton page4_btn_clearContent;
@@ -1491,11 +2062,61 @@
         private DevExpress.XtraEditors.TextEdit page2_txt_EnglishiName;
         private DevExpress.XtraEditors.TextEdit page2_txt_ChineseName;
         private DevExpress.XtraEditors.TextEdit page2_txt_ID;
-        private DevExpress.XtraLayout.LayoutControl layoutControl4;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraGrid.GridControl page2_gridview2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraLayout.LayoutControl layoutControl2;
+        private DevExpress.XtraEditors.TextEdit page3_txt_Text;
+        private DevExpress.XtraEditors.TextEdit page3_txt_DataBit;
+        private DevExpress.XtraEditors.TextEdit page3_txt_BitIndex;
+        private DevExpress.XtraEditors.TextEdit page3_txt_Factor;
+        private DevExpress.XtraEditors.TextEdit page3_txt_ProtocolAddress;
+        private DevExpress.XtraEditors.TextEdit page3_txt_LocalAddress;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControl_Address;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.LayoutControlItem LocalAddress;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem2;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.TextEdit page3_txt_IndexEnd;
+        private DevExpress.XtraEditors.TextEdit page3_txt_IndexBegin;
+        private DevExpress.XtraEditors.SimpleButton page3_btn_AllAdd;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
+        private DevExpress.XtraEditors.SimpleButton page3_btn_allDelete;
+        private DevExpress.XtraEditors.LabelControl labelControl14;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.TextEdit pppppp;
+        private DevExpress.XtraEditors.LabelControl page3_lab_DataNumber;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SimpleButton page3_btn_NumberToControl;
+        private DevExpress.XtraEditors.LabelControl labelControl16;
+        private DevExpress.XtraEditors.LabelControl labelControl15;
+        private DevExpress.XtraEditors.TextEdit page3_txt_AllFunction;
+        private DevExpress.XtraEditors.TextEdit page3_txt_AllSlaveId;
+        private DevExpress.XtraLayout.LayoutControl page3_panel_dataControl;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
+        private DevExpress.XtraEditors.LabelControl labelControl17;
+        private DevExpress.XtraEditors.TextEdit page3_txt_BeginAddress;
+        private DevExpress.XtraEditors.LabelControl labelControl20;
+        private DevExpress.XtraEditors.TextEdit page3_txt_DataNumber;
+        private DevExpress.XtraEditors.LabelControl labelControl18;
+        private DevExpress.XtraEditors.TextEdit page3_txt_Bit16;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.TextEdit page3_txt_opFunction;
+        private DevExpress.XtraEditors.TextEdit page3_txt_opSlaveId;
+        private DevExpress.XtraEditors.TextEdit page3_txt_FunctionCode;
+        private DevExpress.XtraEditors.TextEdit page3_txt_SalveId;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
+        private DevExpress.XtraEditors.TextEdit page3_txt_Bit1;
+        private DevExpress.XtraEditors.LabelControl labelControl19;
+        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.LabelControl labelControl21;
+        private DevExpress.XtraEditors.ComboBoxEdit page4_cmb_CheckField;
     }
 }
 

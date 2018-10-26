@@ -23,7 +23,7 @@ namespace XmlProcess5._0
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            UserLookAndFeel.Default.SetSkinStyle(SkinStyle.Office2016Colorful);
+            UserLookAndFeel.Default.SetSkinStyle(SkinStyle.VisualStudio2013Dark);
             Application.Run(new FormXmlPress5());
         }
     }

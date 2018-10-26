@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlProcess5.0_Potocol", "Xm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlProcess5.0_XmlField", "XmlProcess5.0_XmlField\XmlProcess5.0_XmlField.csproj", "{80EC4154-E56B-4DE9-AD2D-124DD0A77001}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlProcessSerialize", "XmlProcessSerialize\XmlProcessSerialize.csproj", "{C5E4236E-FA20-4D3D-89A3-6A012DFA77AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{80EC4154-E56B-4DE9-AD2D-124DD0A77001}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80EC4154-E56B-4DE9-AD2D-124DD0A77001}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80EC4154-E56B-4DE9-AD2D-124DD0A77001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5E4236E-FA20-4D3D-89A3-6A012DFA77AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5E4236E-FA20-4D3D-89A3-6A012DFA77AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5E4236E-FA20-4D3D-89A3-6A012DFA77AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E4236E-FA20-4D3D-89A3-6A012DFA77AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
