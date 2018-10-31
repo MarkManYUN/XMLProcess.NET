@@ -227,483 +227,521 @@ namespace XmlProcess5._0
         /// </summary>
         private void ReadXml()
         {
-          
-                //获取到打开的文件的路径
-                if (navigationFrame1.SelectedPage.Caption.Trim().Equals("协议配置"))
+            #region 自动对打开的文件进行识别处理以及路径的检查优化
+            if (openFileDialog.FileName.LastIndexOf("CommunicationConfig") > 0)
+            {
+                navigationFrame1.SelectedPage =
+        (NavigationPage)navigationFrame1.Pages.FindFirst
+        (x => (string)x.Tag == barButtonItem9.Caption);
+            }
+            else if (openFileDialog.FileName.LastIndexOf("Address") > 0)
+            {
+                navigationFrame1.SelectedPage =
+          (NavigationPage)navigationFrame1.Pages.FindFirst
+          (x => (string)x.Tag == barButtonItem11.Caption);
+            }
+            else if (openFileDialog.FileName.LastIndexOf("xmlField") > 0)
+            {
+                navigationFrame1.SelectedPage =
+         (NavigationPage)navigationFrame1.Pages.FindFirst
+         (x => (string)x.Tag == barButtonItem12.Caption);
+            }
+            else
+            {
+                navigationFrame1.SelectedPage =
+         (NavigationPage)navigationFrame1.Pages.FindFirst
+         (x => (string)x.Tag == barButtonItem10.Caption);
+            }
+            //获取到打开的文件的路径
+            if (navigationFrame1.SelectedPage.Caption.Trim().Equals("协议配置"))
+            {
+                protocolFilePath = openFileDialog.FileName;
+                if (protocolFilePath.LastIndexOf("Config\\Config\\") > 0)
                 {
-                    protocolFilePath = openFileDialog.FileName;
+                    protocolFilePath = protocolFilePath.Replace("Config\\Config\\", "Config\\");
                 }
-                else if (navigationFrame1.SelectedPage.Caption.Trim().Equals("通道配置"))
-                {
+            }
+            else if (navigationFrame1.SelectedPage.Caption.Trim().Equals("通道配置"))
+            {
 
-                    addressFilePath = openFileDialog.FileName;
+                addressFilePath = openFileDialog.FileName;
+                if (addressFilePath.LastIndexOf("Config\\Config\\") > 0)
+                {
+                    addressFilePath = addressFilePath.Replace("Config\\Config\\", "Config\\");
                 }
-                else if (navigationFrame1.SelectedPage.Caption.Trim().Equals("协议字段配置"))
+            }
+            else if (navigationFrame1.SelectedPage.Caption.Trim().Equals("协议字段配置"))
+            {
+                fieldFilePath = openFileDialog.FileName;
+                if (fieldFilePath.LastIndexOf("Config\\Config\\") > 0)
                 {
-                    fieldFilePath = openFileDialog.FileName;
+                    fieldFilePath = fieldFilePath.Replace("Config\\Config\\", "Config\\");
                 }
-                else
+            }
+            else
+            {
+                configFilePath = openFileDialog.FileName;
+            }
+            //判断当前打开的页数，判断加载的是什么程序
+            // 1. 通讯配置
+            // 2. 协议配置
+            // 3. 通道配置
+            #endregion
+            if (navigationFrame1.SelectedPage.Caption.Trim().Equals("协议配置"))
+            {
+                //清空缓存的数据
+                this.page2_gridview2.DataSource = null;
+                XmlModbusList = new List<XmlModbus>();
+                XmlcustomList = new List<XmlSokectCustomProtocol>();
+                XmlVDRList = new List<XmlVDRProtocol>();
+                XmlOtherList = new List<XmlOther>();
+                XmlSokectList = new List<XmlSokect>();
+
+                prefixName = "page2_txt_";
+                //执行加载XML字段配置文件操作
+                //没有加载过为False
+                if (!flage_Field)
                 {
-                    configFilePath = openFileDialog.FileName;
+                    LoadXMLField("./xmlField.xml");
+                    flage_Field = true;
                 }
-                //判断当前打开的页数，判断加载的是什么程序
-                // 1. 通讯配置
-                // 2. 协议配置
-                // 3. 通道配置
-                if (navigationFrame1.SelectedPage.Caption.Trim().Equals("协议配置"))
+                if (!File.Exists(protocolFilePath) || protocolFilePath.Equals(""))
                 {
-                    //清空缓存的数据
-                    this.page2_gridview2.DataSource = null;
-                    XmlModbusList = new List<XmlModbus>();
-                    XmlcustomList = new List<XmlSokectCustomProtocol>();
-                    XmlVDRList = new List<XmlVDRProtocol>();
-                    XmlOtherList = new List<XmlOther>();
-                    XmlSokectList = new List<XmlSokect>();
+                    MessageBox.Show("找不到该文件配置文件 ");
+                    return;
+                }
+                if (Path.GetExtension(protocolFilePath).Contains("json"))
+                {
+                    MessageBox.Show("目前不支持该文件解析,请选择文件");
+                    return;
+                }
+                LoadXml(protocolFilePath);
 
-                    prefixName = "page2_txt_";
-                    //执行加载XML字段配置文件操作
-                    //没有加载过为False
-                    if (!flage_Field)
-                    {
-                        LoadXMLField("./xmlField.xml");
-                        flage_Field = true;
-                    }
-                    if (!File.Exists(protocolFilePath) || protocolFilePath.Equals(""))
-                    {
-                        MessageBox.Show("找不到该文件配置文件 ");
-                        return;
-                    }
-                    if (Path.GetExtension(protocolFilePath).Contains("json"))
-                    {
-                        MessageBox.Show("目前不支持该文件解析,请选择文件");
-                        return;
-                    }
-                    LoadXml(protocolFilePath);
-
-                    // 得到根节点bookstore
-                    XmlNode xn = xmlDoc.SelectSingleNode("Communications");
+                // 得到根节点bookstore
+                XmlNode xn = xmlDoc.SelectSingleNode("Communications");
 
 
+                // 得到根节点的所有子节点
+                XmlNodeList xnl = xn.ChildNodes;
+                string nameStr = protocolFilePath.Substring(protocolFilePath.LastIndexOf("\\") + 1).ToUpper();
+
+                //gridView2.RefreshData();
+                //gridView2.Dispose(); 
+                //this.page2_gridview2.DataSource = null;
+                gridView2.Columns.Clear();
+                foreach (XmlNode xn1 in xnl)
+                {
                     // 得到根节点的所有子节点
-                    XmlNodeList xnl = xn.ChildNodes;
-                    string nameStr = protocolFilePath.Substring(protocolFilePath.LastIndexOf("\\") + 1).ToUpper();
-
-                    //gridView2.RefreshData();
-                    //gridView2.Dispose(); 
-                    //this.page2_gridview2.DataSource = null;
-                    gridView2.Columns.Clear();
-                    foreach (XmlNode xn1 in xnl)
+                    XmlNodeList xnn = xn1.ChildNodes;
+                    foreach (XmlElement item in xnn)
                     {
-                        // 得到根节点的所有子节点
-                        XmlNodeList xnn = xn1.ChildNodes;
-                        foreach (XmlElement item in xnn)
+                        #region txt控件赋值
+                        page2_txt_ID.Text = CommFieldDictionary["ID"] = item.GetAttribute("ID").ToString();
+                        page2_txt_CommReConnectTime.Text = CommFieldDictionary["CommReConnectTime"] = item.GetAttribute("CommReConnectTime").ToString();
+                        page2_txt_CommErroTime.Text = CommFieldDictionary["CommErroTime"] = item.GetAttribute("CommErroTime").ToString();
+                        page2_txt_WriteTimeOut.Text = CommFieldDictionary["WriteTimeOut"] = item.GetAttribute("WriteTimeOut").ToString();
+                        page2_txt_ReadTimeOut.Text = CommFieldDictionary["ReadTimeOut"] = item.GetAttribute("ReadTimeOut").ToString();
+                        page2_txt_CommSpaceTime.Text = CommFieldDictionary["CommSpaceTime"] = item.GetAttribute("CommSpaceTime").ToString();
+                        page2_txt_ConfigFilePath.Text = CommFieldDictionary["ConfigFilePath"] = item.GetAttribute("ConfigFilePath").ToString();
+                        page2_txt_EnglishiName.Text = CommFieldDictionary["EnglishiName"] = item.GetAttribute("EnglishiName").ToString();
+                        page2_txt_ChineseName.Text = CommFieldDictionary["ChineseName"] = item.GetAttribute("ChineseName").ToString();
+                        #endregion
+                        XmlNodeList nodes = item.ChildNodes;
+
+                        if (nameStr.Contains(ProtocolType.custom.ToString().ToUpper()))
                         {
-                            #region txt控件赋值
-                            page2_txt_ID.Text = CommFieldDictionary["ID"] = item.GetAttribute("ID").ToString();
-                            page2_txt_CommReConnectTime.Text = CommFieldDictionary["CommReConnectTime"] = item.GetAttribute("CommReConnectTime").ToString();
-                            page2_txt_CommErroTime.Text = CommFieldDictionary["CommErroTime"] = item.GetAttribute("CommErroTime").ToString();
-                            page2_txt_WriteTimeOut.Text = CommFieldDictionary["WriteTimeOut"] = item.GetAttribute("WriteTimeOut").ToString();
-                            page2_txt_ReadTimeOut.Text = CommFieldDictionary["ReadTimeOut"] = item.GetAttribute("ReadTimeOut").ToString();
-                            page2_txt_CommSpaceTime.Text = CommFieldDictionary["CommSpaceTime"] = item.GetAttribute("CommSpaceTime").ToString();
-                            page2_txt_ConfigFilePath.Text = CommFieldDictionary["ConfigFilePath"] = item.GetAttribute("ConfigFilePath").ToString();
-                            page2_txt_EnglishiName.Text = CommFieldDictionary["EnglishiName"] = item.GetAttribute("EnglishiName").ToString();
-                            page2_txt_ChineseName.Text = CommFieldDictionary["ChineseName"] = item.GetAttribute("ChineseName").ToString();
-                            #endregion
-                            XmlNodeList nodes = item.ChildNodes;
+                            findCommand = "/Communications/CommunicaitonData/Communication/TCP[@ID=\"{0}\"]";
 
-                            if (nameStr.Contains(ProtocolType.custom.ToString().ToUpper()))
+                            currentProtocolType = ProtocolType.custom;
+                            #region customProtocol
+                            foreach (XmlElement inode in nodes)
                             {
-                                findCommand = "/Communications/CommunicaitonData/Communication/TCP[@ID=\"{0}\"]";
-
-                                currentProtocolType = ProtocolType.custom;
-                                #region customProtocol
-                                foreach (XmlElement inode in nodes)
+                                string type = inode.Name;
+                                if (type.Trim().Equals("TCP"))
                                 {
-                                    string type = inode.Name;
-                                    if (type.Trim().Equals("TCP"))
+                                    XmlSokectCustomProtocol custom = new XmlSokectCustomProtocol
                                     {
-                                        XmlSokectCustomProtocol custom = new XmlSokectCustomProtocol
-                                        {
-                                            ID = SokectCustomProtocolDictionary["ID"] = inode.GetAttribute("ID"),
-                                            Can1IP = SokectCustomProtocolDictionary["Can1IP"] = inode.GetAttribute("Can1IP"),
-                                            Can1Port = SokectCustomProtocolDictionary["Can1Port"] = inode.GetAttribute("Can1Port"),
-                                            Can2IP = SokectCustomProtocolDictionary["Can2IP"] = inode.GetAttribute("Can2IP"),
-                                            Can2Port = SokectCustomProtocolDictionary["Can2Port"] = inode.GetAttribute("Can2Port"),
-                                            CheckEndIndex = SokectCustomProtocolDictionary["CheckEndIndex"] = inode.GetAttribute("CheckEndIndex"),
-                                            CheckStartIndex = SokectCustomProtocolDictionary["CheckStartIndex"] = inode.GetAttribute("CheckStartIndex"),
-                                            CheckSumIndex = SokectCustomProtocolDictionary["CheckSumIndex"] = inode.GetAttribute("CheckSumIndex"),
-                                            CheckSumLength = SokectCustomProtocolDictionary["CheckSumLength"] = inode.GetAttribute("CheckSumLength"),
-                                            CheckSumType = SokectCustomProtocolDictionary["CheckSumType"] = inode.GetAttribute("CheckSumType"),
-                                            EndSingle = SokectCustomProtocolDictionary["EndSingle"] = inode.GetAttribute("EndSingle"),
-                                            FirstAddr = SokectCustomProtocolDictionary["FirstAddr"] = inode.GetAttribute("FirstAddr"),
-                                            PackageLength = SokectCustomProtocolDictionary["PackageLength"] = inode.GetAttribute("PackageLength"),
-                                            StartSingle = SokectCustomProtocolDictionary["StartSingle"] = inode.GetAttribute("StartSingle")
-                                        };
-                                        XmlcustomList.Add(custom);
-                                    }
+                                        ID = SokectCustomProtocolDictionary["ID"] = inode.GetAttribute("ID"),
+                                        Can1IP = SokectCustomProtocolDictionary["Can1IP"] = inode.GetAttribute("Can1IP"),
+                                        Can1Port = SokectCustomProtocolDictionary["Can1Port"] = inode.GetAttribute("Can1Port"),
+                                        Can2IP = SokectCustomProtocolDictionary["Can2IP"] = inode.GetAttribute("Can2IP"),
+                                        Can2Port = SokectCustomProtocolDictionary["Can2Port"] = inode.GetAttribute("Can2Port"),
+                                        CheckEndIndex = SokectCustomProtocolDictionary["CheckEndIndex"] = inode.GetAttribute("CheckEndIndex"),
+                                        CheckStartIndex = SokectCustomProtocolDictionary["CheckStartIndex"] = inode.GetAttribute("CheckStartIndex"),
+                                        CheckSumIndex = SokectCustomProtocolDictionary["CheckSumIndex"] = inode.GetAttribute("CheckSumIndex"),
+                                        CheckSumLength = SokectCustomProtocolDictionary["CheckSumLength"] = inode.GetAttribute("CheckSumLength"),
+                                        CheckSumType = SokectCustomProtocolDictionary["CheckSumType"] = inode.GetAttribute("CheckSumType"),
+                                        EndSingle = SokectCustomProtocolDictionary["EndSingle"] = inode.GetAttribute("EndSingle"),
+                                        FirstAddr = SokectCustomProtocolDictionary["FirstAddr"] = inode.GetAttribute("FirstAddr"),
+                                        PackageLength = SokectCustomProtocolDictionary["PackageLength"] = inode.GetAttribute("PackageLength"),
+                                        StartSingle = SokectCustomProtocolDictionary["StartSingle"] = inode.GetAttribute("StartSingle")
+                                    };
+                                    XmlcustomList.Add(custom);
                                 }
-
-                                reader.Close();
-                                this.page2_gridview2.DataSource = XmlcustomList;
-                                //动态加载控件
-                                if (first_Flush_Flag)
-                                {
-                                    DynamicCreateControl(SokectCustomProtocolDictionary);
-                                }
-                                else
-                                {
-                                    //清空原来的控件信息
-                                    layoutControl3.BeginUpdate();
-                                    layoutControl3.Controls.Clear();
-                                    layoutControl3.Root.Items.Clear();
-                                    DynamicCreateControl(SokectCustomProtocolDictionary);
-                                    dataOpration.EndUpdate();
-                                }
-                                try
-                                {
-                                    this.gridView2.Columns[0].Caption = "ID";
-                                    this.gridView2.Columns[0].Width = 20;
-                                    this.gridView2.Columns[1].Caption = "IP地址1";
-                                    this.gridView2.Columns[1].Width = 100;
-                                    this.gridView2.Columns[2].Caption = "Port1";
-                                    this.gridView2.Columns[2].Width = 40;
-                                    this.gridView2.Columns[3].Caption = "IP地址2";
-                                    this.gridView2.Columns[3].Width = 100;
-                                    this.gridView2.Columns[4].Caption = "Port2";
-                                    this.gridView2.Columns[4].Width = 40;
-                                    this.gridView2.Columns[5].Caption = "结束位";
-                                    this.gridView2.Columns[5].Width = 40;
-                                    this.gridView2.Columns[6].Caption = "开始位";
-                                    this.gridView2.Columns[6].Width = 40;
-                                    this.gridView2.Columns[7].Caption = "检验位";
-                                    this.gridView2.Columns[7].Width = 40;
-                                    this.gridView2.Columns[8].Caption = "校验长度";
-                                    this.gridView2.Columns[8].Width = 40;
-                                    this.gridView2.Columns[9].Caption = "类型";
-                                    this.gridView2.Columns[9].Width = 40;
-                                    this.gridView2.Columns[10].Caption = "结束标志";
-                                    this.gridView2.Columns[10].Width = 40;
-                                    this.gridView2.Columns[11].Caption = "开始地址";
-                                    this.gridView2.Columns[11].Width = 40;
-                                    this.gridView2.Columns[12].Caption = "包长度";
-                                    this.gridView2.Columns[12].Width = 40;
-                                    this.gridView2.Columns[13].Caption = "开始标志";
-                                }
-
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show("错误信息：" + ex.Message);
-                                }
-                                #endregion
                             }
-                            else if (nameStr.Contains(ProtocolType.Modbus.ToString().ToUpper()))
+
+                            reader.Close();
+                            this.page2_gridview2.DataSource = XmlcustomList;
+                            //动态加载控件
+                            if (first_Flush_Flag)
                             {
-                                findCommand = "/Communications/CommunicaitonData/Communication/TCP/CommCongfig[@ID=\"{0}\"]";
-                                currentProtocolType = ProtocolType.Modbus;
-                                #region SocektModbus协议 
+                                DynamicCreateControl(SokectCustomProtocolDictionary);
+                            }
+                            else
+                            {
+                                //清空原来的控件信息
+                                layoutControl3.BeginUpdate();
+                                layoutControl3.Controls.Clear();
+                                layoutControl3.Root.Items.Clear();
+                                DynamicCreateControl(SokectCustomProtocolDictionary);
+                                dataOpration.EndUpdate();
+                            }
+                            try
+                            {
+                                this.gridView2.Columns[0].Caption = "ID";
+                                this.gridView2.Columns[0].Width = 20;
+                                this.gridView2.Columns[1].Caption = "IP地址1";
+                                this.gridView2.Columns[1].Width = 100;
+                                this.gridView2.Columns[2].Caption = "Port1";
+                                this.gridView2.Columns[2].Width = 40;
+                                this.gridView2.Columns[3].Caption = "IP地址2";
+                                this.gridView2.Columns[3].Width = 100;
+                                this.gridView2.Columns[4].Caption = "Port2";
+                                this.gridView2.Columns[4].Width = 40;
+                                this.gridView2.Columns[5].Caption = "结束位";
+                                this.gridView2.Columns[5].Width = 40;
+                                this.gridView2.Columns[6].Caption = "开始位";
+                                this.gridView2.Columns[6].Width = 40;
+                                this.gridView2.Columns[7].Caption = "检验位";
+                                this.gridView2.Columns[7].Width = 40;
+                                this.gridView2.Columns[8].Caption = "校验长度";
+                                this.gridView2.Columns[8].Width = 40;
+                                this.gridView2.Columns[9].Caption = "类型";
+                                this.gridView2.Columns[9].Width = 40;
+                                this.gridView2.Columns[10].Caption = "结束标志";
+                                this.gridView2.Columns[10].Width = 40;
+                                this.gridView2.Columns[11].Caption = "开始地址";
+                                this.gridView2.Columns[11].Width = 40;
+                                this.gridView2.Columns[12].Caption = "包长度";
+                                this.gridView2.Columns[12].Width = 40;
+                                this.gridView2.Columns[13].Caption = "开始标志";
+                            }
 
-                                foreach (XmlElement inode in nodes)
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("错误信息：" + ex.Message);
+                            }
+                            #endregion
+                        }
+                        else if (nameStr.Contains(ProtocolType.Modbus.ToString().ToUpper()))
+                        {
+                            findCommand = "/Communications/CommunicaitonData/Communication/TCP/CommCongfig[@ID=\"{0}\"]";
+                            currentProtocolType = ProtocolType.Modbus;
+                            #region SocektModbus协议 
+
+                            foreach (XmlElement inode in nodes)
+                            {
+                                string type = inode.Name;
+                                if (type.Trim().Equals("TCP"))
                                 {
-                                    string type = inode.Name;
-                                    if (type.Trim().Equals("TCP"))
+                                    SokectModbusProtocolDictionary["Can2IP"] = inode.GetAttribute("Can2IP").ToString();
+                                    SokectModbusProtocolDictionary["Can2Port"] = inode.GetAttribute("Can2Port").ToString();
+                                    SokectModbusProtocolDictionary["Can1IP"] = inode.GetAttribute("Can1IP").ToString();
+                                    SokectModbusProtocolDictionary["Can1Port"] = inode.GetAttribute("Can1Port").ToString();
+
+                                    XmlNodeList commconfig = inode.ChildNodes;
+                                    foreach (XmlElement config in commconfig)
                                     {
-                                        SokectModbusProtocolDictionary["Can2IP"] = inode.GetAttribute("Can2IP").ToString();
-                                        SokectModbusProtocolDictionary["Can2Port"] = inode.GetAttribute("Can2Port").ToString();
-                                        SokectModbusProtocolDictionary["Can1IP"] = inode.GetAttribute("Can1IP").ToString();
-                                        SokectModbusProtocolDictionary["Can1Port"] = inode.GetAttribute("Can1Port").ToString();
 
-                                        XmlNodeList commconfig = inode.ChildNodes;
-                                        foreach (XmlElement config in commconfig)
+                                        string protocolType = config.Name;
+                                        if (protocolType.Trim().Equals("CommCongfig"))
                                         {
-
-                                            string protocolType = config.Name;
-                                            if (protocolType.Trim().Equals("CommCongfig"))
+                                            XmlModbus modbus = new XmlModbus
                                             {
-                                                XmlModbus modbus = new XmlModbus
-                                                {
-                                                    Can2IP = SokectModbusProtocolDictionary["Can2IP"],
-                                                    Can2Port = SokectModbusProtocolDictionary["Can2Port"],
-                                                    Can1IP = SokectModbusProtocolDictionary["Can1IP"],
-                                                    Can1Port = SokectModbusProtocolDictionary["Can1Port"],
-                                                    ID = SokectModbusProtocolDictionary["ID"] = config.GetAttribute("ID").ToString(),
-                                                    SlaveID = SokectModbusProtocolDictionary["SlaveID"] = config.GetAttribute("SlaveID").ToString(),
-                                                    FirstAddress = SokectModbusProtocolDictionary["FirstAddress"] = config.GetAttribute("FirstAddress").ToString(),
-                                                    FunctionCode = SokectModbusProtocolDictionary["FunctionCode"] = config.GetAttribute("FunctionCode").ToString(),
-                                                    RequestCount = SokectModbusProtocolDictionary["RequestCount"] = config.GetAttribute("RequestCount").ToString(),
-                                                    DataLenght = SokectModbusProtocolDictionary["DataLenght"] = config.GetAttribute("DataLenght").ToString()
-                                                };
-                                                XmlModbusList.Add(modbus);
-                                            }
+                                                Can2IP = SokectModbusProtocolDictionary["Can2IP"],
+                                                Can2Port = SokectModbusProtocolDictionary["Can2Port"],
+                                                Can1IP = SokectModbusProtocolDictionary["Can1IP"],
+                                                Can1Port = SokectModbusProtocolDictionary["Can1Port"],
+                                                ID = SokectModbusProtocolDictionary["ID"] = config.GetAttribute("ID").ToString(),
+                                                SlaveID = SokectModbusProtocolDictionary["SlaveID"] = config.GetAttribute("SlaveID").ToString(),
+                                                FirstAddress = SokectModbusProtocolDictionary["FirstAddress"] = config.GetAttribute("FirstAddress").ToString(),
+                                                FunctionCode = SokectModbusProtocolDictionary["FunctionCode"] = config.GetAttribute("FunctionCode").ToString(),
+                                                RequestCount = SokectModbusProtocolDictionary["RequestCount"] = config.GetAttribute("RequestCount").ToString(),
+                                                DataLenght = SokectModbusProtocolDictionary["DataLenght"] = config.GetAttribute("DataLenght").ToString()
+                                            };
+                                            XmlModbusList.Add(modbus);
                                         }
                                     }
                                 }
-                                reader.Close();
-                                this.page2_gridview2.DataSource = XmlModbusList;
-                                //动态加载控件
-                                if (first_Flush_Flag)
-                                {
-                                    DynamicCreateControl(SokectModbusProtocolDictionary);
-                                }
-                                else
-                                {
-                                    //清空原来的控件信息
-                                    layoutControl3.BeginUpdate();
-                                    layoutControl3.Controls.Clear();
-                                    layoutControl3.Root.Items.Clear();
-                                    DynamicCreateControl(SokectModbusProtocolDictionary);
-                                    dataOpration.EndUpdate();
-                                }
-                                try
-                                {
-                                    this.gridView2.Columns[0].Caption = "ID";
-                                    this.gridView2.Columns[0].Width = 40;
-                                    this.gridView2.Columns[1].Caption = "IP地址2";
-                                    this.gridView2.Columns[1].Width = 100;
-                                    this.gridView2.Columns[2].Caption = "端口2";
-                                    this.gridView2.Columns[2].Width = 50;
-                                    this.gridView2.Columns[3].Caption = "IP地址1";
-                                    this.gridView2.Columns[3].Width = 100;
-                                    this.gridView2.Columns[4].Caption = "端口1";
-                                    this.gridView2.Columns[4].Width = 50;
-                                    this.gridView2.Columns[5].Caption = "从机号";
-                                    this.gridView2.Columns[5].Width = 50;
-                                    this.gridView2.Columns[6].Caption = "功能码";
-                                    this.gridView2.Columns[6].Width = 50;
-                                    this.gridView2.Columns[7].Caption = "地址";
-                                    this.gridView2.Columns[7].Width = 50;
-                                    this.gridView2.Columns[8].Caption = "请求个数";
-                                    this.gridView2.Columns[8].Width = 30;
-                                    this.gridView2.Columns[9].Caption = "数据长度";
-
-                                }
-
-                                catch (Exception ex) { MessageBox.Show("错误信息：" + ex.Message); }
-
-                                #endregion
+                            }
+                            reader.Close();
+                            this.page2_gridview2.DataSource = XmlModbusList;
+                            //动态加载控件
+                            if (first_Flush_Flag)
+                            {
+                                DynamicCreateControl(SokectModbusProtocolDictionary);
                             }
                             else
-                             if (nameStr.Contains(ProtocolType.vdr.ToString().ToUpper()))
                             {
-                                findCommand = "/Communications/CommunicaitonData/Communication/VDR";
-                                currentProtocolType = ProtocolType.vdr;
-                                #region VDRProtocol
-                                foreach (XmlElement inode in nodes)
-                                {
-                                    XmlVDRProtocol vdr = new XmlVDRProtocol
-                                    {
-                                        PortName = VDRProtocolDictionary["PortName"] = inode.GetAttribute("PortName").ToString(),
-                                        STOPBITS = VDRProtocolDictionary["STOPBITS"] = inode.GetAttribute("STOPBITS").ToString(),
-                                        DATABIT = VDRProtocolDictionary["DATABIT"] = inode.GetAttribute("DATABIT").ToString(),
-                                        PARITY = VDRProtocolDictionary["PARITY"] = inode.GetAttribute("PARITY").ToString(),
-                                        BAUREATE = VDRProtocolDictionary["BAUREATE"] = inode.GetAttribute("BAUREATE").ToString(),
-                                        FrameLenght = VDRProtocolDictionary["FrameLenght"] = inode.GetAttribute("FrameLenght").ToString(),
-                                        FirstAddr = VDRProtocolDictionary["FirstAddr"] = inode.GetAttribute("FirstAddr").ToString(),
-                                        StartSingle = VDRProtocolDictionary["StartSingle"] = inode.GetAttribute("StartSingle").ToString()
-                                    };
-                                    XmlVDRList.Add(vdr);
-                                }
+                                //清空原来的控件信息
+                                layoutControl3.BeginUpdate();
+                                layoutControl3.Controls.Clear();
+                                layoutControl3.Root.Items.Clear();
+                                DynamicCreateControl(SokectModbusProtocolDictionary);
+                                dataOpration.EndUpdate();
+                            }
+                            try
+                            {
+                                this.gridView2.Columns[0].Caption = "ID";
+                                this.gridView2.Columns[0].Width = 40;
+                                this.gridView2.Columns[1].Caption = "IP地址2";
+                                this.gridView2.Columns[1].Width = 100;
+                                this.gridView2.Columns[2].Caption = "端口2";
+                                this.gridView2.Columns[2].Width = 50;
+                                this.gridView2.Columns[3].Caption = "IP地址1";
+                                this.gridView2.Columns[3].Width = 100;
+                                this.gridView2.Columns[4].Caption = "端口1";
+                                this.gridView2.Columns[4].Width = 50;
+                                this.gridView2.Columns[5].Caption = "从机号";
+                                this.gridView2.Columns[5].Width = 50;
+                                this.gridView2.Columns[6].Caption = "功能码";
+                                this.gridView2.Columns[6].Width = 50;
+                                this.gridView2.Columns[7].Caption = "地址";
+                                this.gridView2.Columns[7].Width = 50;
+                                this.gridView2.Columns[8].Caption = "请求个数";
+                                this.gridView2.Columns[8].Width = 30;
+                                this.gridView2.Columns[9].Caption = "数据长度";
 
-                                reader.Close();
-                                this.page2_gridview2.DataSource = XmlVDRList;
-                                //动态加载控件
-                                if (first_Flush_Flag)
-                                {
-                                    DynamicCreateControl(VDRProtocolDictionary);
-                                }
-                                else
-                                {
-                                    //清空原来的控件信息
-                                    layoutControl3.BeginUpdate();
-                                    layoutControl3.Controls.Clear();
-                                    layoutControl3.Root.Items.Clear();
-                                    DynamicCreateControl(VDRProtocolDictionary);
-                                    dataOpration.EndUpdate();
-                                }
-                                try
-                                {
-                                    this.gridView2.Columns[0].Caption = "端口号";
-                                    this.gridView2.Columns[0].Width = 70;
-                                    this.gridView2.Columns[1].Caption = "停止位";
-                                    this.gridView2.Columns[1].Width = 70;
-                                    this.gridView2.Columns[2].Caption = "数据位";
-                                    this.gridView2.Columns[2].Width = 70;
-                                    this.gridView2.Columns[3].Caption = "校验位";
-                                    this.gridView2.Columns[3].Width = 70;
-                                    this.gridView2.Columns[4].Caption = "波特率";
-                                    this.gridView2.Columns[4].Width = 70;
-                                    this.gridView2.Columns[5].Caption = "长度";
-                                    this.gridView2.Columns[5].Width = 70;
-                                    this.gridView2.Columns[6].Caption = "开始地址";
-                                    this.gridView2.Columns[6].Width = 70;
-                                    this.gridView2.Columns[7].Caption = "开始标志";
-                                    this.gridView2.Columns[7].Width = 70;
+                            }
 
-                                }
+                            catch (Exception ex) { MessageBox.Show("错误信息：" + ex.Message); }
 
-                                catch (Exception ex)
+                            #endregion
+                        }
+                        else
+                         if (nameStr.Contains(ProtocolType.vdr.ToString().ToUpper()))
+                        {
+                            findCommand = "/Communications/CommunicaitonData/Communication/VDR";
+                            currentProtocolType = ProtocolType.vdr;
+                            #region VDRProtocol
+                            foreach (XmlElement inode in nodes)
+                            {
+                                XmlVDRProtocol vdr = new XmlVDRProtocol
                                 {
-                                    MessageBox.Show("错误信息：" + ex.Message);
-                                }
+                                    PortName = VDRProtocolDictionary["PortName"] = inode.GetAttribute("PortName").ToString(),
+                                    STOPBITS = VDRProtocolDictionary["STOPBITS"] = inode.GetAttribute("STOPBITS").ToString(),
+                                    DATABIT = VDRProtocolDictionary["DATABIT"] = inode.GetAttribute("DATABIT").ToString(),
+                                    PARITY = VDRProtocolDictionary["PARITY"] = inode.GetAttribute("PARITY").ToString(),
+                                    BAUREATE = VDRProtocolDictionary["BAUREATE"] = inode.GetAttribute("BAUREATE").ToString(),
+                                    FrameLenght = VDRProtocolDictionary["FrameLenght"] = inode.GetAttribute("FrameLenght").ToString(),
+                                    FirstAddr = VDRProtocolDictionary["FirstAddr"] = inode.GetAttribute("FirstAddr").ToString(),
+                                    StartSingle = VDRProtocolDictionary["StartSingle"] = inode.GetAttribute("StartSingle").ToString()
+                                };
+                                XmlVDRList.Add(vdr);
+                            }
 
-                                #endregion
+                            reader.Close();
+                            this.page2_gridview2.DataSource = XmlVDRList;
+                            //动态加载控件
+                            if (first_Flush_Flag)
+                            {
+                                DynamicCreateControl(VDRProtocolDictionary);
                             }
                             else
-                             if (nameStr.Contains(ProtocolType.other.ToString().ToUpper()))
                             {
-                                findCommand = "/Communications/CommunicaitonData/Communication/TCP/CommCongfig[@ID=\"{0}\"]";
+                                //清空原来的控件信息
+                                layoutControl3.BeginUpdate();
+                                layoutControl3.Controls.Clear();
+                                layoutControl3.Root.Items.Clear();
+                                DynamicCreateControl(VDRProtocolDictionary);
+                                dataOpration.EndUpdate();
+                            }
+                            try
+                            {
+                                this.gridView2.Columns[0].Caption = "端口号";
+                                this.gridView2.Columns[0].Width = 70;
+                                this.gridView2.Columns[1].Caption = "停止位";
+                                this.gridView2.Columns[1].Width = 70;
+                                this.gridView2.Columns[2].Caption = "数据位";
+                                this.gridView2.Columns[2].Width = 70;
+                                this.gridView2.Columns[3].Caption = "校验位";
+                                this.gridView2.Columns[3].Width = 70;
+                                this.gridView2.Columns[4].Caption = "波特率";
+                                this.gridView2.Columns[4].Width = 70;
+                                this.gridView2.Columns[5].Caption = "长度";
+                                this.gridView2.Columns[5].Width = 70;
+                                this.gridView2.Columns[6].Caption = "开始地址";
+                                this.gridView2.Columns[6].Width = 70;
+                                this.gridView2.Columns[7].Caption = "开始标志";
+                                this.gridView2.Columns[7].Width = 70;
 
-                                currentProtocolType = ProtocolType.other;
-                                #region other
-                                foreach (XmlElement inode in nodes)
-                                {
-                                    XmlOther other = new XmlOther
-                                    {
-                                        ID = ProtocolOtherDictionary["ID"] = inode.GetAttribute("ID").ToString(),
-                                        Can2IP = ProtocolOtherDictionary["Can2IP"] = inode.GetAttribute("Can2IP").ToString(),
-                                        Can2Port = ProtocolOtherDictionary["Can2Port"] = inode.GetAttribute("Can2Port").ToString(),
-                                        Can1IP = ProtocolOtherDictionary["Can1IP"] = inode.GetAttribute("Can1IP").ToString(),
-                                        Can1Port = ProtocolOtherDictionary["Can1Port"] = inode.GetAttribute("Can1Port").ToString(),
-                                        SlaveID = ProtocolOtherDictionary["SlaveID"] = inode.GetAttribute("SlaveID").ToString(),
-                                        FunctionCode = ProtocolOtherDictionary["FunctionCode"] = inode.GetAttribute("FunctionCode").ToString(),
-                                        FirstAddress = ProtocolOtherDictionary["FirstAddress"] = inode.GetAttribute("FirstAddress").ToString(),
-                                        RequestCount = ProtocolOtherDictionary["RequestCount"] = inode.GetAttribute("RequestCount").ToString(),
-                                        DataLenght = ProtocolOtherDictionary["DataLenght"] = inode.GetAttribute("DataLenght").ToString(),
-                                        PortName = ProtocolOtherDictionary["PortName"] = inode.GetAttribute("PortName").ToString(),
-                                        STOPBITS = ProtocolOtherDictionary["STOPBITS"] = inode.GetAttribute("STOPBITS").ToString(),
-                                        DATABIT = ProtocolOtherDictionary["DATABIT"] = inode.GetAttribute("DATABIT").ToString(),
-                                        PARITY = ProtocolOtherDictionary["PARITY"] = inode.GetAttribute("PARITY").ToString(),
-                                        BAUREATE = ProtocolOtherDictionary["BAUREATE"] = inode.GetAttribute("BAUREATE").ToString(),
-                                        FrameLenght = ProtocolOtherDictionary["FrameLenght"] = inode.GetAttribute("FrameLenght").ToString(),
-                                        StartSingle = ProtocolOtherDictionary["StartSingle"] = inode.GetAttribute("StartSingle").ToString(),
-                                        EndSingle = ProtocolOtherDictionary["EndSingle"] = inode.GetAttribute("EndSingle").ToString(),
-                                        PackageLength = ProtocolOtherDictionary["PackageLength"] = inode.GetAttribute("PackageLength").ToString(),
-                                        FirstAddr = ProtocolOtherDictionary["FirstAddr"] = inode.GetAttribute("FirstAddr").ToString(),
-                                        CheckSumIndex = ProtocolOtherDictionary["CheckSumIndex"] = inode.GetAttribute("CheckSumIndex").ToString(),
-                                        CheckSumType = ProtocolOtherDictionary["CheckSumType"] = inode.GetAttribute("CheckSumType").ToString(),
-                                        CheckStartIndex = ProtocolOtherDictionary["CheckStartIndex"] = inode.GetAttribute("CheckStartIndex").ToString(),
-                                        CheckEndIndex = ProtocolOtherDictionary["CheckEndIndex"] = inode.GetAttribute("CheckEndIndex").ToString(),
-                                        Standby1 = ProtocolOtherDictionary["Standby1"] = inode.GetAttribute("Standby1").ToString(),
-                                        Standby2 = ProtocolOtherDictionary["Standby2"] = inode.GetAttribute("Standby2").ToString(),
-                                        Standby3 = ProtocolOtherDictionary["Standby3"] = inode.GetAttribute("Standby3").ToString(),
-                                        Standby4 = ProtocolOtherDictionary["Standby4"] = inode.GetAttribute("Standby4").ToString(),
-                                        Standby5 = ProtocolOtherDictionary["Standby5"] = inode.GetAttribute("Standby5").ToString(),
-                                        Standby6 = ProtocolOtherDictionary["Standby6"] = inode.GetAttribute("Standby6").ToString(),
-                                        Standby7 = ProtocolOtherDictionary["Standby7"] = inode.GetAttribute("Standby7").ToString(),
-                                        Standby8 = ProtocolOtherDictionary["Standby8"] = inode.GetAttribute("Standby8").ToString()
-                                    };
-                                    XmlOtherList.Add(other);
-                                }
-                                reader.Close();
-                                this.page2_gridview2.DataSource = XmlOtherList;
-                                //动态加载控件
-                                if (first_Flush_Flag)
-                                {
-                                    DynamicCreateControl(ProtocolOtherDictionary);
-                                }
-                                else
-                                {
-                                    //清空原来的控件信息
-                                    layoutControl3.BeginUpdate();
-                                    layoutControl3.Controls.Clear();
-                                    layoutControl3.Root.Items.Clear();
-                                    DynamicCreateControl(ProtocolOtherDictionary);
-                                    dataOpration.EndUpdate();
-                                }
+                            }
 
-                                #endregion
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("错误信息：" + ex.Message);
+                            }
+
+                            #endregion
+                        }
+                        else
+                         if (nameStr.Contains(ProtocolType.other.ToString().ToUpper()))
+                        {
+                            findCommand = "/Communications/CommunicaitonData/Communication/TCP/CommCongfig[@ID=\"{0}\"]";
+
+                            currentProtocolType = ProtocolType.other;
+                            #region other
+                            foreach (XmlElement inode in nodes)
+                            {
+                                XmlOther other = new XmlOther
+                                {
+                                    ID = ProtocolOtherDictionary["ID"] = inode.GetAttribute("ID").ToString(),
+                                    Can2IP = ProtocolOtherDictionary["Can2IP"] = inode.GetAttribute("Can2IP").ToString(),
+                                    Can2Port = ProtocolOtherDictionary["Can2Port"] = inode.GetAttribute("Can2Port").ToString(),
+                                    Can1IP = ProtocolOtherDictionary["Can1IP"] = inode.GetAttribute("Can1IP").ToString(),
+                                    Can1Port = ProtocolOtherDictionary["Can1Port"] = inode.GetAttribute("Can1Port").ToString(),
+                                    SlaveID = ProtocolOtherDictionary["SlaveID"] = inode.GetAttribute("SlaveID").ToString(),
+                                    FunctionCode = ProtocolOtherDictionary["FunctionCode"] = inode.GetAttribute("FunctionCode").ToString(),
+                                    FirstAddress = ProtocolOtherDictionary["FirstAddress"] = inode.GetAttribute("FirstAddress").ToString(),
+                                    RequestCount = ProtocolOtherDictionary["RequestCount"] = inode.GetAttribute("RequestCount").ToString(),
+                                    DataLenght = ProtocolOtherDictionary["DataLenght"] = inode.GetAttribute("DataLenght").ToString(),
+                                    PortName = ProtocolOtherDictionary["PortName"] = inode.GetAttribute("PortName").ToString(),
+                                    STOPBITS = ProtocolOtherDictionary["STOPBITS"] = inode.GetAttribute("STOPBITS").ToString(),
+                                    DATABIT = ProtocolOtherDictionary["DATABIT"] = inode.GetAttribute("DATABIT").ToString(),
+                                    PARITY = ProtocolOtherDictionary["PARITY"] = inode.GetAttribute("PARITY").ToString(),
+                                    BAUREATE = ProtocolOtherDictionary["BAUREATE"] = inode.GetAttribute("BAUREATE").ToString(),
+                                    FrameLenght = ProtocolOtherDictionary["FrameLenght"] = inode.GetAttribute("FrameLenght").ToString(),
+                                    StartSingle = ProtocolOtherDictionary["StartSingle"] = inode.GetAttribute("StartSingle").ToString(),
+                                    EndSingle = ProtocolOtherDictionary["EndSingle"] = inode.GetAttribute("EndSingle").ToString(),
+                                    PackageLength = ProtocolOtherDictionary["PackageLength"] = inode.GetAttribute("PackageLength").ToString(),
+                                    FirstAddr = ProtocolOtherDictionary["FirstAddr"] = inode.GetAttribute("FirstAddr").ToString(),
+                                    CheckSumIndex = ProtocolOtherDictionary["CheckSumIndex"] = inode.GetAttribute("CheckSumIndex").ToString(),
+                                    CheckSumType = ProtocolOtherDictionary["CheckSumType"] = inode.GetAttribute("CheckSumType").ToString(),
+                                    CheckStartIndex = ProtocolOtherDictionary["CheckStartIndex"] = inode.GetAttribute("CheckStartIndex").ToString(),
+                                    CheckEndIndex = ProtocolOtherDictionary["CheckEndIndex"] = inode.GetAttribute("CheckEndIndex").ToString(),
+                                    Standby1 = ProtocolOtherDictionary["Standby1"] = inode.GetAttribute("Standby1").ToString(),
+                                    Standby2 = ProtocolOtherDictionary["Standby2"] = inode.GetAttribute("Standby2").ToString(),
+                                    Standby3 = ProtocolOtherDictionary["Standby3"] = inode.GetAttribute("Standby3").ToString(),
+                                    Standby4 = ProtocolOtherDictionary["Standby4"] = inode.GetAttribute("Standby4").ToString(),
+                                    Standby5 = ProtocolOtherDictionary["Standby5"] = inode.GetAttribute("Standby5").ToString(),
+                                    Standby6 = ProtocolOtherDictionary["Standby6"] = inode.GetAttribute("Standby6").ToString(),
+                                    Standby7 = ProtocolOtherDictionary["Standby7"] = inode.GetAttribute("Standby7").ToString(),
+                                    Standby8 = ProtocolOtherDictionary["Standby8"] = inode.GetAttribute("Standby8").ToString()
+                                };
+                                XmlOtherList.Add(other);
+                            }
+                            reader.Close();
+                            this.page2_gridview2.DataSource = XmlOtherList;
+                            //动态加载控件
+                            if (first_Flush_Flag)
+                            {
+                                DynamicCreateControl(ProtocolOtherDictionary);
                             }
                             else
-                             if (nameStr.Contains(ProtocolType.Sokect.ToString().ToUpper()))
                             {
-                                findCommand = "/Communications/CommunicaitonData/Communication/TCP[@ID=\"{0}\"]";
-
-
-                                currentProtocolType = ProtocolType.Sokect;
-                                #region Sokect
-                                foreach (XmlElement inode in nodes)
-                                {
-                                    XmlSokect sokect = new XmlSokect
-                                    {
-                                        ID = SokectProtocolDictionary["ID"] = inode.GetAttribute("ID").ToString(),
-                                        Can1IP = SokectProtocolDictionary["Can1IP"] = inode.GetAttribute("Can1IP").ToString(),
-                                        Can1Port = SokectProtocolDictionary["Can1Port"] = inode.GetAttribute("Can1Port").ToString(),
-                                        Can2IP = SokectProtocolDictionary["Can2IP"] = inode.GetAttribute("PARITY").ToString(),
-                                        Can2Port = SokectProtocolDictionary["Can2Port"] = inode.GetAttribute("Can2Port").ToString(),
-                                        StartChar = SokectProtocolDictionary["StartChar"] = inode.GetAttribute("StartChar").ToString(),//0183协议通讯数据包包头
-                                        CommSingle = SokectProtocolDictionary["CommSingle"] = inode.GetAttribute("CommSingle").ToString(), //设备标识符，应该是一个字符串
-                                        CheckSingleSingle = SokectProtocolDictionary["CheckSingleSingle"] = inode.GetAttribute("CheckSingleSingle").ToString(),//校验标志位
-                                        CheckDataLength = SokectProtocolDictionary["CheckDataLength"] = inode.GetAttribute("CheckDataLength").ToString(),//校验位长度
-                                        EndSingle = SokectProtocolDictionary["EndSingle"] = inode.GetAttribute("EndSingle").ToString(),//结束位对应的16进制，用","隔开 例："0D,0A"
-                                        SplitChar = SokectProtocolDictionary["SplitChar"] = inode.GetAttribute("SplitChar").ToString(),//分隔符
-                                        InforPerData = SokectProtocolDictionary["InforPerData"] = inode.GetAttribute("InforPerData").ToString(),//每条信息包含的数据量
-                                        AddrIndex = SokectProtocolDictionary["AddrIndex"] = inode.GetAttribute("AddrIndex").ToString(),//地址索引
-                                        ValueIndex = SokectProtocolDictionary["ValueIndex"] = inode.GetAttribute("ValueIndex").ToString() //值索引
-                                    };
-                                    sokect.StartChar = SokectProtocolDictionary["DataDefineRule"] = inode.GetAttribute("DataDefineRule").ToString();//数据转义，待转字符-转义数据，如果有多条数据，中间用逗号隔开  例："V-0,A-1"
-                                    XmlSokectList.Add(sokect);
-                                }
-                                reader.Close();
-                                this.page2_gridview2.DataSource = XmlSokectList;
-                                //动态加载控件
-                                if (first_Flush_Flag)
-                                {
-                                    DynamicCreateControl(SokectProtocolDictionary);
-                                }
-                                else
-                                {
-                                    //清空原来的控件信息
-                                    layoutControl3.BeginUpdate();
-                                    layoutControl3.Controls.Clear();
-                                    layoutControl3.Root.Items.Clear();
-                                    DynamicCreateControl(SokectProtocolDictionary);
-                                    dataOpration.EndUpdate();
-                                }
-                                try
-                                {
-                                    this.gridView2.Columns[0].Caption = "ID";
-                                    this.gridView2.Columns[0].Width = 40;
-                                    this.gridView2.Columns[1].Caption = "地址1";
-                                    this.gridView2.Columns[1].Width = 100;
-                                    this.gridView2.Columns[0].Caption = "端口1";
-                                    this.gridView2.Columns[0].Width = 40;
-                                    this.gridView2.Columns[1].Caption = "地址2";
-                                    this.gridView2.Columns[1].Width = 100;
-                                    this.gridView2.Columns[0].Caption = "端口2";
-                                    this.gridView2.Columns[0].Width = 40;
-                                    this.gridView2.Columns[1].Caption = "包头";//0183协议通讯数据包包头
-                                    this.gridView2.Columns[1].Width = 40;
-                                    this.gridView2.Columns[0].Caption = "设备标";
-                                    this.gridView2.Columns[0].Width = 40;
-                                    this.gridView2.Columns[1].Caption = "检验位";
-                                    this.gridView2.Columns[1].Width = 40;
-                                    this.gridView2.Columns[0].Caption = "校位长度";
-                                    this.gridView2.Columns[0].Width = 40;
-                                    this.gridView2.Columns[1].Caption = "结束位";
-                                    this.gridView2.Columns[1].Width = 40;
-                                    this.gridView2.Columns[0].Caption = "分隔符";
-                                    this.gridView2.Columns[0].Width = 40;
-                                    this.gridView2.Columns[1].Caption = "数据量";
-                                    this.gridView2.Columns[1].Width = 40;
-                                    this.gridView2.Columns[0].Caption = "地址索引";
-                                    this.gridView2.Columns[0].Width = 40;
-                                    this.gridView2.Columns[1].Caption = "值索引";
-                                    this.gridView2.Columns[1].Width = 40;
-                                    this.gridView2.Columns[0].Caption = "数据转义";
-                                }
-
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show("错误信息：" + ex.Message);
-                                }
-                                #endregion
-
+                                //清空原来的控件信息
+                                layoutControl3.BeginUpdate();
+                                layoutControl3.Controls.Clear();
+                                layoutControl3.Root.Items.Clear();
+                                DynamicCreateControl(ProtocolOtherDictionary);
+                                dataOpration.EndUpdate();
                             }
+
+                            #endregion
+                        }
+                        else
+                         if (nameStr.Contains(ProtocolType.Sokect.ToString().ToUpper()))
+                        {
+                            findCommand = "/Communications/CommunicaitonData/Communication/TCP[@ID=\"{0}\"]";
+
+
+                            currentProtocolType = ProtocolType.Sokect;
+                            #region Sokect
+                            foreach (XmlElement inode in nodes)
+                            {
+                                XmlSokect sokect = new XmlSokect
+                                {
+                                    ID = SokectProtocolDictionary["ID"] = inode.GetAttribute("ID").ToString(),
+                                    Can1IP = SokectProtocolDictionary["Can1IP"] = inode.GetAttribute("Can1IP").ToString(),
+                                    Can1Port = SokectProtocolDictionary["Can1Port"] = inode.GetAttribute("Can1Port").ToString(),
+                                    Can2IP = SokectProtocolDictionary["Can2IP"] = inode.GetAttribute("PARITY").ToString(),
+                                    Can2Port = SokectProtocolDictionary["Can2Port"] = inode.GetAttribute("Can2Port").ToString(),
+                                    StartChar = SokectProtocolDictionary["StartChar"] = inode.GetAttribute("StartChar").ToString(),//0183协议通讯数据包包头
+                                    CommSingle = SokectProtocolDictionary["CommSingle"] = inode.GetAttribute("CommSingle").ToString(), //设备标识符，应该是一个字符串
+                                    CheckSingleSingle = SokectProtocolDictionary["CheckSingleSingle"] = inode.GetAttribute("CheckSingleSingle").ToString(),//校验标志位
+                                    CheckDataLength = SokectProtocolDictionary["CheckDataLength"] = inode.GetAttribute("CheckDataLength").ToString(),//校验位长度
+                                    EndSingle = SokectProtocolDictionary["EndSingle"] = inode.GetAttribute("EndSingle").ToString(),//结束位对应的16进制，用","隔开 例："0D,0A"
+                                    SplitChar = SokectProtocolDictionary["SplitChar"] = inode.GetAttribute("SplitChar").ToString(),//分隔符
+                                    InforPerData = SokectProtocolDictionary["InforPerData"] = inode.GetAttribute("InforPerData").ToString(),//每条信息包含的数据量
+                                    AddrIndex = SokectProtocolDictionary["AddrIndex"] = inode.GetAttribute("AddrIndex").ToString(),//地址索引
+                                    ValueIndex = SokectProtocolDictionary["ValueIndex"] = inode.GetAttribute("ValueIndex").ToString() //值索引
+                                };
+                                sokect.StartChar = SokectProtocolDictionary["DataDefineRule"] = inode.GetAttribute("DataDefineRule").ToString();//数据转义，待转字符-转义数据，如果有多条数据，中间用逗号隔开  例："V-0,A-1"
+                                XmlSokectList.Add(sokect);
+                            }
+                            reader.Close();
+                            this.page2_gridview2.DataSource = XmlSokectList;
+                            //动态加载控件
+                            if (first_Flush_Flag)
+                            {
+                                DynamicCreateControl(SokectProtocolDictionary);
+                            }
+                            else
+                            {
+                                //清空原来的控件信息
+                                layoutControl3.BeginUpdate();
+                                layoutControl3.Controls.Clear();
+                                layoutControl3.Root.Items.Clear();
+                                DynamicCreateControl(SokectProtocolDictionary);
+                                dataOpration.EndUpdate();
+                            }
+                            try
+                            {
+                                this.gridView2.Columns[0].Caption = "ID";
+                                this.gridView2.Columns[0].Width = 40;
+                                this.gridView2.Columns[1].Caption = "地址1";
+                                this.gridView2.Columns[1].Width = 100;
+                                this.gridView2.Columns[0].Caption = "端口1";
+                                this.gridView2.Columns[0].Width = 40;
+                                this.gridView2.Columns[1].Caption = "地址2";
+                                this.gridView2.Columns[1].Width = 100;
+                                this.gridView2.Columns[0].Caption = "端口2";
+                                this.gridView2.Columns[0].Width = 40;
+                                this.gridView2.Columns[1].Caption = "包头";//0183协议通讯数据包包头
+                                this.gridView2.Columns[1].Width = 40;
+                                this.gridView2.Columns[0].Caption = "设备标";
+                                this.gridView2.Columns[0].Width = 40;
+                                this.gridView2.Columns[1].Caption = "检验位";
+                                this.gridView2.Columns[1].Width = 40;
+                                this.gridView2.Columns[0].Caption = "校位长度";
+                                this.gridView2.Columns[0].Width = 40;
+                                this.gridView2.Columns[1].Caption = "结束位";
+                                this.gridView2.Columns[1].Width = 40;
+                                this.gridView2.Columns[0].Caption = "分隔符";
+                                this.gridView2.Columns[0].Width = 40;
+                                this.gridView2.Columns[1].Caption = "数据量";
+                                this.gridView2.Columns[1].Width = 40;
+                                this.gridView2.Columns[0].Caption = "地址索引";
+                                this.gridView2.Columns[0].Width = 40;
+                                this.gridView2.Columns[1].Caption = "值索引";
+                                this.gridView2.Columns[1].Width = 40;
+                                this.gridView2.Columns[0].Caption = "数据转义";
+                            }
+
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("错误信息：" + ex.Message);
+                            }
+                            #endregion
+
                         }
                     }
                 }
-                else if (navigationFrame1.SelectedPage.Caption.Trim().Equals("通道配置"))
+            }
+            else if (navigationFrame1.SelectedPage.Caption.Trim().Equals("通道配置"))
+            {
+                try
                 {
-
                     XmlAddressList = new List<XmlAddress>();
                     prefixName = "page3_txt_";
                     this.Page3_Address.DataSource = null;
@@ -717,6 +755,7 @@ namespace XmlProcess5._0
                         XmlElement xmlElement = (XmlElement)no;
                         string slaveid = xmlElement.GetAttribute("SlaveId");
                         string functionCode = xmlElement.GetAttribute("FunctionCode");
+                        string englishName = xmlElement.GetAttribute("EnglishName");
                         foreach (var item in xmlNodeList)
                         {
                             XmlElement element = (XmlElement)item;
@@ -727,126 +766,134 @@ namespace XmlProcess5._0
                                 Factor = element.GetAttribute("Factor"),
                                 LocalAddress = element.GetAttribute("LocalAddress"),
                                 ProtocolAddress = element.GetAttribute("ProtocolAddress"),
+                                EnglishName = element.GetAttribute("EnglishName"),
                                 Text = element.InnerText,
                                 FunctionCode = functionCode,
-                                SlaveId = slaveid
+                                SlaveId = slaveid,
+
+
                             };
                             XmlAddressList.Add(address);
                         }
                     }
-                    page3_txt_opSlaveId.Text = page3_txt_SalveId.Text = XmlAddressList[0].SlaveId;
-                    page3_txt_Text.Text = XmlAddressList[0].Text;
-                    page3_txt_ProtocolAddress.Text = XmlAddressList[0].ProtocolAddress;
-                    page3_txt_LocalAddress.Text = XmlAddressList[0].LocalAddress;
-                    page3_txt_opFunction.Text = page3_txt_FunctionCode.Text = XmlAddressList[0].FunctionCode;
-                    page3_txt_Factor.Text = XmlAddressList[0].Factor;
-                    page3_txt_DataBit.Text = XmlAddressList[0].DataBit;
-                    page3_txt_BitIndex.Text = XmlAddressList[0].BitIndex;
-                    reader.Close();
-
-                    this.Page3_Address.DataSource = XmlAddressList;
-                    panelControl1.Visible = true;
-                    #region 列名
-                    this.gridView3.Columns[0].Caption = "从机ID";
-                    this.gridView3.Columns[0].Width = 50;
-                    this.gridView3.Columns[1].Caption = "功能码";
-                    this.gridView3.Columns[1].Width = 50;
-                    this.gridView3.Columns[2].Caption = "本地地址";
-                    this.gridView3.Columns[2].Width = 60;
-                    this.gridView3.Columns[3].Caption = "协议地址";
-                    this.gridView3.Columns[3].Width = 60;
-                    this.gridView3.Columns[4].Caption = "精度系数";
-                    this.gridView3.Columns[4].Width = 50;
-                    this.gridView3.Columns[5].Caption = "位位置";
-                    this.gridView3.Columns[5].Width = 50;
-                    this.gridView3.Columns[6].Caption = "数据位";
-                    this.gridView3.Columns[6].Width = 50;
-                    this.gridView3.Columns[7].Caption = "名称";
-                    #endregion
                 }
-                else if (navigationFrame1.SelectedPage.Caption.Trim().Equals("协议字段配置"))
-                {
-                    prefixName = "page4_txt_";
-                    LoadXml(fieldFilePath);
-                    XmlNode xFields = xmlDoc.SelectSingleNode("Fields");
-                    XmlNodeList xFieldList = xFields.ChildNodes;
-                    foreach (XmlNode item in xFieldList)
-                    {
-                        XmlElement ele = (XmlElement)item;
-                        XmlField field = new XmlField
-                        {
-                            ID = ele.GetAttribute("ID"),
-                            Name = ele.GetAttribute("Name")
-                        };
+                catch (Exception ex) { MessageBox.Show("文件不正确或者暂时不能识别（报警组）" + Environment.NewLine + ex.Message); }
+                page3_txt_opSlaveId.Text = page3_txt_SalveId.Text = XmlAddressList[0].SlaveId;
+                page3_txt_Text.Text = XmlAddressList[0].Text;
+                page3_txt_ProtocolAddress.Text = XmlAddressList[0].ProtocolAddress;
+                page3_txt_LocalAddress.Text = XmlAddressList[0].LocalAddress;
+                page3_txt_opFunction.Text = page3_txt_FunctionCode.Text = XmlAddressList[0].FunctionCode;
+                page3_txt_Factor.Text = XmlAddressList[0].Factor;
+                page3_txt_DataBit.Text = XmlAddressList[0].DataBit;
+                page3_txt_BitIndex.Text = XmlAddressList[0].BitIndex;
+                reader.Close();
 
-                        XmlNodeList nodeList = item.ChildNodes;
-                        StringBuilder sb = new StringBuilder();
-                        foreach (XmlElement nodefield in nodeList)
-                        {
-                            sb.Append(nodefield.InnerText + ",");
-                        }
-                        FieldDirectory[field.Name] = sb;
-                        sb = null;
-                        XmlFieldList.Add(field);
-                        page4_cmb_CheckProtocol.Properties.Items.Add(field.Name);
+                this.Page3_Address.DataSource = XmlAddressList;
+                panelControl1.Visible = true;
+                #region 列名
+                this.gridView3.Columns[0].Caption = "从机ID";
+                this.gridView3.Columns[0].Width = 50;
+                this.gridView3.Columns[1].Caption = "功能码";
+                this.gridView3.Columns[1].Width = 50;
+                this.gridView3.Columns[2].Caption = "本地地址";
+                this.gridView3.Columns[2].Width = 60;
+                this.gridView3.Columns[3].Caption = "协议地址";
+                this.gridView3.Columns[3].Width = 60;
+                this.gridView3.Columns[4].Caption = "精度系数";
+                this.gridView3.Columns[4].Width = 50;
+                this.gridView3.Columns[5].Caption = "位位置";
+                this.gridView3.Columns[5].Width = 50;
+                this.gridView3.Columns[6].Caption = "数据位";
+                this.gridView3.Columns[6].Width = 50;
+                this.gridView3.Columns[7].Caption = "中文名称";
+                this.gridView3.Columns[7].Width = 70;
+                this.gridView3.Columns[8].Caption = "英文名称";
+
+                #endregion
+            }
+            else if (navigationFrame1.SelectedPage.Caption.Trim().Equals("协议字段配置"))
+            {
+                prefixName = "page4_txt_";
+                LoadXml(fieldFilePath);
+                XmlNode xFields = xmlDoc.SelectSingleNode("Fields");
+                XmlNodeList xFieldList = xFields.ChildNodes;
+                foreach (XmlNode item in xFieldList)
+                {
+                    XmlElement ele = (XmlElement)item;
+                    XmlField field = new XmlField
+                    {
+                        ID = ele.GetAttribute("ID"),
+                        Name = ele.GetAttribute("Name")
+                    };
+
+                    XmlNodeList nodeList = item.ChildNodes;
+                    StringBuilder sb = new StringBuilder();
+                    foreach (XmlElement nodefield in nodeList)
+                    {
+                        sb.Append(nodefield.InnerText + ",");
                     }
-                    page4_cmb_CheckProtocol.SelectedIndex = 0;
+                    FieldDirectory[field.Name] = sb;
+                    sb = null;
+                    XmlFieldList.Add(field);
+                    page4_cmb_CheckProtocol.Properties.Items.Add(field.Name);
+                }
+                page4_cmb_CheckProtocol.SelectedIndex = 0;
                 page4_cmb_CheckField.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
                 page4_cmb_CheckProtocol.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-                    page4_cmb_CheckProtocol_SelectedIndexChanged(this.page4_cmb_CheckProtocol, new EventArgs());
-                }
-                else
+                page4_cmb_CheckProtocol_SelectedIndexChanged(this.page4_cmb_CheckProtocol, new EventArgs());
+            }
+            else
+            {
+                this.Page1_CommunicationConfig.DataSource = null;
+                modelList = new List<Communication>();
+                LoadXml(configFilePath);
+                // 得到根节点Communications
+                XmlNode xn = xmlDoc.SelectSingleNode("Communications");
+                // 得到根节点的所有子节点
+                XmlNodeList xnl = xn.ChildNodes;
+
+
+                foreach (XmlNode xn1 in xnl)
                 {
-                    this.Page1_CommunicationConfig.DataSource = null;
-                    modelList = new List<Communication>();
-                    LoadXml(configFilePath);
-                    // 得到根节点Communications
-                    XmlNode xn = xmlDoc.SelectSingleNode("Communications");
                     // 得到根节点的所有子节点
-                    XmlNodeList xnl = xn.ChildNodes;
-
-
-                    foreach (XmlNode xn1 in xnl)
+                    XmlNodeList xnn = xn1.ChildNodes;
+                    foreach (var item in xnn)
                     {
-                        // 得到根节点的所有子节点
-                        XmlNodeList xnn = xn1.ChildNodes;
-                        foreach (var item in xnn)
+                        Communication bookModel = new Communication();
+                        // 将节点转换为元素，便于得到节点的属性值
+                        XmlElement ele = (XmlElement)item;
+
+                        Communication model = new Communication
                         {
-                            Communication bookModel = new Communication();
-                            // 将节点转换为元素，便于得到节点的属性值
-                            XmlElement ele = (XmlElement)item;
-
-                            Communication model = new Communication
-                            {
-                                ID = ele.GetAttribute("ID").ToString(),
-                                CommType = ele.GetAttribute("CommType").ToString(),
-                                NameCH = ele.GetAttribute("NameCH").ToString(),
-                                NameEN = ele.GetAttribute("NameEN").ToString(),
-                                ConfigFilePath = ele.GetAttribute("ConfigFilePath").ToString()
-                            };
-                            modelList.Add(model);
-                        }
+                            ID = ele.GetAttribute("ID").ToString(),
+                            CommType = ele.GetAttribute("CommType").ToString(),
+                            NameCH = ele.GetAttribute("NameCH").ToString(),
+                            NameEN = ele.GetAttribute("NameEN").ToString(),
+                            ConfigFilePath = ele.GetAttribute("ConfigFilePath").ToString()
+                        };
+                        modelList.Add(model);
                     }
-                    page1_txt_CommPath.Text = modelList[0].ConfigFilePath;
-                    page1_txt_ComType.Text = modelList[0].CommType;
-                    page1_txt_ID.Text = modelList[0].ID;
-                    page1_txt_NameCH.Text = modelList[0].NameCH;
-                    page1_txt_NameEN.Text = modelList[0].NameEN;
-                    //读取完毕后关闭reader
-                    reader.Close();
-                    this.Page1_CommunicationConfig.DataSource = modelList;
-
-                    this.gridView1.Columns[0].Caption = "ID";
-                    this.gridView1.Columns[0].Width = 30;
-                    this.gridView1.Columns[1].Caption = "协议类型";
-                    this.gridView1.Columns[1].Width = 100;
-                    this.gridView1.Columns[2].Caption = "中文名";
-                    this.gridView1.Columns[2].Width = 70;
-                    this.gridView1.Columns[3].Caption = "英文名";
-                    this.gridView1.Columns[3].Width = 70;
-                    this.gridView1.Columns[4].Caption = "文件路径";
-
                 }
+                page1_txt_CommPath.Text = modelList[0].ConfigFilePath;
+                page1_txt_ComType.Text = modelList[0].CommType;
+                page1_txt_ID.Text = modelList[0].ID;
+                page1_txt_NameCH.Text = modelList[0].NameCH;
+                page1_txt_NameEN.Text = modelList[0].NameEN;
+                //读取完毕后关闭reader
+                reader.Close();
+                this.Page1_CommunicationConfig.DataSource = modelList;
+
+                this.gridView1.Columns[0].Caption = "ID";
+                this.gridView1.Columns[0].Width = 30;
+                this.gridView1.Columns[1].Caption = "协议类型";
+                this.gridView1.Columns[1].Width = 100;
+                this.gridView1.Columns[2].Caption = "中文名";
+                this.gridView1.Columns[2].Width = 70;
+                this.gridView1.Columns[3].Caption = "英文名";
+                this.gridView1.Columns[3].Width = 70;
+                this.gridView1.Columns[4].Caption = "文件路径";
+
+            }
             try
             { }
             catch (Exception ex)
@@ -954,6 +1001,7 @@ namespace XmlProcess5._0
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+
                 ReadXml();
             }
             lab_Path.Caption = openFileDialog.FileName;
@@ -1352,50 +1400,6 @@ namespace XmlProcess5._0
                 MessageBox.Show("错误:" + ex.Message);
             }
         }
-        private void CreateFieldLayout()
-        {
-            try
-            {
-                first_Flush_Flag = false;
-                object employeesSource = gridView1.DataSource;
-
-                dataOpration = layoutControl3.AddGroup("数据区");
-                LayoutControlItem itemFirstName =
-                    CreateItemWithBoundEditor(new TextEdit(), employeesSource, "ID", dataOpration);
-                LayoutControlItem itemLastName =
-                    CreateItemWithBoundEditor(new TextEdit(), employeesSource, "NameCH", dataOpration);
-                LayoutControlItem itemFirstName1 =
-                    CreateItemWithBoundEditor(new TextEdit(), employeesSource, "NameEN", dataOpration);
-                LayoutControlItem itemLastName2 =
-                    CreateItemWithBoundEditor(new TextEdit(), employeesSource, "CommType", dataOpration);
-                LayoutControlItem itemFirstName3 =
-                    CreateItemWithBoundEditor(new TextEdit(), employeesSource, "ConfigFilePath", dataOpration);
-            }
-            #region
-            /*
-            //将姓氏移动到名字的右侧
-            itemLastName.Move(itemFirstName, InsertType.Right);
-            // 添加带有生日编辑器的Birthday组
-            LayoutControlGroup birthdayGroup = layoutControl3.AddGroup("Birthday Information");
-            CreateItemWithBoundEditor(new DateEdit(), employeesSource, "BirthDate", birthdayGroup);
-            // 添加包含三个地址字段的选项卡
-            TabbedControlGroup tabbedGroup = layoutControl3.AddTabbedGroup();
-            LayoutControlGroup addressGroup = tabbedGroup.AddTabPage("Address Details");
-            string[] dataFields = new string[] { "Country", "City", "Address" };
-            foreach (string dataField in dataFields)
-                CreateItemWithBoundEditor(new TextEdit(), employeesSource, dataField, addressGroup);
-            // Add a tab with a photo
-            LayoutControlGroup groupPhoto = tabbedGroup.AddTabPage("Photo");
-            CreateItemWithBoundEditor(new PictureEdit(), employeesSource, "Photo", groupPhoto);
-            } 
-             */
-
-            #endregion
-            catch (Exception ex)
-            {
-                MessageBox.Show("错误:" + ex.Message);
-            }
-        }
         /// <summary>
         /// 控件动态添加
         /// </summary>
@@ -1474,18 +1478,6 @@ namespace XmlProcess5._0
 
             }
         }
-        private Control GetTextControl(string name)
-        {
-            Control control = null;
-            foreach (Control c in this.Controls)
-            {
-                if (c.Name.Equals(name))
-                {
-                    control = c;
-                }
-            }
-            return control;
-        }
         /// <summary>
         /// 协议字段配置
         /// </summary>
@@ -1496,12 +1488,16 @@ namespace XmlProcess5._0
             navigationFrame1.SelectedPage = (NavigationPage)navigationFrame1.Pages.FindFirst(x => (string)x.Tag == e.Item.Caption);
 
         }
-
+        /// <summary>
+        /// 第四页选择框
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void page4_cmb_CheckProtocol_SelectedIndexChanged(object sender, EventArgs e)
         {
             page4_cmb_CheckField.SelectedIndex = 0;
             page4_cmb_CheckField.Properties.Items.Clear();
-            string selectStr = page4_cmb_CheckProtocol.EditValue.ToString() ;
+            string selectStr = page4_cmb_CheckProtocol.EditValue.ToString();
 
             StringBuilder stringBuilder = FieldDirectory[selectStr];
 
@@ -1514,7 +1510,7 @@ namespace XmlProcess5._0
                     page4_cmb_CheckField.Properties.Items.Add(item);
                 }
             }
-            
+
         }
 
         /// <summary>
@@ -2214,7 +2210,7 @@ namespace XmlProcess5._0
             this.page3_txt_ProtocolAddress.Text = GetSelectOID(gridView3, "ProtocolAddress");
             this.page3_txt_SalveId.Text = page3_txt_opSlaveId.Text = GetSelectOID(gridView3, "SlaveId");
             this.page3_txt_Text.Text = GetSelectOID(gridView3, "Text");
-
+            this.page3_txt_englishName.Text = GetSelectOID(gridView3, "EnglishName");
 
         }
 
@@ -2244,45 +2240,6 @@ namespace XmlProcess5._0
             XmlElement xe = xmlDoc.DocumentElement;
             string strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"and @FunctionCode=\"{1}\"]/Point[@LocalAddress=\"{2}\"]",
                 GetSelectOID(gridView3, "SlaveId"), GetSelectOID(gridView3, "FunctionCode"), GetSelectOID(gridView3, "LocalAddress"));
-            //selectSingleNode 根据XPath表达式,获得符合条件的第一个节点.
-            XmlElement selectXe = (XmlElement)xe.SelectSingleNode(strPath);
-            if (selectXe == null)
-            {
-                reader.Close();
-                return;
-            }
-            selectXe.ParentNode.RemoveChild(selectXe);
-            reader.Close();
-            xmlDoc.Save(addressFilePath);
-            #region
-            /*
-            XmlAddress address = new XmlAddress()
-            {
-                BitIndex = GetSelectOID(gridView3, "BitIndex"),
-                DataBit = GetSelectOID(gridView3, "DataBit"),
-                Factor = GetSelectOID(gridView3, "Factor"),
-                FunctionCode = GetSelectOID(gridView3, "FunctionCode"),
-                LocalAddress = GetSelectOID(gridView3, "LocalAddress"),
-                ProtocolAddress = GetSelectOID(gridView3, "ProtocolAddress"),
-                SlaveId = GetSelectOID(gridView3, "SlaveId"),
-                Text = GetSelectOID(gridView3, "Text") 
-            };
-
-              XmlAddressList.Remove(address);
-              */
-            #endregion
-
-        }
-        /// <summary>
-        /// 通过地址号删除当前行的记录
-        /// </summary>
-        /// <param name="localAddress">地址号</param>
-        private void DeleteAddress(string localAddress)
-        {
-            LoadXml(addressFilePath);
-            XmlElement xe = xmlDoc.DocumentElement;
-            string strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"and @FunctionCode=\"{1}\"]/Point[@LocalAddress=\"{2}\"]",
-                GetSelectOID(gridView3, "SlaveId"), GetSelectOID(gridView3, "FunctionCode"), localAddress);
             //selectSingleNode 根据XPath表达式,获得符合条件的第一个节点.
             XmlElement selectXe = (XmlElement)xe.SelectSingleNode(strPath);
             if (selectXe == null)
@@ -2375,7 +2332,8 @@ namespace XmlProcess5._0
                 FunctionCode = page3_txt_FunctionCode.Text,
                 LocalAddress = page3_txt_LocalAddress.Text,
                 ProtocolAddress = page3_txt_ProtocolAddress.Text,
-                SlaveId = page3_txt_SalveId.Text
+                SlaveId = page3_txt_SalveId.Text,
+                EnglishName = page3_txt_englishName.Text
             };
 
             XmlElement element = xmlDoc.CreateElement("Point");
@@ -2385,17 +2343,22 @@ namespace XmlProcess5._0
             XmlAttribute xmlAttributeFactor = xmlDoc.CreateAttribute("Factor");
             XmlAttribute xmlAttributeLocalAddress = xmlDoc.CreateAttribute("LocalAddress");
             XmlAttribute xmlAttributeProtocolAddress = xmlDoc.CreateAttribute("ProtocolAddress");
+            XmlAttribute xmlAttributeProtocolEnglishName = xmlDoc.CreateAttribute("EnglishName");
+
+
             xmlAttributeBitIndex.InnerText = address.BitIndex;
             xmlAttributeDataBit.InnerText = address.DataBit;
             xmlAttributeFactor.InnerText = address.Factor;
             xmlAttributeLocalAddress.InnerText = address.LocalAddress;
             xmlAttributeProtocolAddress.InnerText = address.ProtocolAddress;
+            xmlAttributeProtocolEnglishName.InnerText = address.EnglishName;
 
             element.SetAttributeNode(xmlAttributeBitIndex);
             element.SetAttributeNode(xmlAttributeDataBit);
             element.SetAttributeNode(xmlAttributeFactor);
             element.SetAttributeNode(xmlAttributeLocalAddress);
             element.SetAttributeNode(xmlAttributeProtocolAddress);
+            element.SetAttributeNode(xmlAttributeProtocolEnglishName);
             element.InnerText = address.Text;
 
 
@@ -2444,7 +2407,9 @@ namespace XmlProcess5._0
                 FunctionCode = page3_txt_FunctionCode.Text,
                 LocalAddress = GetAddressMaxIndex(XmlAddressList).ToString(),
                 ProtocolAddress = page3_txt_ProtocolAddress.Text,
-                SlaveId = page3_txt_SalveId.Text
+                SlaveId = page3_txt_SalveId.Text,
+                EnglishName = page3_txt_englishName.Text
+
             };
 
             XmlElement element = xmlDoc.CreateElement("Point");
@@ -2454,17 +2419,21 @@ namespace XmlProcess5._0
             XmlAttribute xmlAttributeFactor = xmlDoc.CreateAttribute("Factor");
             XmlAttribute xmlAttributeLocalAddress = xmlDoc.CreateAttribute("LocalAddress");
             XmlAttribute xmlAttributeProtocolAddress = xmlDoc.CreateAttribute("ProtocolAddress");
+            XmlAttribute xmlAttributeProtoEnglishName = xmlDoc.CreateAttribute("EnglishName");
+
             xmlAttributeBitIndex.InnerText = address.BitIndex;
             xmlAttributeDataBit.InnerText = address.DataBit;
             xmlAttributeFactor.InnerText = address.Factor;
             xmlAttributeLocalAddress.InnerText = address.LocalAddress;
             xmlAttributeProtocolAddress.InnerText = address.ProtocolAddress;
+            xmlAttributeProtoEnglishName.InnerText = address.EnglishName;
 
             element.SetAttributeNode(xmlAttributeLocalAddress);
             element.SetAttributeNode(xmlAttributeBitIndex);
             element.SetAttributeNode(xmlAttributeDataBit);
             element.SetAttributeNode(xmlAttributeFactor);
             element.SetAttributeNode(xmlAttributeProtocolAddress);
+            element.SetAttributeNode(xmlAttributeProtoEnglishName);
             element.InnerText = address.Text;
 
 
@@ -2717,6 +2686,74 @@ namespace XmlProcess5._0
         private void groupControl2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void page4_btn_delete_Click(object sender, EventArgs e)
+        {
+            XmlElement xe = xmlDoc.DocumentElement;
+            string strPath = string.Format("/Fields/Protocol[@Name=\"{0}\"]/field[@name=\"{1}\"]",
+                page4_cmb_CheckProtocol.EditValue.ToString(), page4_cmb_CheckField.EditValue.ToString());
+            XmlElement selectXe = (XmlElement)xe.SelectSingleNode(strPath);
+            if (selectXe == null) { return; }
+            XmlNode fieldNode = selectXe.SelectSingleNode(page4_cmb_CheckField.EditValue.ToString());
+            fieldNode.ParentNode.RemoveChild(fieldNode);
+            reader.Close();
+            xmlDoc.Save(fieldFilePath);
+            ReadXml();
+        }
+
+        private void page4_btn_add_Click(object sender, EventArgs e)
+        {
+            XmlElement xe = xmlDoc.DocumentElement;
+            string strPath = string.Format("/Fields/Protocol[@Name=\"{0}\"]",
+                page4_cmb_CheckProtocol.EditValue.ToString());
+            XmlElement selectXe = (XmlElement)xe.SelectSingleNode(strPath);
+            if (selectXe == null) { MessageBox.Show("找不到字段"); return; }
+            XmlElement xmlElement = xmlDoc.CreateElement("field");
+            xmlElement.SetAttribute("name", page4_txt_inputField.Text);
+            xmlElement.InnerText = page4_txt_inputField.Text;
+            selectXe.AppendChild(xmlElement);
+            reader.Close();
+            xmlDoc.Save(fieldFilePath);
+            ReadXml();
+        }
+
+        private void page4_btn_update_Click(object sender, EventArgs e)
+        {
+            XmlElement xe = xmlDoc.DocumentElement;
+            string strPath = string.Format("/Fields/Protocol[@Name=\"{0}\"]/field[@name=\"{1}\"]",
+                page4_cmb_CheckProtocol.EditValue.ToString(), page4_cmb_CheckField.EditValue.ToString());
+            XmlElement selectXe = (XmlElement)xe.SelectSingleNode(strPath);
+            if (selectXe == null) { MessageBox.Show("找不到该字段"); return; }
+
+            selectXe.ParentNode.RemoveChild(selectXe);
+            strPath = string.Format("/Fields/Protocol[@Name=\"{0}\"]",
+           page4_cmb_CheckProtocol.EditValue.ToString());
+            selectXe = (XmlElement)xe.SelectSingleNode(strPath);
+            XmlElement xmlElement = xmlDoc.CreateElement("field");
+            xmlElement.SetAttribute("name", page4_txt_inputField.Text);
+            xmlElement.InnerText = page4_txt_inputField.Text;
+            selectXe.AppendChild(xmlElement);
+            reader.Close();
+            xmlDoc.Save(fieldFilePath);
+            ReadXml();
+        }
+
+        private void page4_btn_clearContent_Click(object sender, EventArgs e)
+        {
+            page4_txt_inputField.Text = "";
+        }
+
+        private void FormXmlPress5_Load(object sender, EventArgs e)
+        {
+            // asc.controllInitializeSize(this);
+        }
+        //1.声明自适应类实例
+        //AutoSizeFormClass asc = new AutoSizeFormClass(); 
+        private void FormXmlPress5_SizeChanged(object sender, EventArgs e)
+        {
+            // asc.controllInitializeSize(this);
+            //   asc.controlAutoSize(this);
         }
 
         /// <summary>

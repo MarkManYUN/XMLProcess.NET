@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System; 
 
 namespace XmlProcess5._0
 {
-   public  class XmlAddress:IComparable<XmlAddress>
+    public class XmlAddress : IComparable<XmlAddress>
     {
-        public   string SlaveId { get; set; }
+        public string SlaveId { get; set; }
         public string FunctionCode { get; set; }
         public string LocalAddress { get; set; }
         public string ProtocolAddress { get; set; }
@@ -16,6 +12,7 @@ namespace XmlProcess5._0
         public string BitIndex { get; set; }
         public string DataBit { get; set; }
         public string Text { get; set; }
+        public string EnglishName { get; set; }
 
         public int CompareTo(XmlAddress other)
         {
