@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XmlProcess5._0
+namespace XmlProcess5_0
 {
     public class XmlModbus : IComparable<XmlModbus>
     {

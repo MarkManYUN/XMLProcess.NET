@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using DevExpress.UserSkins;
+﻿using DevExpress.LookAndFeel;
 using DevExpress.Skins;
-using DevExpress.LookAndFeel;
+using DevExpress.UserSkins;
+using System;
+using System.Windows.Forms;
 
-namespace XmlProcess5._0
+namespace XmlProcess5_0
 {
     static class Program
     {
