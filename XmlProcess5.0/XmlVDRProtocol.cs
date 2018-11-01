@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XmlProcess5._0
+namespace XmlProcess5_0
 {
   public  class XmlVDRProtocol :IComparable<XmlVDRProtocol>
     {
@@ -17,8 +17,7 @@ namespace XmlProcess5._0
 			<field>FrameLenght</field>
 			<field>FirstAddr</field>
 			<field>StartSingle</field>  
-         */
-        public string ID { get; set; }
+         */ 
         public string PortName { get; set; }
         public string STOPBITS { get; set; }
         public string DATABIT { get; set; }
@@ -31,9 +30,9 @@ namespace XmlProcess5._0
         public int CompareTo(XmlVDRProtocol other)
         {
             if (other == null) return 1;
-            if (this.ID == "") return -1;
-            int id = int.Parse(this.ID);
-            int idO = int.Parse(other.ID);
+            if (this.FirstAddr == "") return -1;
+            int id = int.Parse(this.FirstAddr);
+            int idO = int.Parse(other.FirstAddr);
 
             if (id > idO)
             {
@@ -52,8 +51,7 @@ namespace XmlProcess5._0
         public override bool Equals(object obj)
         {
             var protocol = obj as XmlVDRProtocol;
-            return protocol != null &&
-                   ID == protocol.ID &&
+            return protocol != null && 
                    PortName == protocol.PortName &&
                    STOPBITS == protocol.STOPBITS &&
                    DATABIT == protocol.DATABIT &&
@@ -66,8 +64,7 @@ namespace XmlProcess5._0
 
         public override int GetHashCode()
         {
-            var hashCode = 1812231103;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ID);
+            var hashCode = 1812231103; 
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PortName);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(STOPBITS);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(DATABIT);

@@ -1,6 +1,6 @@
 ﻿using System; 
 
-namespace XmlProcess5._0
+namespace XmlProcess5_0
 {
     public class XmlAddress : IComparable<XmlAddress>
     {

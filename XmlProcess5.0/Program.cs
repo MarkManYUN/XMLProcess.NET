@@ -4,7 +4,7 @@ using DevExpress.UserSkins;
 using System;
 using System.Windows.Forms;
 
-namespace XmlProcess5._0
+namespace XmlProcess5_0
 {
     static class Program
     {

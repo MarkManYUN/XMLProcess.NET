@@ -1,4 +1,4 @@
-﻿namespace XmlProcess5._0
+﻿namespace XmlProcess5_0
 {
     partial class FormXmlPress5
     {
@@ -143,6 +143,7 @@
             this.page3_btn_delCheck = new DevExpress.XtraEditors.SimpleButton();
             this.page3_btn_clear = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.page3_txt_englishName = new DevExpress.XtraEditors.TextEdit();
             this.page3_txt_FunctionCode = new DevExpress.XtraEditors.TextEdit();
             this.page3_txt_SalveId = new DevExpress.XtraEditors.TextEdit();
             this.page3_txt_Text = new DevExpress.XtraEditors.TextEdit();
@@ -163,6 +164,7 @@
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.英文名称 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Page3_Address = new DevExpress.XtraGrid.GridControl();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.navigationPage4 = new DevExpress.XtraBars.Navigation.NavigationPage();
@@ -197,8 +199,7 @@
             this.page3_txt_BeginAddress = new DevExpress.XtraEditors.TextEdit();
             this.page3_txt_DataNumber = new DevExpress.XtraEditors.TextEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
-            this.page3_txt_englishName = new DevExpress.XtraEditors.TextEdit();
-            this.英文名称 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.page4_btn_openFieldFile = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar3)).BeginInit();
@@ -257,6 +258,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_IndexBegin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_englishName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_FunctionCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_SalveId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Text.Properties)).BeginInit();
@@ -276,6 +278,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.英文名称)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Page3_Address)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             this.navigationPage4.SuspendLayout();
@@ -294,8 +297,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Bit16.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_BeginAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_DataNumber.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_englishName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.英文名称)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -638,6 +639,8 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.layoutControl1.Controls.Add(this.btn_configProtocol);
             this.layoutControl1.Controls.Add(this.btn_update);
             this.layoutControl1.Controls.Add(this.page1_btn_addData);
@@ -924,6 +927,8 @@
             // 
             // layoutControl3
             // 
+            this.layoutControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.layoutControl3.Location = new System.Drawing.Point(3, 115);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.Root = this.layoutControlGroup3;
@@ -1329,6 +1334,8 @@
             // 
             // layoutControl2
             // 
+            this.layoutControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.layoutControl2.Controls.Add(this.page3_txt_englishName);
             this.layoutControl2.Controls.Add(this.page3_txt_FunctionCode);
             this.layoutControl2.Controls.Add(this.page3_txt_SalveId);
@@ -1345,6 +1352,15 @@
             this.layoutControl2.Size = new System.Drawing.Size(309, 176);
             this.layoutControl2.TabIndex = 1;
             this.layoutControl2.Text = "layoutControl2";
+            // 
+            // page3_txt_englishName
+            // 
+            this.page3_txt_englishName.Location = new System.Drawing.Point(63, 108);
+            this.page3_txt_englishName.MenuManager = this.ribbonControl1;
+            this.page3_txt_englishName.Name = "page3_txt_englishName";
+            this.page3_txt_englishName.Size = new System.Drawing.Size(234, 20);
+            this.page3_txt_englishName.StyleController = this.layoutControl2;
+            this.page3_txt_englishName.TabIndex = 28;
             // 
             // page3_txt_FunctionCode
             // 
@@ -1537,6 +1553,14 @@
             this.layoutControlItem19.Text = "功能码";
             this.layoutControlItem19.TextSize = new System.Drawing.Size(48, 14);
             // 
+            // 英文名称
+            // 
+            this.英文名称.Control = this.page3_txt_englishName;
+            this.英文名称.Location = new System.Drawing.Point(0, 96);
+            this.英文名称.Name = "英文名称";
+            this.英文名称.Size = new System.Drawing.Size(289, 24);
+            this.英文名称.TextSize = new System.Drawing.Size(48, 14);
+            // 
             // Page3_Address
             // 
             this.Page3_Address.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1546,7 +1570,7 @@
             this.Page3_Address.MainView = this.gridView3;
             this.Page3_Address.MenuManager = this.ribbonControl1;
             this.Page3_Address.Name = "Page3_Address";
-            this.Page3_Address.Size = new System.Drawing.Size(558, 296);
+            this.Page3_Address.Size = new System.Drawing.Size(558, 289);
             this.Page3_Address.TabIndex = 0;
             this.Page3_Address.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
@@ -1566,6 +1590,7 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.page4_btn_openFieldFile);
             this.groupControl2.Controls.Add(this.labelControl19);
             this.groupControl2.Controls.Add(this.page4_txt_inputField);
             this.groupControl2.Controls.Add(this.labelControl21);
@@ -1585,7 +1610,7 @@
             // 
             // labelControl19
             // 
-            this.labelControl19.Location = new System.Drawing.Point(10, 65);
+            this.labelControl19.Location = new System.Drawing.Point(10, 113);
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(60, 14);
             this.labelControl19.TabIndex = 7;
@@ -1593,7 +1618,7 @@
             // 
             // page4_txt_inputField
             // 
-            this.page4_txt_inputField.Location = new System.Drawing.Point(76, 62);
+            this.page4_txt_inputField.Location = new System.Drawing.Point(76, 110);
             this.page4_txt_inputField.MenuManager = this.ribbonControl1;
             this.page4_txt_inputField.Name = "page4_txt_inputField";
             this.page4_txt_inputField.Size = new System.Drawing.Size(127, 20);
@@ -1601,7 +1626,7 @@
             // 
             // labelControl21
             // 
-            this.labelControl21.Location = new System.Drawing.Point(210, 27);
+            this.labelControl21.Location = new System.Drawing.Point(210, 75);
             this.labelControl21.Name = "labelControl21";
             this.labelControl21.Size = new System.Drawing.Size(60, 14);
             this.labelControl21.TabIndex = 5;
@@ -1609,7 +1634,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(10, 27);
+            this.labelControl1.Location = new System.Drawing.Point(10, 75);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(60, 14);
             this.labelControl1.TabIndex = 5;
@@ -1617,7 +1642,7 @@
             // 
             // page4_cmb_CheckField
             // 
-            this.page4_cmb_CheckField.Location = new System.Drawing.Point(276, 24);
+            this.page4_cmb_CheckField.Location = new System.Drawing.Point(276, 72);
             this.page4_cmb_CheckField.Name = "page4_cmb_CheckField";
             this.page4_cmb_CheckField.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1626,7 +1651,7 @@
             // 
             // page4_cmb_CheckProtocol
             // 
-            this.page4_cmb_CheckProtocol.Location = new System.Drawing.Point(76, 24);
+            this.page4_cmb_CheckProtocol.Location = new System.Drawing.Point(76, 72);
             this.page4_cmb_CheckProtocol.MenuManager = this.ribbonControl1;
             this.page4_cmb_CheckProtocol.Name = "page4_cmb_CheckProtocol";
             this.page4_cmb_CheckProtocol.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1637,7 +1662,7 @@
             // 
             // page4_btn_clearContent
             // 
-            this.page4_btn_clearContent.Location = new System.Drawing.Point(248, 110);
+            this.page4_btn_clearContent.Location = new System.Drawing.Point(248, 158);
             this.page4_btn_clearContent.Name = "page4_btn_clearContent";
             this.page4_btn_clearContent.Size = new System.Drawing.Size(75, 23);
             this.page4_btn_clearContent.TabIndex = 3;
@@ -1646,7 +1671,7 @@
             // 
             // page4_btn_update
             // 
-            this.page4_btn_update.Location = new System.Drawing.Point(167, 110);
+            this.page4_btn_update.Location = new System.Drawing.Point(167, 158);
             this.page4_btn_update.Name = "page4_btn_update";
             this.page4_btn_update.Size = new System.Drawing.Size(75, 23);
             this.page4_btn_update.TabIndex = 2;
@@ -1655,7 +1680,7 @@
             // 
             // page4_btn_add
             // 
-            this.page4_btn_add.Location = new System.Drawing.Point(86, 110);
+            this.page4_btn_add.Location = new System.Drawing.Point(86, 158);
             this.page4_btn_add.Name = "page4_btn_add";
             this.page4_btn_add.Size = new System.Drawing.Size(75, 23);
             this.page4_btn_add.TabIndex = 1;
@@ -1664,7 +1689,7 @@
             // 
             // page4_btn_delete
             // 
-            this.page4_btn_delete.Location = new System.Drawing.Point(5, 110);
+            this.page4_btn_delete.Location = new System.Drawing.Point(5, 158);
             this.page4_btn_delete.Name = "page4_btn_delete";
             this.page4_btn_delete.Size = new System.Drawing.Size(75, 23);
             this.page4_btn_delete.TabIndex = 0;
@@ -1852,22 +1877,14 @@
             this.labelControl20.TabIndex = 23;
             this.labelControl20.Text = "1位个数：";
             // 
-            // page3_txt_englishName
+            // page4_btn_openFieldFile
             // 
-            this.page3_txt_englishName.Location = new System.Drawing.Point(63, 108);
-            this.page3_txt_englishName.MenuManager = this.ribbonControl1;
-            this.page3_txt_englishName.Name = "page3_txt_englishName";
-            this.page3_txt_englishName.Size = new System.Drawing.Size(234, 20);
-            this.page3_txt_englishName.StyleController = this.layoutControl2;
-            this.page3_txt_englishName.TabIndex = 28;
-            // 
-            // 英文名称
-            // 
-            this.英文名称.Control = this.page3_txt_englishName;
-            this.英文名称.Location = new System.Drawing.Point(0, 96);
-            this.英文名称.Name = "英文名称";
-            this.英文名称.Size = new System.Drawing.Size(289, 24);
-            this.英文名称.TextSize = new System.Drawing.Size(48, 14);
+            this.page4_btn_openFieldFile.Location = new System.Drawing.Point(10, 34);
+            this.page4_btn_openFieldFile.Name = "page4_btn_openFieldFile";
+            this.page4_btn_openFieldFile.Size = new System.Drawing.Size(112, 23);
+            this.page4_btn_openFieldFile.TabIndex = 8;
+            this.page4_btn_openFieldFile.Text = "打开字段配置文件";
+            this.page4_btn_openFieldFile.Click += new System.EventHandler(this.page4_btn_openFieldFile_Click);
             // 
             // FormXmlPress5
             // 
@@ -1946,6 +1963,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_IndexBegin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_englishName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_FunctionCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_SalveId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Text.Properties)).EndInit();
@@ -1965,6 +1983,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.英文名称)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Page3_Address)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             this.navigationPage4.ResumeLayout(false);
@@ -1985,8 +2004,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_Bit16.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_BeginAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.page3_txt_DataNumber.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.page3_txt_englishName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.英文名称)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2163,6 +2180,7 @@
         private DevExpress.XtraEditors.ComboBoxEdit page4_cmb_CheckField;
         private DevExpress.XtraEditors.TextEdit page3_txt_englishName;
         private DevExpress.XtraLayout.LayoutControlItem 英文名称;
+        private DevExpress.XtraEditors.SimpleButton page4_btn_openFieldFile;
     }
 }
 

@@ -20,7 +20,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraEditors.Controls;
 using System.Text;
 
-namespace XmlProcess5._0
+namespace XmlProcess5_0
 {
     public partial class FormXmlPress5 : DevExpress.XtraBars.Ribbon.RibbonForm
     {
@@ -218,9 +218,22 @@ namespace XmlProcess5._0
             //通讯配置
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreComments = true;//忽略文档里面的注释
-            reader = XmlReader.Create(path, settings);
+            settings.CheckCharacters = true;
+            settings.IgnoreProcessingInstructions = true;
+            settings.IgnoreWhitespace = true;
+            settings.ValidationType = ValidationType.DTD;
 
-            xmlDoc.Load(reader);
+            reader = XmlReader.Create(path, settings);
+            try
+            {
+                xmlDoc.Load(reader);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("读取错误，可能是文件中出现了特殊字符" + Environment.NewLine + ex.Message);
+                reader.Close();
+                return;
+            }
         }
         /// <summary>
         /// 读XML配置文件
@@ -231,8 +244,8 @@ namespace XmlProcess5._0
             if (openFileDialog.FileName.LastIndexOf("CommunicationConfig") > 0)
             {
                 navigationFrame1.SelectedPage =
-        (NavigationPage)navigationFrame1.Pages.FindFirst
-        (x => (string)x.Tag == barButtonItem9.Caption);
+                    (NavigationPage)navigationFrame1.Pages.FindFirst
+                    (x => (string)x.Tag == barButtonItem9.Caption);
             }
             else if (openFileDialog.FileName.LastIndexOf("Address") > 0)
             {
@@ -280,7 +293,7 @@ namespace XmlProcess5._0
             }
             else
             {
-                configFilePath = openFileDialog.FileName;
+                fieldFilePath = openFileDialog.FileName;
             }
             //判断当前打开的页数，判断加载的是什么程序
             // 1. 通讯配置
@@ -348,10 +361,75 @@ namespace XmlProcess5._0
                         #endregion
                         XmlNodeList nodes = item.ChildNodes;
 
-                        if (nameStr.Contains(ProtocolType.custom.ToString().ToUpper()))
+
+                        if (nameStr.Contains(ProtocolType.vdr.ToString().ToUpper()) || nameStr.Contains("SerialPortCustom".ToUpper()))
+                        {
+                            findCommand = "/Communications/CommunicaitonData/Communication/VDR";
+                            currentProtocolType = ProtocolType.vdr;
+                            #region VDRProtocol
+                            foreach (XmlElement inode in nodes)
+                            {
+                                XmlVDRProtocol vdr = new XmlVDRProtocol
+                                {
+                                    PortName = VDRProtocolDictionary["PortName"] = inode.GetAttribute("PortName").ToString(),
+                                    STOPBITS = VDRProtocolDictionary["STOPBITS"] = inode.GetAttribute("STOPBITS").ToString(),
+                                    DATABIT = VDRProtocolDictionary["DATABIT"] = inode.GetAttribute("DATABIT").ToString(),
+                                    PARITY = VDRProtocolDictionary["PARITY"] = inode.GetAttribute("PARITY").ToString(),
+                                    BAUREATE = VDRProtocolDictionary["BAUREATE"] = inode.GetAttribute("BAUREATE").ToString(),
+                                    FrameLenght = VDRProtocolDictionary["FrameLenght"] = inode.GetAttribute("FrameLenght").ToString(),
+                                    FirstAddr = VDRProtocolDictionary["FirstAddr"] = inode.GetAttribute("FirstAddr").ToString(),
+                                    StartSingle = VDRProtocolDictionary["StartSingle"] = inode.GetAttribute("StartSingle").ToString()
+                                };
+                                XmlVDRList.Add(vdr);
+                            }
+
+                            reader.Close();
+                            this.page2_gridview2.DataSource = XmlVDRList;
+                            //动态加载控件
+                            if (first_Flush_Flag)
+                            {
+                                DynamicCreateControl(VDRProtocolDictionary);
+                            }
+                            else
+                            {
+                                //清空原来的控件信息
+                                layoutControl3.BeginUpdate();
+                                layoutControl3.Controls.Clear();
+                                layoutControl3.Root.Items.Clear();
+                                DynamicCreateControl(VDRProtocolDictionary);
+                                dataOpration.EndUpdate();
+                            }
+                            try
+                            {
+                                this.gridView2.Columns[0].Caption = "端口号";
+                                this.gridView2.Columns[0].Width = 70;
+                                this.gridView2.Columns[1].Caption = "停止位";
+                                this.gridView2.Columns[1].Width = 70;
+                                this.gridView2.Columns[2].Caption = "数据位";
+                                this.gridView2.Columns[2].Width = 70;
+                                this.gridView2.Columns[3].Caption = "校验位";
+                                this.gridView2.Columns[3].Width = 70;
+                                this.gridView2.Columns[4].Caption = "波特率";
+                                this.gridView2.Columns[4].Width = 70;
+                                this.gridView2.Columns[5].Caption = "长度";
+                                this.gridView2.Columns[5].Width = 70;
+                                this.gridView2.Columns[6].Caption = "开始地址";
+                                this.gridView2.Columns[6].Width = 70;
+                                this.gridView2.Columns[7].Caption = "开始标志";
+                                this.gridView2.Columns[7].Width = 70;
+
+                            }
+
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("错误信息：" + ex.Message);
+                            }
+
+                            #endregion
+                        }
+                        else if (nameStr.Contains(ProtocolType.custom.ToString().ToUpper()))
                         {
                             findCommand = "/Communications/CommunicaitonData/Communication/TCP[@ID=\"{0}\"]";
-
                             currentProtocolType = ProtocolType.custom;
                             #region customProtocol
                             foreach (XmlElement inode in nodes)
@@ -379,7 +457,6 @@ namespace XmlProcess5._0
                                     XmlcustomList.Add(custom);
                                 }
                             }
-
                             reader.Close();
                             this.page2_gridview2.DataSource = XmlcustomList;
                             //动态加载控件
@@ -515,72 +592,6 @@ namespace XmlProcess5._0
                             }
 
                             catch (Exception ex) { MessageBox.Show("错误信息：" + ex.Message); }
-
-                            #endregion
-                        }
-                        else
-                         if (nameStr.Contains(ProtocolType.vdr.ToString().ToUpper()))
-                        {
-                            findCommand = "/Communications/CommunicaitonData/Communication/VDR";
-                            currentProtocolType = ProtocolType.vdr;
-                            #region VDRProtocol
-                            foreach (XmlElement inode in nodes)
-                            {
-                                XmlVDRProtocol vdr = new XmlVDRProtocol
-                                {
-                                    PortName = VDRProtocolDictionary["PortName"] = inode.GetAttribute("PortName").ToString(),
-                                    STOPBITS = VDRProtocolDictionary["STOPBITS"] = inode.GetAttribute("STOPBITS").ToString(),
-                                    DATABIT = VDRProtocolDictionary["DATABIT"] = inode.GetAttribute("DATABIT").ToString(),
-                                    PARITY = VDRProtocolDictionary["PARITY"] = inode.GetAttribute("PARITY").ToString(),
-                                    BAUREATE = VDRProtocolDictionary["BAUREATE"] = inode.GetAttribute("BAUREATE").ToString(),
-                                    FrameLenght = VDRProtocolDictionary["FrameLenght"] = inode.GetAttribute("FrameLenght").ToString(),
-                                    FirstAddr = VDRProtocolDictionary["FirstAddr"] = inode.GetAttribute("FirstAddr").ToString(),
-                                    StartSingle = VDRProtocolDictionary["StartSingle"] = inode.GetAttribute("StartSingle").ToString()
-                                };
-                                XmlVDRList.Add(vdr);
-                            }
-
-                            reader.Close();
-                            this.page2_gridview2.DataSource = XmlVDRList;
-                            //动态加载控件
-                            if (first_Flush_Flag)
-                            {
-                                DynamicCreateControl(VDRProtocolDictionary);
-                            }
-                            else
-                            {
-                                //清空原来的控件信息
-                                layoutControl3.BeginUpdate();
-                                layoutControl3.Controls.Clear();
-                                layoutControl3.Root.Items.Clear();
-                                DynamicCreateControl(VDRProtocolDictionary);
-                                dataOpration.EndUpdate();
-                            }
-                            try
-                            {
-                                this.gridView2.Columns[0].Caption = "端口号";
-                                this.gridView2.Columns[0].Width = 70;
-                                this.gridView2.Columns[1].Caption = "停止位";
-                                this.gridView2.Columns[1].Width = 70;
-                                this.gridView2.Columns[2].Caption = "数据位";
-                                this.gridView2.Columns[2].Width = 70;
-                                this.gridView2.Columns[3].Caption = "校验位";
-                                this.gridView2.Columns[3].Width = 70;
-                                this.gridView2.Columns[4].Caption = "波特率";
-                                this.gridView2.Columns[4].Width = 70;
-                                this.gridView2.Columns[5].Caption = "长度";
-                                this.gridView2.Columns[5].Width = 70;
-                                this.gridView2.Columns[6].Caption = "开始地址";
-                                this.gridView2.Columns[6].Width = 70;
-                                this.gridView2.Columns[7].Caption = "开始标志";
-                                this.gridView2.Columns[7].Width = 70;
-
-                            }
-
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("错误信息：" + ex.Message);
-                            }
 
                             #endregion
                         }
@@ -735,6 +746,97 @@ namespace XmlProcess5._0
                             #endregion
 
                         }
+                        #region custom备份
+                        /*
+                         * 
+                           if (nameStr.Contains(ProtocolType.custom.ToString().ToUpper()))
+                        {
+                            findCommand = "/Communications/CommunicaitonData/Communication/TCP[@ID=\"{0}\"]";
+
+                            currentProtocolType = ProtocolType.custom;
+                            #region customProtocol
+                            foreach (XmlElement inode in nodes)
+                            {
+                                string type = inode.Name;
+                                if (type.Trim().Equals("TCP"))
+                                {
+                                    XmlSokectCustomProtocol custom = new XmlSokectCustomProtocol
+                                    {
+                                        ID = SokectCustomProtocolDictionary["ID"] = inode.GetAttribute("ID"),
+                                        Can1IP = SokectCustomProtocolDictionary["Can1IP"] = inode.GetAttribute("Can1IP"),
+                                        Can1Port = SokectCustomProtocolDictionary["Can1Port"] = inode.GetAttribute("Can1Port"),
+                                        Can2IP = SokectCustomProtocolDictionary["Can2IP"] = inode.GetAttribute("Can2IP"),
+                                        Can2Port = SokectCustomProtocolDictionary["Can2Port"] = inode.GetAttribute("Can2Port"),
+                                        CheckEndIndex = SokectCustomProtocolDictionary["CheckEndIndex"] = inode.GetAttribute("CheckEndIndex"),
+                                        CheckStartIndex = SokectCustomProtocolDictionary["CheckStartIndex"] = inode.GetAttribute("CheckStartIndex"),
+                                        CheckSumIndex = SokectCustomProtocolDictionary["CheckSumIndex"] = inode.GetAttribute("CheckSumIndex"),
+                                        CheckSumLength = SokectCustomProtocolDictionary["CheckSumLength"] = inode.GetAttribute("CheckSumLength"),
+                                        CheckSumType = SokectCustomProtocolDictionary["CheckSumType"] = inode.GetAttribute("CheckSumType"),
+                                        EndSingle = SokectCustomProtocolDictionary["EndSingle"] = inode.GetAttribute("EndSingle"),
+                                        FirstAddr = SokectCustomProtocolDictionary["FirstAddr"] = inode.GetAttribute("FirstAddr"),
+                                        PackageLength = SokectCustomProtocolDictionary["PackageLength"] = inode.GetAttribute("PackageLength"),
+                                        StartSingle = SokectCustomProtocolDictionary["StartSingle"] = inode.GetAttribute("StartSingle")
+                                    };
+                                    XmlcustomList.Add(custom);
+                                }
+                            }
+
+                            reader.Close();
+                            this.page2_gridview2.DataSource = XmlcustomList;
+                            //动态加载控件
+                            if (first_Flush_Flag)
+                            {
+                                DynamicCreateControl(SokectCustomProtocolDictionary);
+                            }
+                            else
+                            {
+                                //清空原来的控件信息
+                                layoutControl3.BeginUpdate();
+                                layoutControl3.Controls.Clear();
+                                layoutControl3.Root.Items.Clear();
+                                DynamicCreateControl(SokectCustomProtocolDictionary);
+                                dataOpration.EndUpdate();
+                            }
+                            try
+                            {
+                                this.gridView2.Columns[0].Caption = "ID";
+                                this.gridView2.Columns[0].Width = 20;
+                                this.gridView2.Columns[1].Caption = "IP地址1";
+                                this.gridView2.Columns[1].Width = 100;
+                                this.gridView2.Columns[2].Caption = "Port1";
+                                this.gridView2.Columns[2].Width = 40;
+                                this.gridView2.Columns[3].Caption = "IP地址2";
+                                this.gridView2.Columns[3].Width = 100;
+                                this.gridView2.Columns[4].Caption = "Port2";
+                                this.gridView2.Columns[4].Width = 40;
+                                this.gridView2.Columns[5].Caption = "结束位";
+                                this.gridView2.Columns[5].Width = 40;
+                                this.gridView2.Columns[6].Caption = "开始位";
+                                this.gridView2.Columns[6].Width = 40;
+                                this.gridView2.Columns[7].Caption = "检验位";
+                                this.gridView2.Columns[7].Width = 40;
+                                this.gridView2.Columns[8].Caption = "校验长度";
+                                this.gridView2.Columns[8].Width = 40;
+                                this.gridView2.Columns[9].Caption = "类型";
+                                this.gridView2.Columns[9].Width = 40;
+                                this.gridView2.Columns[10].Caption = "结束标志";
+                                this.gridView2.Columns[10].Width = 40;
+                                this.gridView2.Columns[11].Caption = "开始地址";
+                                this.gridView2.Columns[11].Width = 40;
+                                this.gridView2.Columns[12].Caption = "包长度";
+                                this.gridView2.Columns[12].Width = 40;
+                                this.gridView2.Columns[13].Caption = "开始标志";
+                            }
+
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("错误信息：" + ex.Message);
+                            }
+                            #endregion
+                        }
+                        else
+                         * */
+                        #endregion
                     }
                 }
             }
@@ -786,6 +888,7 @@ namespace XmlProcess5._0
                 page3_txt_Factor.Text = XmlAddressList[0].Factor;
                 page3_txt_DataBit.Text = XmlAddressList[0].DataBit;
                 page3_txt_BitIndex.Text = XmlAddressList[0].BitIndex;
+                page3_txt_englishName.Text = XmlAddressList[0].EnglishName;
                 reader.Close();
 
                 this.Page3_Address.DataSource = XmlAddressList;
@@ -844,63 +947,62 @@ namespace XmlProcess5._0
             }
             else
             {
-                this.Page1_CommunicationConfig.DataSource = null;
-                modelList = new List<Communication>();
-                LoadXml(configFilePath);
-                // 得到根节点Communications
-                XmlNode xn = xmlDoc.SelectSingleNode("Communications");
-                // 得到根节点的所有子节点
-                XmlNodeList xnl = xn.ChildNodes;
-
-
-                foreach (XmlNode xn1 in xnl)
+                try
                 {
+                    this.Page1_CommunicationConfig.DataSource = null;
+                    modelList = new List<Communication>();
+                    LoadXml(configFilePath);
+                    // 得到根节点Communications
+                    XmlNode xn = xmlDoc.SelectSingleNode("Communications");
                     // 得到根节点的所有子节点
-                    XmlNodeList xnn = xn1.ChildNodes;
-                    foreach (var item in xnn)
+                    XmlNodeList xnl = xn.ChildNodes;
+                    foreach (XmlNode xn1 in xnl)
                     {
-                        Communication bookModel = new Communication();
-                        // 将节点转换为元素，便于得到节点的属性值
-                        XmlElement ele = (XmlElement)item;
-
-                        Communication model = new Communication
+                        // 得到根节点的所有子节点
+                        XmlNodeList xnn = xn1.ChildNodes;
+                        foreach (var item in xnn)
                         {
-                            ID = ele.GetAttribute("ID").ToString(),
-                            CommType = ele.GetAttribute("CommType").ToString(),
-                            NameCH = ele.GetAttribute("NameCH").ToString(),
-                            NameEN = ele.GetAttribute("NameEN").ToString(),
-                            ConfigFilePath = ele.GetAttribute("ConfigFilePath").ToString()
-                        };
-                        modelList.Add(model);
+                            Communication bookModel = new Communication();
+                            // 将节点转换为元素，便于得到节点的属性值
+                            XmlElement ele = (XmlElement)item;
+
+                            Communication model = new Communication
+                            {
+                                ID = ele.GetAttribute("ID").ToString(),
+                                CommType = ele.GetAttribute("CommType").ToString(),
+                                NameCH = ele.GetAttribute("NameCH").ToString(),
+                                NameEN = ele.GetAttribute("NameEN").ToString(),
+                                ConfigFilePath = ele.GetAttribute("ConfigFilePath").ToString()
+                            };
+                            modelList.Add(model);
+                        }
                     }
+                    page1_txt_CommPath.Text = modelList[0].ConfigFilePath;
+                    page1_txt_ComType.Text = modelList[0].CommType;
+                    page1_txt_ID.Text = modelList[0].ID;
+                    page1_txt_NameCH.Text = modelList[0].NameCH;
+                    page1_txt_NameEN.Text = modelList[0].NameEN;
+                    //读取完毕后关闭reader
+                    reader.Close();
+                    this.Page1_CommunicationConfig.DataSource = modelList;
+
+                    this.gridView1.Columns[0].Caption = "ID";
+                    this.gridView1.Columns[0].Width = 30;
+                    this.gridView1.Columns[1].Caption = "协议类型";
+                    this.gridView1.Columns[1].Width = 100;
+                    this.gridView1.Columns[2].Caption = "中文名";
+                    this.gridView1.Columns[2].Width = 70;
+                    this.gridView1.Columns[3].Caption = "英文名";
+                    this.gridView1.Columns[3].Width = 70;
+                    this.gridView1.Columns[4].Caption = "文件路径";
+
+
                 }
-                page1_txt_CommPath.Text = modelList[0].ConfigFilePath;
-                page1_txt_ComType.Text = modelList[0].CommType;
-                page1_txt_ID.Text = modelList[0].ID;
-                page1_txt_NameCH.Text = modelList[0].NameCH;
-                page1_txt_NameEN.Text = modelList[0].NameEN;
-                //读取完毕后关闭reader
-                reader.Close();
-                this.Page1_CommunicationConfig.DataSource = modelList;
-
-                this.gridView1.Columns[0].Caption = "ID";
-                this.gridView1.Columns[0].Width = 30;
-                this.gridView1.Columns[1].Caption = "协议类型";
-                this.gridView1.Columns[1].Width = 100;
-                this.gridView1.Columns[2].Caption = "中文名";
-                this.gridView1.Columns[2].Width = 70;
-                this.gridView1.Columns[3].Caption = "英文名";
-                this.gridView1.Columns[3].Width = 70;
-                this.gridView1.Columns[4].Caption = "文件路径";
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show("文件格式错误" + Environment.NewLine + ex.Message);
+                }
             }
-            try
-            { }
-            catch (Exception ex)
-            {
-                MessageBox.Show("文件格式错误" + Environment.NewLine + ex.Message);
-            }
-
             #region linq 方式获取
             /* 
                XmlReaderSettings settings = new XmlReaderSettings();
@@ -1719,10 +1821,21 @@ namespace XmlProcess5._0
             switch (currentProtocolType)
             {
                 case ProtocolType.custom:
-
+                    string strId = layoutControl3.Controls.Find(prefixName + "ID", false)[0].Text;
                     XmlElement doc = xmlDoc.DocumentElement; // DocumentElement 获取xml文档对象的根XmlElement.
                     string Path = string.Format("/Communications/CommunicaitonData/Communication[@ID=\"{0}\"]/TCP[@ID=\"{1}\"]",
-                         page2_txt_ID.Text, layoutControl3.Controls.Find(prefixName + "ID", false)[0].Text);
+                                                page2_txt_ID.Text, strId);
+                    if (strId == "")
+                    {
+                        Path = string.Format("/Communications/CommunicaitonData/Communication[@ID=\"{0}\"]/TCP[@ID=\"{1}\"]",
+                                              page2_txt_ID.Text, strId);
+                    }
+                    else
+                    {
+                        Path = string.Format("/Communications/CommunicaitonData/Communication[@ID=\"{0}\"]/TCP[@ID=\"{1}\"]",
+                                              page2_txt_ID.Text, strId);
+                    }
+
                     //selectSingleNode 根据XPath表达式,获得符合条件的第一个节点.
                     XmlElement xmlElement = (XmlElement)doc.SelectSingleNode(Path);
                     // selectXe.SetAttribute("CommType", txt_data2.Text);//也可以通过SetAttribute来增加一个属性
@@ -1733,7 +1846,7 @@ namespace XmlProcess5._0
                         SokectCustomProtocolDictionary[custom[i].Key] = baseEdit.Text;
                         xmlElement.SetAttribute(custom[i].Key, baseEdit.Text);
                     }
-
+                    #region
                     /* 
                      * foreach (Control c in this.Controls)
                                             {
@@ -1789,6 +1902,7 @@ namespace XmlProcess5._0
                      selectXe.GetElementsByTagName("NameEN").Item(0).InnerText = txt_data4.Text;
                      selectXe.GetElementsByTagName("ConfigFilePath").Item(0).InnerText = txt_path.Text;
                      */
+                    #endregion
                     string path = xmlDoc.BaseURI.ToString().Substring(xmlDoc.BaseURI.ToString().LastIndexOf("///") + 3);
                     reader.Close();
 
@@ -1813,6 +1927,7 @@ namespace XmlProcess5._0
                         SokectModbusProtocolDictionary[custom[i].Key] = baseEdit.Text;
                         xmlElement.SetAttribute(custom[i].Key, baseEdit.Text);
                     }
+                    #region
                     /*
                     XmlModbus modbus = new XmlModbus
                     {
@@ -1845,6 +1960,7 @@ namespace XmlProcess5._0
                      selectXe.GetElementsByTagName("NameEN").Item(0).InnerText = txt_data4.Text;
                      selectXe.GetElementsByTagName("ConfigFilePath").Item(0).InnerText = txt_path.Text;
                      */
+                    #endregion
                     path = xmlDoc.BaseURI.ToString().Substring(xmlDoc.BaseURI.ToString().LastIndexOf("///") + 3);
                     reader.Close();
                     xmlDoc.Save(path);
@@ -1871,43 +1987,45 @@ namespace XmlProcess5._0
                         xmlElement.SetAttribute(custom[i].Key, baseEdit.Text);
                     }
 
-                    /*
-                    XmlSokect sokect = new XmlSokect();
 
-                    sokect.ID = GetSelectOID(gridView2, "ID");
-                    sokect.Can1IP = GetSelectOID(gridView2, "Can1IP");
-                    sokect.Can1Port = GetSelectOID(gridView2, "Can1Port");
-                    sokect.Can1Port = GetSelectOID(gridView2, "Can1Port");
-                    sokect.Can2IP = GetSelectOID(gridView2, "Can2IP");
-                    sokect.Can2Port = GetSelectOID(gridView2, "Can2Port");
-                    sokect.AddrIndex = GetSelectOID(gridView2, "AddrIndex");
-                    sokect.CheckDataLength = GetSelectOID(gridView2, "CheckDataLength");
-                    sokect.CheckSingleSingle = GetSelectOID(gridView2, "CheckSingleSingle");
-                    sokect.CommSingle = GetSelectOID(gridView2, "CommSingle");
-                    sokect.DataDefineRule = GetSelectOID(gridView2, "DataDefineRule");
-                    sokect.EndSingle = GetSelectOID(gridView2, "EndSingle");
-                    sokect.InforPerData = GetSelectOID(gridView2, "InforPerData");
-                    sokect.SplitChar = GetSelectOID(gridView2, "SplitChar");
-                    sokect.StartChar = GetSelectOID(gridView2, "StartChar");
-                    sokect.ValueIndex = GetSelectOID(gridView2, "ValueIndex");
+                    XmlSokect sokect = new XmlSokect
+                    {
+                        ID = GetSelectOID(gridView2, "ID"),
+                        Can1IP = GetSelectOID(gridView2, "Can1IP"),
+                        Can1Port = GetSelectOID(gridView2, "Can1Port"),
+                        Can2IP = GetSelectOID(gridView2, "Can2IP"),
+                        Can2Port = GetSelectOID(gridView2, "Can2Port"),
+                        AddrIndex = GetSelectOID(gridView2, "AddrIndex"),
+                        CheckDataLength = GetSelectOID(gridView2, "CheckDataLength"),
+                        CheckSingleSingle = GetSelectOID(gridView2, "CheckSingleSingle"),
+                        CommSingle = GetSelectOID(gridView2, "CommSingle"),
+                        DataDefineRule = GetSelectOID(gridView2, "DataDefineRule"),
+                        EndSingle = GetSelectOID(gridView2, "EndSingle"),
+                        InforPerData = GetSelectOID(gridView2, "InforPerData"),
+                        SplitChar = GetSelectOID(gridView2, "SplitChar"),
+                        StartChar = GetSelectOID(gridView2, "StartChar"),
+                        ValueIndex = GetSelectOID(gridView2, "ValueIndex")
+                    };
 
                     XmlSokectList.Remove(sokect);
-
-                    sokect.ID = SokectProtocolDictionary["ID"];
-                    sokect.Can1IP = SokectProtocolDictionary["Can1IP"];
-                    sokect.Can1Port = SokectProtocolDictionary["Can1Port"];
-                    sokect.Can2IP = SokectProtocolDictionary["Can2IP"];
-                    sokect.Can2Port = SokectProtocolDictionary["Can2Port"];
-                    sokect.AddrIndex = SokectProtocolDictionary["CheckEndIndex"];
-                    sokect.CheckDataLength = SokectProtocolDictionary["CheckStartIndex"];
-                    sokect.CheckSingleSingle = SokectProtocolDictionary["CheckSumIndex"];
-                    sokect.CommSingle = SokectProtocolDictionary["CheckSumLength"];
-                    sokect.DataDefineRule = SokectProtocolDictionary["CheckSumType"];
-                    sokect.EndSingle = SokectProtocolDictionary["EndSingle"];
-                    sokect.InforPerData = SokectProtocolDictionary["FirstAddr"];
-                    sokect.SplitChar = SokectProtocolDictionary["PackageLength"];
-                    sokect.StartChar = SokectProtocolDictionary["StartSingle"];
-                    sokect.ValueIndex = SokectProtocolDictionary["ValueIndex"];
+                    sokect = new XmlSokect
+                    {
+                        ID = SokectProtocolDictionary["ID"],
+                        Can1IP = SokectProtocolDictionary["Can1IP"],
+                        Can1Port = SokectProtocolDictionary["Can1Port"],
+                        Can2IP = SokectProtocolDictionary["Can2IP"],
+                        Can2Port = SokectProtocolDictionary["Can2Port"],
+                        AddrIndex = SokectProtocolDictionary["CheckEndIndex"],
+                        CheckDataLength = SokectProtocolDictionary["CheckStartIndex"],
+                        CheckSingleSingle = SokectProtocolDictionary["CheckSumIndex"],
+                        CommSingle = SokectProtocolDictionary["CheckSumLength"],
+                        DataDefineRule = SokectProtocolDictionary["CheckSumType"],
+                        EndSingle = SokectProtocolDictionary["EndSingle"],
+                        InforPerData = SokectProtocolDictionary["FirstAddr"],
+                        SplitChar = SokectProtocolDictionary["PackageLength"],
+                        StartChar = SokectProtocolDictionary["StartSingle"],
+                        ValueIndex = SokectProtocolDictionary["ValueIndex"]
+                    };
 
                     XmlSokectList.Add(sokect);
                     path = xmlDoc.BaseURI.ToString().Substring(xmlDoc.BaseURI.ToString().LastIndexOf("///") + 3);
@@ -1918,7 +2036,7 @@ namespace XmlProcess5._0
                 case ProtocolType.vdr:
 
                     doc = xmlDoc.DocumentElement; // DocumentElement 获取xml文档对象的根XmlElement.
-                    Path = string.Format("/Communications/CommunicaitonData/Communication[@ID=\"{0}\"]/TCP",
+                    Path = string.Format("/Communications/CommunicaitonData/Communication[@ID=\"{0}\"]",
                      page2_txt_ID.Text);
                     //selectSingleNode 根据XPath表达式,获得符合条件的第一个节点.
                     xmlElement = (XmlElement)doc.SelectSingleNode(Path);
@@ -1932,31 +2050,29 @@ namespace XmlProcess5._0
                         VDRProtocolDictionary[custom[i].Key] = baseEdit.Text;
                         xmlElement.SetAttribute(custom[i].Key, baseEdit.Text);
                     }
-
-
-
-                    XmlVDRProtocol vdr = new XmlVDRProtocol();
-
-                    vdr.ID = GetSelectOID(gridView2, "ID");
-                    vdr.BAUREATE = GetSelectOID(gridView2, "BAUREATE");
-                    vdr.DATABIT = GetSelectOID(gridView2, "DATABIT");
-                    vdr.FirstAddr = GetSelectOID(gridView2, "FirstAddr");
-                    vdr.FrameLenght = GetSelectOID(gridView2, "FrameLenght");
-                    vdr.PARITY = GetSelectOID(gridView2, "PARITY");
-                    vdr.PortName = GetSelectOID(gridView2, "PortName");
-                    vdr.StartSingle = GetSelectOID(gridView2, "StartSingle");
-                    vdr.STOPBITS = GetSelectOID(gridView2, "STOPBITS");
+                    XmlVDRProtocol vdr = new XmlVDRProtocol
+                    { 
+                        BAUREATE = GetSelectOID(gridView2, "BAUREATE"),
+                        DATABIT = GetSelectOID(gridView2, "DATABIT"),
+                        FirstAddr = GetSelectOID(gridView2, "FirstAddr"),
+                        FrameLenght = GetSelectOID(gridView2, "FrameLenght"),
+                        PARITY = GetSelectOID(gridView2, "PARITY"),
+                        PortName = GetSelectOID(gridView2, "PortName"),
+                        StartSingle = GetSelectOID(gridView2, "StartSingle"),
+                        STOPBITS = GetSelectOID(gridView2, "STOPBITS")
+                    };
                     XmlVDRList.Remove(vdr);
-
-                    vdr.ID = VDRProtocolDictionary["ID"];
-                    vdr.BAUREATE = VDRProtocolDictionary["BAUREATE"];
-                    vdr.DATABIT = VDRProtocolDictionary["DATABIT"];
-                    vdr.FirstAddr = VDRProtocolDictionary["FirstAddr"];
-                    vdr.FrameLenght = VDRProtocolDictionary["FrameLenght"];
-                    vdr.PARITY = VDRProtocolDictionary["PARITY"];
-                    vdr.PortName = VDRProtocolDictionary["PortName"];
-                    vdr.StartSingle = VDRProtocolDictionary["StartSingle"];
-                    vdr.STOPBITS = VDRProtocolDictionary["STOPBITS"];
+                    vdr = new XmlVDRProtocol
+                    { 
+                        BAUREATE = VDRProtocolDictionary["BAUREATE"],
+                        DATABIT = VDRProtocolDictionary["DATABIT"],
+                        FirstAddr = VDRProtocolDictionary["FirstAddr"],
+                        FrameLenght = VDRProtocolDictionary["FrameLenght"],
+                        PARITY = VDRProtocolDictionary["PARITY"],
+                        PortName = VDRProtocolDictionary["PortName"],
+                        StartSingle = VDRProtocolDictionary["StartSingle"],
+                        STOPBITS = VDRProtocolDictionary["STOPBITS"]
+                    };
                     XmlVDRList.Add(vdr);
                     path = xmlDoc.BaseURI.ToString().Substring(xmlDoc.BaseURI.ToString().LastIndexOf("///") + 3);
                     reader.Close();
@@ -1986,75 +2102,78 @@ namespace XmlProcess5._0
 
 
 
-                    XmlOther other = new XmlOther();
-
-                    other.ID = GetSelectOID(gridView2, "ID");
-                    other.Can1IP = GetSelectOID(gridView2, "Can1IP");
-                    other.Can1Port = GetSelectOID(gridView2, "Can1Port");
-                    other.Can2IP = GetSelectOID(gridView2, "Can2IP");
-                    other.Can2Port = GetSelectOID(gridView2, "Can2Port");
-                    other.CheckEndIndex = GetSelectOID(gridView2, "CheckEndIndex");
-                    other.CheckStartIndex = GetSelectOID(gridView2, "CheckStartIndex");
-                    other.CheckSumIndex = GetSelectOID(gridView2, "CheckSumIndex");
-                    other.CheckSumType = GetSelectOID(gridView2, "CheckSumType");
-                    other.EndSingle = GetSelectOID(gridView2, "EndSingle");
-                    other.FirstAddr = GetSelectOID(gridView2, "FirstAddr");
-                    other.PackageLength = GetSelectOID(gridView2, "PackageLength");
-                    other.StartSingle = GetSelectOID(gridView2, "StartSingle");
-                    other.DATABIT = GetSelectOID(gridView2, "");
-                    other.DataLenght = GetSelectOID(gridView2, "");
-                    other.FirstAddress = GetSelectOID(gridView2, "");
-                    other.FrameLenght = GetSelectOID(gridView2, "");
-                    other.FunctionCode = GetSelectOID(gridView2, "");
-                    other.PARITY = GetSelectOID(gridView2, "");
-                    other.PortName = GetSelectOID(gridView2, "");
-                    other.RequestCount = GetSelectOID(gridView2, "");
-                    other.SlaveID = GetSelectOID(gridView2, "");
-                    other.Standby1 = GetSelectOID(gridView2, "");
-                    other.Standby2 = GetSelectOID(gridView2, "");
-                    other.Standby3 = GetSelectOID(gridView2, "");
-                    other.Standby4 = GetSelectOID(gridView2, "");
-                    other.Standby5 = GetSelectOID(gridView2, "");
-                    other.Standby6 = GetSelectOID(gridView2, "");
-                    other.Standby7 = GetSelectOID(gridView2, "");
-                    other.Standby8 = GetSelectOID(gridView2, "");
-                    other.STOPBITS = GetSelectOID(gridView2, "");
+                    XmlOther other = new XmlOther
+                    {
+                        ID = GetSelectOID(gridView2, "ID"),
+                        Can1IP = GetSelectOID(gridView2, "Can1IP"),
+                        Can1Port = GetSelectOID(gridView2, "Can1Port"),
+                        Can2IP = GetSelectOID(gridView2, "Can2IP"),
+                        Can2Port = GetSelectOID(gridView2, "Can2Port"),
+                        CheckEndIndex = GetSelectOID(gridView2, "CheckEndIndex"),
+                        CheckStartIndex = GetSelectOID(gridView2, "CheckStartIndex"),
+                        CheckSumIndex = GetSelectOID(gridView2, "CheckSumIndex"),
+                        CheckSumType = GetSelectOID(gridView2, "CheckSumType"),
+                        EndSingle = GetSelectOID(gridView2, "EndSingle"),
+                        FirstAddr = GetSelectOID(gridView2, "FirstAddr"),
+                        PackageLength = GetSelectOID(gridView2, "PackageLength"),
+                        StartSingle = GetSelectOID(gridView2, "StartSingle"),
+                        DATABIT = GetSelectOID(gridView2, ""),
+                        DataLenght = GetSelectOID(gridView2, ""),
+                        FirstAddress = GetSelectOID(gridView2, ""),
+                        FrameLenght = GetSelectOID(gridView2, ""),
+                        FunctionCode = GetSelectOID(gridView2, ""),
+                        PARITY = GetSelectOID(gridView2, ""),
+                        PortName = GetSelectOID(gridView2, ""),
+                        RequestCount = GetSelectOID(gridView2, ""),
+                        SlaveID = GetSelectOID(gridView2, ""),
+                        Standby1 = GetSelectOID(gridView2, ""),
+                        Standby2 = GetSelectOID(gridView2, ""),
+                        Standby3 = GetSelectOID(gridView2, ""),
+                        Standby4 = GetSelectOID(gridView2, ""),
+                        Standby5 = GetSelectOID(gridView2, ""),
+                        Standby6 = GetSelectOID(gridView2, ""),
+                        Standby7 = GetSelectOID(gridView2, ""),
+                        Standby8 = GetSelectOID(gridView2, ""),
+                        STOPBITS = GetSelectOID(gridView2, "")
+                    };
                     XmlOtherList.Remove(other);
-
-                    other.ID = ProtocolOtherDictionary["ID"];
-                    other.Can1IP = ProtocolOtherDictionary["Can1IP"];
-                    other.Can1Port = ProtocolOtherDictionary["Can1Port"];
-                    other.Can2IP = ProtocolOtherDictionary["Can2IP"];
-                    other.Can2Port = ProtocolOtherDictionary["Can2Port"];
-                    other.CheckEndIndex = ProtocolOtherDictionary["CheckEndIndex"];
-                    other.CheckStartIndex = ProtocolOtherDictionary["CheckStartIndex"];
-                    other.CheckSumIndex = ProtocolOtherDictionary["CheckSumIndex"];
-                    other.CheckSumType = ProtocolOtherDictionary["CheckSumType"];
-                    other.EndSingle = ProtocolOtherDictionary["EndSingle"];
-                    other.FirstAddr = ProtocolOtherDictionary["FirstAddr"];
-                    other.PackageLength = ProtocolOtherDictionary["PackageLength"];
-                    other.StartSingle = ProtocolOtherDictionary["StartSingle"];
-                    other.DATABIT = ProtocolOtherDictionary["DATABIT"];
-                    other.DataLenght = ProtocolOtherDictionary["DataLenght"];
-                    other.FirstAddress = ProtocolOtherDictionary["FirstAddress"];
-                    other.FrameLenght = ProtocolOtherDictionary["FrameLenght"];
-                    other.FunctionCode = ProtocolOtherDictionary["FunctionCode"];
-                    other.PARITY = ProtocolOtherDictionary["PARITY"];
-                    other.PortName = ProtocolOtherDictionary["PortName"];
-                    other.RequestCount = ProtocolOtherDictionary["RequestCount"];
-                    other.SlaveID = ProtocolOtherDictionary["SlaveID"];
-                    other.Standby1 = ProtocolOtherDictionary["Standby1"];
-                    other.Standby2 = ProtocolOtherDictionary["Standby2"];
-                    other.Standby3 = ProtocolOtherDictionary["Standby3"];
-                    other.Standby4 = ProtocolOtherDictionary["Standby4"];
-                    other.Standby5 = ProtocolOtherDictionary["Standby5"];
-                    other.Standby6 = ProtocolOtherDictionary["Standby6"];
-                    other.Standby7 = ProtocolOtherDictionary["Standby7"];
-                    other.Standby8 = ProtocolOtherDictionary["Standby8"];
-                    other.STOPBITS = ProtocolOtherDictionary["STOPBITS"];
+                    other = new XmlOther
+                    {
+                        ID = ProtocolOtherDictionary["ID"],
+                        Can1IP = ProtocolOtherDictionary["Can1IP"],
+                        Can1Port = ProtocolOtherDictionary["Can1Port"],
+                        Can2IP = ProtocolOtherDictionary["Can2IP"],
+                        Can2Port = ProtocolOtherDictionary["Can2Port"],
+                        CheckEndIndex = ProtocolOtherDictionary["CheckEndIndex"],
+                        CheckStartIndex = ProtocolOtherDictionary["CheckStartIndex"],
+                        CheckSumIndex = ProtocolOtherDictionary["CheckSumIndex"],
+                        CheckSumType = ProtocolOtherDictionary["CheckSumType"],
+                        EndSingle = ProtocolOtherDictionary["EndSingle"],
+                        FirstAddr = ProtocolOtherDictionary["FirstAddr"],
+                        PackageLength = ProtocolOtherDictionary["PackageLength"],
+                        StartSingle = ProtocolOtherDictionary["StartSingle"],
+                        DATABIT = ProtocolOtherDictionary["DATABIT"],
+                        DataLenght = ProtocolOtherDictionary["DataLenght"],
+                        FirstAddress = ProtocolOtherDictionary["FirstAddress"],
+                        FrameLenght = ProtocolOtherDictionary["FrameLenght"],
+                        FunctionCode = ProtocolOtherDictionary["FunctionCode"],
+                        PARITY = ProtocolOtherDictionary["PARITY"],
+                        PortName = ProtocolOtherDictionary["PortName"],
+                        RequestCount = ProtocolOtherDictionary["RequestCount"],
+                        SlaveID = ProtocolOtherDictionary["SlaveID"],
+                        Standby1 = ProtocolOtherDictionary["Standby1"],
+                        Standby2 = ProtocolOtherDictionary["Standby2"],
+                        Standby3 = ProtocolOtherDictionary["Standby3"],
+                        Standby4 = ProtocolOtherDictionary["Standby4"],
+                        Standby5 = ProtocolOtherDictionary["Standby5"],
+                        Standby6 = ProtocolOtherDictionary["Standby6"],
+                        Standby7 = ProtocolOtherDictionary["Standby7"],
+                        Standby8 = ProtocolOtherDictionary["Standby8"],
+                        STOPBITS = ProtocolOtherDictionary["STOPBITS"]
+                    };
 
                     XmlOtherList.Add(other);
-                    */
+
                     path = xmlDoc.BaseURI.ToString().Substring(xmlDoc.BaseURI.ToString().LastIndexOf("///") + 3);
                     reader.Close();
                     xmlDoc.Save(path);
@@ -2238,8 +2357,27 @@ namespace XmlProcess5._0
         {
             LoadXml(addressFilePath);
             XmlElement xe = xmlDoc.DocumentElement;
-            string strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"and @FunctionCode=\"{1}\"]/Point[@LocalAddress=\"{2}\"]",
-                GetSelectOID(gridView3, "SlaveId"), GetSelectOID(gridView3, "FunctionCode"), GetSelectOID(gridView3, "LocalAddress"));
+            string strPath = "";
+            if (GetSelectOID(gridView3, "SlaveId") != "" && GetSelectOID(gridView3, "FunctionCode") != "")
+            {
+                string.Format("/PointsType/Points[@SlaveId=\"{0}\"and @FunctionCode=\"{1}\"]/Point[@LocalAddress=\"{2}\"]",
+                                GetSelectOID(gridView3, "SlaveId"), GetSelectOID(gridView3, "FunctionCode"), GetSelectOID(gridView3, "LocalAddress"));
+            }
+            else
+            if (GetSelectOID(gridView3, "SlaveId") == "")
+            {
+                strPath = string.Format("/PointsType/Points[@FunctionCode=\"{0}\"]/Point[@LocalAddress=\"{1}\"]", page3_txt_FunctionCode.Text, GetSelectOID(gridView3, "LocalAddress"));
+            }
+            else
+            if (GetSelectOID(gridView3, "FunctionCode") == "")
+            {
+                strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"]/Point[@LocalAddress=\"{1}\"]", page3_txt_SalveId.Text, GetSelectOID(gridView3, "LocalAddress"));
+            }
+            else
+            {
+                MessageBox.Show("格式不符合要求");
+                return;
+            }
             //selectSingleNode 根据XPath表达式,获得符合条件的第一个节点.
             XmlElement selectXe = (XmlElement)xe.SelectSingleNode(strPath);
             if (selectXe == null)
@@ -2279,12 +2417,31 @@ namespace XmlProcess5._0
         {
             LoadXml(addressFilePath);
             XmlElement xe = xmlDoc.DocumentElement;
+
             string strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"and @FunctionCode=\"{1}\"]/Point[@LocalAddress=\"{2}\"]",
                 slaveId, functionCode, localAddress);
+
+            if (slaveId != "" && functionCode != "")
+            {
+                strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"and @FunctionCode=\"{1}\"]/Point[@LocalAddress=\"{2}\"]",
+                slaveId, functionCode, localAddress);
+            }
+            else
+            if (slaveId == "")
+            {
+                strPath = string.Format("/PointsType/Points[ @FunctionCode=\"{1}\"]/Point[@LocalAddress=\"{1}\"]",
+               functionCode, localAddress);
+            }
+            else
+            {
+                strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"]/Point[@LocalAddress=\"{1}\"]",
+               slaveId, localAddress);
+            }
             //selectSingleNode 根据XPath表达式,获得符合条件的第一个节点.
             XmlElement selectXe = (XmlElement)xe.SelectSingleNode(strPath);
             if (selectXe == null)
             {
+                MessageBox.Show("找不到数据");
                 reader.Close();
                 return;
             }
@@ -2299,12 +2456,32 @@ namespace XmlProcess5._0
                 MessageBox.Show("请打开配置文件", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            DeleteAddress(page3_txt_SalveId.Text, page3_txt_FunctionCode.Text, page3_txt_LocalAddress.Text);
+            DeleteAddress(GetSelectOID(gridView3, "SlaveId"), GetSelectOID(gridView3, "FunctionCode"), GetSelectOID(gridView3, "LocalAddress"));
 
             xmlDoc.Load(addressFilePath);
             XmlElement xe = xmlDoc.DocumentElement;
             string strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"and @FunctionCode=\"{1}\"]",
-                page3_txt_SalveId.Text, page3_txt_FunctionCode.Text);
+                                page3_txt_SalveId.Text, page3_txt_FunctionCode.Text);
+            if (page3_txt_SalveId.Text != "" && page3_txt_FunctionCode.Text != "")
+            {
+                strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"and @FunctionCode=\"{1}\"]",
+                                page3_txt_SalveId.Text, page3_txt_FunctionCode.Text);
+            }
+            else
+            if (page3_txt_SalveId.Text == "")
+            {
+                strPath = string.Format("/PointsType/Points[@FunctionCode=\"{0}\"]", page3_txt_FunctionCode.Text);
+            }
+            else
+            if (page3_txt_FunctionCode.Text == "")
+            {
+                strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"]", page3_txt_SalveId.Text);
+            }
+            else
+            {
+                MessageBox.Show("格式不符合要求");
+                return;
+            }
             XmlElement selectXe = (XmlElement)xe.SelectSingleNode(strPath);
             if (selectXe == null)
             {
@@ -2321,8 +2498,23 @@ namespace XmlProcess5._0
                 selectXe.SetAttributeNode(xmlAttributeSlaveId);
                 Type.AppendChild(selectXe);
             }
-            strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"and @FunctionCode=\"{1}\"]", page3_txt_SalveId.Text, page3_txt_FunctionCode.Text);
+            if (page3_txt_SalveId.Text != "" && page3_txt_FunctionCode.Text != "")
+            {
+
+                strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\"and @FunctionCode=\"{1}\"]", page3_txt_SalveId.Text, page3_txt_FunctionCode.Text);
+            }
+            else
+            if (page3_txt_SalveId.Text == "")
+            {
+                strPath = string.Format("/PointsType/Points[@FunctionCode=\"{0}\" and @SlaveId=\"\"]", page3_txt_FunctionCode.Text);
+            }
+            else
+            if (page3_txt_FunctionCode.Text == "")
+            {
+                strPath = string.Format("/PointsType/Points[@SlaveId=\"{0}\" and @FunctionCode=\"\"]", page3_txt_SalveId.Text);
+            }
             selectXe = (XmlElement)xe.SelectSingleNode(strPath);
+            if (selectXe == null) { MessageBox.Show("文件格式错误"); return; }
             XmlAddress address = new XmlAddress
             {
                 BitIndex = page3_txt_BitIndex.Text,
@@ -2756,6 +2948,12 @@ namespace XmlProcess5._0
             //   asc.controlAutoSize(this);
         }
 
+        private void page4_btn_openFieldFile_Click(object sender, EventArgs e)
+        {
+            openFileDialog.FileName = "../xmlField.xml";
+            ReadXml();
+        }
+
         /// <summary>
         /// 协议配置的数据刷新
         /// </summary>
@@ -2824,8 +3022,8 @@ namespace XmlProcess5._0
                 temp = list[list.Count - 1] as XmlVDRProtocol;
                 if (temp != null)
                 {
-                    if (((XmlVDRProtocol)temp).ID == null) { ((XmlVDRProtocol)temp).ID = "1"; }
-                    return 1 + int.Parse(((XmlVDRProtocol)temp).ID);
+                    if (((XmlVDRProtocol)temp).FirstAddr == null) { ((XmlVDRProtocol)temp).FirstAddr = "1"; }
+                    return 1 + int.Parse(((XmlVDRProtocol)temp).FirstAddr);
                 }
             }
             return 1;
@@ -3056,8 +3254,7 @@ namespace XmlProcess5._0
                     XmlAttribute vdr_STOPBITS = xmlDoc.CreateAttribute("STOPBITS");
 
                     XmlVDRProtocol vdr = new XmlVDRProtocol();
-                    XmlElement VDRElement = xmlDoc.CreateElement("VDR");
-                    vdr_ID.InnerText = vdr.ID = GetMaxIndex(XmlVDRList).ToString();
+                    XmlElement VDRElement = xmlDoc.CreateElement("VDR"); 
                     vdr_BAUREATE.InnerText = vdr.BAUREATE = VDRProtocolDictionary["BAUREATE"];
                     vdr_DATABIT.InnerText = vdr.DATABIT = VDRProtocolDictionary["DATABIT"];
                     vdr_FirstAddr.InnerText = vdr.FirstAddr = VDRProtocolDictionary["FirstAddr"];

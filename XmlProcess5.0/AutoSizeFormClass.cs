@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace XmlProcess5._0
+namespace XmlProcess5_0
 {
     class AutoSizeFormClass
     {
